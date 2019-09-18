@@ -3,7 +3,11 @@
 #
 ``` choca
 ```
-Intro to component here
+## To try:
+1. cd ~/robocomp/files/innermodel$
+2. rcis simpleworld.xml
+3. cd ~/robocomp/components/robocomp-robolab/components/Robotics/choca/
+4. bin/choca --Ice.Config=etc/config
 
 
 ## Configuration parameters
