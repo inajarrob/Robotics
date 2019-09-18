@@ -34,16 +34,16 @@ class SpecificWorker : public GenericWorker
 {
 Q_OBJECT
 public:
-	SpecificWorker(MapPrx& mprx);
+	SpecificWorker(TuplePrx tprx);
 	~SpecificWorker();
 	bool setParams(RoboCompCommonBehavior::ParameterList params);
 
 
 public slots:
 	void compute();
-
+	void initialize(int period);
 private:
-	InnerModel *innerModel;
+	std::shared_ptr<InnerModel> innerModel;
 
 };
 

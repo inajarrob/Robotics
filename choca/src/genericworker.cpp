@@ -20,17 +20,18 @@
 /**
 * \brief Default constructor
 */
-GenericWorker::GenericWorker(MapPrx& mprx) :
+GenericWorker::GenericWorker(TuplePrx tprx) :
 QObject()
 {
-	differentialrobot_proxy = (*(DifferentialRobotPrx*)mprx["DifferentialRobotProxy"]);
-	laser_proxy = (*(LaserPrx*)mprx["LaserProxy"]);
+
+	differentialrobot_proxy = std::get<0>(tprx);
+	laser_proxy = std::get<1>(tprx);
 
 	mutex = new QMutex(QMutex::Recursive);
 
 	Period = BASIC_PERIOD;
 	connect(&timer, SIGNAL(timeout()), this, SLOT(compute()));
-// 	timer.start(Period);
+
 }
 
 /**

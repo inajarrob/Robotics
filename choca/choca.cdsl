@@ -7,6 +7,6 @@ Component choca
 	{
 		requires DifferentialRobot, Laser;
 	};
-	language cpp;
+	language cpp11;
 };
 
