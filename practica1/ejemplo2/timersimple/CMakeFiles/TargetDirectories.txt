@@ -1,0 +1,7 @@
+/home/isabel/Escritorio/ROBOTICA/timersimple/CMakeFiles/install/strip.dir
+/home/isabel/Escritorio/ROBOTICA/timersimple/CMakeFiles/edit_cache.dir
+/home/isabel/Escritorio/ROBOTICA/timersimple/CMakeFiles/ejemplo1.dir
+/home/isabel/Escritorio/ROBOTICA/timersimple/CMakeFiles/rebuild_cache.dir
+/home/isabel/Escritorio/ROBOTICA/timersimple/CMakeFiles/list_install_components.dir
+/home/isabel/Escritorio/ROBOTICA/timersimple/CMakeFiles/install/local.dir
+/home/isabel/Escritorio/ROBOTICA/timersimple/CMakeFiles/install.dir

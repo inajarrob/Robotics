@@ -1,0 +1,111 @@
+Determining if the Q_WS_WIN exist failed with the following output:
+Change Dir: /home/isabel/Escritorio/ROBOTICA/timersimple/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_9bdfd/fast"
+/usr/bin/make -f CMakeFiles/cmTC_9bdfd.dir/build.make CMakeFiles/cmTC_9bdfd.dir/build
+make[1]: se entra en el directorio '/home/isabel/Escritorio/ROBOTICA/timersimple/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_9bdfd.dir/CheckSymbolExists.cxx.o
+/usr/bin/c++   -I/usr/include/qt4   -o CMakeFiles/cmTC_9bdfd.dir/CheckSymbolExists.cxx.o -c /home/isabel/Escritorio/ROBOTICA/timersimple/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
+/home/isabel/Escritorio/ROBOTICA/timersimple/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx: In function ‘int main(int, char**)’:
+/home/isabel/Escritorio/ROBOTICA/timersimple/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:8:19: error: ‘Q_WS_WIN’ was not declared in this scope
+   return ((int*)(&Q_WS_WIN))[argc];
+                   ^~~~~~~~
+/home/isabel/Escritorio/ROBOTICA/timersimple/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:8:19: note: suggested alternative: ‘Q_WS_X11’
+   return ((int*)(&Q_WS_WIN))[argc];
+                   ^~~~~~~~
+                   Q_WS_X11
+CMakeFiles/cmTC_9bdfd.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_9bdfd.dir/CheckSymbolExists.cxx.o' failed
+make[1]: *** [CMakeFiles/cmTC_9bdfd.dir/CheckSymbolExists.cxx.o] Error 1
+make[1]: se sale del directorio '/home/isabel/Escritorio/ROBOTICA/timersimple/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_9bdfd/fast' failed
+make: *** [cmTC_9bdfd/fast] Error 2
+
+File /home/isabel/Escritorio/ROBOTICA/timersimple/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+/* */
+#include <QtCore/qglobal.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef Q_WS_WIN
+  return ((int*)(&Q_WS_WIN))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the Q_WS_QWS exist failed with the following output:
+Change Dir: /home/isabel/Escritorio/ROBOTICA/timersimple/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_40138/fast"
+/usr/bin/make -f CMakeFiles/cmTC_40138.dir/build.make CMakeFiles/cmTC_40138.dir/build
+make[1]: se entra en el directorio '/home/isabel/Escritorio/ROBOTICA/timersimple/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_40138.dir/CheckSymbolExists.cxx.o
+/usr/bin/c++   -I/usr/include/qt4   -o CMakeFiles/cmTC_40138.dir/CheckSymbolExists.cxx.o -c /home/isabel/Escritorio/ROBOTICA/timersimple/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
+/home/isabel/Escritorio/ROBOTICA/timersimple/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx: In function ‘int main(int, char**)’:
+/home/isabel/Escritorio/ROBOTICA/timersimple/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:8:19: error: ‘Q_WS_QWS’ was not declared in this scope
+   return ((int*)(&Q_WS_QWS))[argc];
+                   ^~~~~~~~
+/home/isabel/Escritorio/ROBOTICA/timersimple/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:8:19: note: suggested alternative: ‘Q_WS_X11’
+   return ((int*)(&Q_WS_QWS))[argc];
+                   ^~~~~~~~
+                   Q_WS_X11
+CMakeFiles/cmTC_40138.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_40138.dir/CheckSymbolExists.cxx.o' failed
+make[1]: *** [CMakeFiles/cmTC_40138.dir/CheckSymbolExists.cxx.o] Error 1
+make[1]: se sale del directorio '/home/isabel/Escritorio/ROBOTICA/timersimple/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_40138/fast' failed
+make: *** [cmTC_40138/fast] Error 2
+
+File /home/isabel/Escritorio/ROBOTICA/timersimple/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+/* */
+#include <QtCore/qglobal.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef Q_WS_QWS
+  return ((int*)(&Q_WS_QWS))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the Q_WS_MAC exist failed with the following output:
+Change Dir: /home/isabel/Escritorio/ROBOTICA/timersimple/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_b7fc2/fast"
+/usr/bin/make -f CMakeFiles/cmTC_b7fc2.dir/build.make CMakeFiles/cmTC_b7fc2.dir/build
+make[1]: se entra en el directorio '/home/isabel/Escritorio/ROBOTICA/timersimple/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_b7fc2.dir/CheckSymbolExists.cxx.o
+/usr/bin/c++   -I/usr/include/qt4   -o CMakeFiles/cmTC_b7fc2.dir/CheckSymbolExists.cxx.o -c /home/isabel/Escritorio/ROBOTICA/timersimple/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
+/home/isabel/Escritorio/ROBOTICA/timersimple/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx: In function ‘int main(int, char**)’:
+/home/isabel/Escritorio/ROBOTICA/timersimple/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:8:19: error: ‘Q_WS_MAC’ was not declared in this scope
+   return ((int*)(&Q_WS_MAC))[argc];
+                   ^~~~~~~~
+/home/isabel/Escritorio/ROBOTICA/timersimple/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:8:19: note: suggested alternative: ‘Q_WS_X11’
+   return ((int*)(&Q_WS_MAC))[argc];
+                   ^~~~~~~~
+                   Q_WS_X11
+CMakeFiles/cmTC_b7fc2.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_b7fc2.dir/CheckSymbolExists.cxx.o' failed
+make[1]: *** [CMakeFiles/cmTC_b7fc2.dir/CheckSymbolExists.cxx.o] Error 1
+make[1]: se sale del directorio '/home/isabel/Escritorio/ROBOTICA/timersimple/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_b7fc2/fast' failed
+make: *** [cmTC_b7fc2/fast] Error 2
+
+File /home/isabel/Escritorio/ROBOTICA/timersimple/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+/* */
+#include <QtCore/qglobal.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef Q_WS_MAC
+  return ((int*)(&Q_WS_MAC))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
