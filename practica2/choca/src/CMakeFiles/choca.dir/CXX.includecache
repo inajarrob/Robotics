@@ -6,13 +6,69 @@
 
 #IncludeRegexTransform: 
 
-../../../robocomp/classes/sigwatch/sigwatch.h
+../../../../classes/sigwatch/sigwatch.h
 QObject
 -
 signal.h
 -
 
-/home/isabel/Escritorio/Robotics/choca/src/CommonBehavior.cpp
+/home/salabeta/robocomp/classes/qlog/qlog.cpp
+qlog.h
+/home/salabeta/robocomp/classes/qlog/qlog.h
+
+/home/salabeta/robocomp/classes/qlog/qlog.h
+config.h
+/home/salabeta/robocomp/classes/qlog/config.h
+QtCore
+-
+iostream
+-
+Logger.h
+-
+boost/format.hpp
+-
+boost/format.hpp
+-
+
+/home/salabeta/robocomp/classes/rapplication/rapplication.cpp
+rapplication.h
+/home/salabeta/robocomp/classes/rapplication/rapplication.h
+
+/home/salabeta/robocomp/classes/rapplication/rapplication.h
+Ice/Ice.h
+-
+Ice/Application.h
+-
+IceUtil/IceUtil.h
+-
+QtCore
+-
+
+/home/salabeta/robocomp/classes/sigwatch/sigwatch.cpp
+sys/socket.h
+-
+unistd.h
+-
+errno.h
+-
+QMap
+-
+QSocketNotifier
+-
+QDebug
+-
+sigwatch.h
+/home/salabeta/robocomp/classes/sigwatch/sigwatch.h
+moc_sigwatch.cpp
+/home/salabeta/robocomp/classes/sigwatch/moc_sigwatch.cpp
+
+/home/salabeta/robocomp/classes/sigwatch/sigwatch.h
+QObject
+-
+signal.h
+-
+
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/CommonBehavior.cpp
 CommonBehavior.h
 -
 IceUtil/PushDisableWarnings.h
@@ -30,7 +86,7 @@ Ice/OutputStream.h
 IceUtil/PopDisableWarnings.h
 -
 
-/home/isabel/Escritorio/Robotics/choca/src/DifferentialRobot.cpp
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/DifferentialRobot.cpp
 DifferentialRobot.h
 -
 IceUtil/PushDisableWarnings.h
@@ -50,7 +106,7 @@ Ice/LocalException.h
 IceUtil/PopDisableWarnings.h
 -
 
-/home/isabel/Escritorio/Robotics/choca/src/GenericBase.cpp
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/GenericBase.cpp
 GenericBase.h
 -
 IceUtil/PushDisableWarnings.h
@@ -70,7 +126,7 @@ Ice/LocalException.h
 IceUtil/PopDisableWarnings.h
 -
 
-/home/isabel/Escritorio/Robotics/choca/src/Laser.cpp
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/Laser.cpp
 Laser.h
 -
 IceUtil/PushDisableWarnings.h
@@ -90,53 +146,53 @@ Ice/LocalException.h
 IceUtil/PopDisableWarnings.h
 -
 
-/home/isabel/Escritorio/Robotics/choca/src/choca_autogen/EWIEGA46WW/moc_genericmonitor.cpp
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/choca_autogen/EWIEGA46WW/moc_genericmonitor.cpp
 ../../genericmonitor.h
-/home/isabel/Escritorio/Robotics/choca/src/genericmonitor.h
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/genericmonitor.h
 QtCore/qbytearray.h
 -
 QtCore/qmetatype.h
 -
 
-/home/isabel/Escritorio/Robotics/choca/src/choca_autogen/EWIEGA46WW/moc_genericworker.cpp
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/choca_autogen/EWIEGA46WW/moc_genericworker.cpp
 ../../genericworker.h
-/home/isabel/Escritorio/Robotics/choca/src/genericworker.h
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/genericworker.h
 QtCore/qbytearray.h
 -
 QtCore/qmetatype.h
 -
 
-/home/isabel/Escritorio/Robotics/choca/src/choca_autogen/EWIEGA46WW/moc_specificmonitor.cpp
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/choca_autogen/EWIEGA46WW/moc_specificmonitor.cpp
 ../../specificmonitor.h
-/home/isabel/Escritorio/Robotics/choca/src/specificmonitor.h
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/specificmonitor.h
 QtCore/qbytearray.h
 -
 QtCore/qmetatype.h
 -
 
-/home/isabel/Escritorio/Robotics/choca/src/choca_autogen/EWIEGA46WW/moc_specificworker.cpp
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/choca_autogen/EWIEGA46WW/moc_specificworker.cpp
 ../../specificworker.h
-/home/isabel/Escritorio/Robotics/choca/src/specificworker.h
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/specificworker.h
 QtCore/qbytearray.h
 -
 QtCore/qmetatype.h
 -
 
-/home/isabel/Escritorio/Robotics/choca/src/choca_autogen/mocs_compilation.cpp
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/choca_autogen/mocs_compilation.cpp
 EWIEGA46WW/moc_genericmonitor.cpp
-/home/isabel/Escritorio/Robotics/choca/src/choca_autogen/EWIEGA46WW/moc_genericmonitor.cpp
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/choca_autogen/EWIEGA46WW/moc_genericmonitor.cpp
 EWIEGA46WW/moc_genericworker.cpp
-/home/isabel/Escritorio/Robotics/choca/src/choca_autogen/EWIEGA46WW/moc_genericworker.cpp
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/choca_autogen/EWIEGA46WW/moc_genericworker.cpp
 EWIEGA46WW/moc_specificmonitor.cpp
-/home/isabel/Escritorio/Robotics/choca/src/choca_autogen/EWIEGA46WW/moc_specificmonitor.cpp
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/choca_autogen/EWIEGA46WW/moc_specificmonitor.cpp
 EWIEGA46WW/moc_specificworker.cpp
-/home/isabel/Escritorio/Robotics/choca/src/choca_autogen/EWIEGA46WW/moc_specificworker.cpp
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/choca_autogen/EWIEGA46WW/moc_specificworker.cpp
 
-/home/isabel/Escritorio/Robotics/choca/src/commonbehaviorI.cpp
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/commonbehaviorI.cpp
 commonbehaviorI.h
-/home/isabel/Escritorio/Robotics/choca/src/commonbehaviorI.h
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/commonbehaviorI.h
 
-/home/isabel/Escritorio/Robotics/choca/src/commonbehaviorI.h
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/commonbehaviorI.h
 Ice/Ice.h
 -
 CommonBehavior.h
@@ -144,37 +200,37 @@ CommonBehavior.h
 config.h
 -
 genericworker.h
-/home/isabel/Escritorio/Robotics/choca/src/genericworker.h
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/genericworker.h
 genericmonitor.h
-/home/isabel/Escritorio/Robotics/choca/src/genericmonitor.h
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/genericmonitor.h
 
-/home/isabel/Escritorio/Robotics/choca/src/config.h
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/config.h
 
-/home/isabel/Escritorio/Robotics/choca/src/genericmonitor.cpp
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/genericmonitor.cpp
 genericmonitor.h
-/home/isabel/Escritorio/Robotics/choca/src/genericmonitor.h
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/genericmonitor.h
 
-/home/isabel/Escritorio/Robotics/choca/src/genericmonitor.h
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/genericmonitor.h
 Ice/Ice.h
 -
 QtCore
 -
 genericworker.h
-/home/isabel/Escritorio/Robotics/choca/src/genericworker.h
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/genericworker.h
 config.h
-/home/isabel/Escritorio/Robotics/choca/src/config.h
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/config.h
 qlog/qlog.h
 -
 CommonBehavior.h
 -
 
-/home/isabel/Escritorio/Robotics/choca/src/genericworker.cpp
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/genericworker.cpp
 genericworker.h
-/home/isabel/Escritorio/Robotics/choca/src/genericworker.h
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/genericworker.h
 
-/home/isabel/Escritorio/Robotics/choca/src/genericworker.h
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/genericworker.h
 config.h
-/home/isabel/Escritorio/Robotics/choca/src/config.h
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/config.h
 stdint.h
 -
 qlog/qlog.h
@@ -188,7 +244,7 @@ DifferentialRobot.h
 Laser.h
 -
 
-/home/isabel/Escritorio/Robotics/choca/src/main.cpp
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/main.cpp
 signal.h
 -
 QtCore
@@ -208,92 +264,36 @@ sigwatch/sigwatch.h
 qlog/qlog.h
 -
 config.h
-/home/isabel/Escritorio/Robotics/choca/src/config.h
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/config.h
 genericmonitor.h
-/home/isabel/Escritorio/Robotics/choca/src/genericmonitor.h
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/genericmonitor.h
 genericworker.h
-/home/isabel/Escritorio/Robotics/choca/src/genericworker.h
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/genericworker.h
 specificworker.h
-/home/isabel/Escritorio/Robotics/choca/src/specificworker.h
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/specificworker.h
 specificmonitor.h
-/home/isabel/Escritorio/Robotics/choca/src/specificmonitor.h
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/specificmonitor.h
 commonbehaviorI.h
-/home/isabel/Escritorio/Robotics/choca/src/commonbehaviorI.h
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/commonbehaviorI.h
 GenericBase.h
 -
 
-/home/isabel/Escritorio/Robotics/choca/src/specificmonitor.cpp
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/specificmonitor.cpp
 specificmonitor.h
-/home/isabel/Escritorio/Robotics/choca/src/specificmonitor.h
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/specificmonitor.h
 
-/home/isabel/Escritorio/Robotics/choca/src/specificmonitor.h
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/specificmonitor.h
 genericmonitor.h
-/home/isabel/Escritorio/Robotics/choca/src/genericmonitor.h
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/genericmonitor.h
 
-/home/isabel/Escritorio/Robotics/choca/src/specificworker.cpp
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/specificworker.cpp
 specificworker.h
-/home/isabel/Escritorio/Robotics/choca/src/specificworker.h
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/specificworker.h
 
-/home/isabel/Escritorio/Robotics/choca/src/specificworker.h
+/home/salabeta/robocomp/components/Robotics/practica2/choca/src/specificworker.h
 genericworker.h
 -
 innermodel/innermodel.h
--
-
-/home/isabel/robocomp/classes/qlog/qlog.cpp
-qlog.h
-/home/isabel/robocomp/classes/qlog/qlog.h
-
-/home/isabel/robocomp/classes/qlog/qlog.h
-config.h
-/home/isabel/robocomp/classes/qlog/config.h
-QtCore
--
-iostream
--
-Logger.h
--
-boost/format.hpp
--
-boost/format.hpp
--
-
-/home/isabel/robocomp/classes/rapplication/rapplication.cpp
-rapplication.h
-/home/isabel/robocomp/classes/rapplication/rapplication.h
-
-/home/isabel/robocomp/classes/rapplication/rapplication.h
-Ice/Ice.h
--
-Ice/Application.h
--
-IceUtil/IceUtil.h
--
-QtCore
--
-
-/home/isabel/robocomp/classes/sigwatch/sigwatch.cpp
-sys/socket.h
--
-unistd.h
--
-errno.h
--
-QMap
--
-QSocketNotifier
--
-QDebug
--
-sigwatch.h
-/home/isabel/robocomp/classes/sigwatch/sigwatch.h
-moc_sigwatch.cpp
-/home/isabel/robocomp/classes/sigwatch/moc_sigwatch.cpp
-
-/home/isabel/robocomp/classes/sigwatch/sigwatch.h
-QObject
--
-signal.h
 -
 
 /opt/robocomp/include/innermodel/innermodel.h
@@ -4017,8 +4017,8 @@ IceUtil/PopDisableWarnings.h
 -
 
 src/choca_autogen/include/moc_sigwatch.cpp
-../../../../../../robocomp/classes/sigwatch/sigwatch.h
-../../../robocomp/classes/sigwatch/sigwatch.h
+../../../../../../../classes/sigwatch/sigwatch.h
+../../../../classes/sigwatch/sigwatch.h
 QtCore/qbytearray.h
 -
 QtCore/qmetatype.h
