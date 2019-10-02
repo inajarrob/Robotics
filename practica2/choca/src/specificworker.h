@@ -44,6 +44,10 @@ public slots:
 	void initialize(int period);
 private:
 	std::shared_ptr<InnerModel> innerModel;
+	enum class State {idle, walk, turnR, turnL, findObj, spiral};
+    State actual_state;
+
+	void walk(RoboCompLaser::TLaserData ldata);
 
 };
 

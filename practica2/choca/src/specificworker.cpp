@@ -47,10 +47,6 @@ bool SpecificWorker::setParams(RoboCompCommonBehavior::ParameterList params)
 //	catch(std::exception e) { qFatal("Error reading config params"); }
 
 
-
-	
-
-
 	return true;
 }
 
@@ -62,13 +58,27 @@ void SpecificWorker::initialize(int period)
 
 }
 
+void SpecificWorker::walk(RoboCompLaser::TLaserData ldata)
+{
+    int x, y;
+    float alpha;
+
+    differentialrobot_proxy->setSpeedBase(500, 0);
+    std::cout << ".................CORRIENDO.................." << std::endl;
+    std::cout << "DISTANCIA: " << ldata.front().dist << std::endl;
+    differentialrobot_proxy->getBasePose(x, y, alpha);
+    std::cout << "Posicion, x: " << x << "y: " << y << std::endl;
+    std::cout << "ANGULO: " << ldata.front().angle << std::endl;
+}
+
 void SpecificWorker::compute( )
 {
     const float threshold = 200; // millimeters
-//float rotright = 0.785;  // rads per second
-//    float rotleft = -0.785;
+    //float rotright = 0.785;  // rads per second
+    //float rotleft = -0.785;
     int x, y;
     float alpha;
+
 
     try
     {
@@ -77,9 +87,25 @@ void SpecificWorker::compute( )
 
         //sort laser data from small to large distances using a lambda function.
         // ORDENA DE MENOR A MAYOR DISTANCIA A OBJETOS/PARED
-        std::sort( ldata.begin(), ldata.end(), [](RoboCompLaser::TData a, RoboCompLaser::TData b){ return     a.dist < b.dist; });
+        //std::sort( ldata.begin(), ldata.end(), [](RoboCompLaser::TData a, RoboCompLaser::TData b){ return     a.dist < b.dist; });
 
-	if( ldata.front().dist < threshold)
+        switch(State::walk)
+        {
+            case State::idle:
+                break;
+            case State::walk:
+                walk(ldata);
+                break;
+            case State::turnR:
+                break;
+            case State::turnL:
+                break;
+            case State::findObj:
+                break;
+        }
+    }
+
+	/* if( ldata.front().dist < threshold)
     {
                 std::cout << ".................CAMBIO DIRECCION.................." << std::endl;
                 //differentialrobot_proxy->stopBase();
@@ -99,11 +125,11 @@ void SpecificWorker::compute( )
         std::cout << "Posicion, x: " << x << "y: " << y << std::endl;
         std::cout << "ANGULO: " << ldata.front().angle << std::endl;
   	}
-    }
+    }*/
     catch(const Ice::Exception &ex)
     {
         std::cout << ex << std::endl;
-    }
+    } 
 }
 
 
