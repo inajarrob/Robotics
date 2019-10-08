@@ -64,47 +64,52 @@ void SpecificWorker::walk(RoboCompLaser::TLaserData ldata)
     float alpha;
 
     differentialrobot_proxy->setSpeedBase(500, 0);
-    std::cout << ".................CORRIENDO.................." << std::endl;
+    /* std::cout << ".................CORRIENDO.................." << std::endl;
     std::cout << "DISTANCIA: " << ldata.front().dist << std::endl;
     differentialrobot_proxy->getBasePose(x, y, alpha);
     std::cout << "Posicion, x: " << x << "y: " << y << std::endl;
     std::cout << "ANGULO: " << ldata.front().angle << std::endl;
+    */
+
+    if( ldata.front().dist < threshold)
+        setState(State::findObj);
 }
+
+	void SpecificWorker::setState(State a_state){
+        actual_state = a_state;
+    }
+    
+	enum State SpecificWorker::getState(){
+        return actual_state;
+    }
 
 void SpecificWorker::compute( )
 {
-    const float threshold = 200; // millimeters
-    //float rotright = 0.785;  // rads per second
-    //float rotleft = -0.785;
-    int x, y;
-    float alpha;
-
 
     try
     {
     	// read laser data 
         RoboCompLaser::TLaserData ldata = laser_proxy->getLaserData(); 
 
+
         //sort laser data from small to large distances using a lambda function.
         // ORDENA DE MENOR A MAYOR DISTANCIA A OBJETOS/PARED
         //std::sort( ldata.begin(), ldata.end(), [](RoboCompLaser::TData a, RoboCompLaser::TData b){ return     a.dist < b.dist; });
 
-        switch(State::walk)
+        switch(actual_state)
         {
             case State::idle:
                 break;
             case State::walk:
-                walk(ldata);
+                SpecificWorker::walk(ldata, enum actual_state);
                 break;
-            case State::turnR:
-                break;
-            case State::turnL:
+            case State::turn:
                 break;
             case State::findObj:
+                    findObstacles(ldata, enum actual_state);
                 break;
         }
     }
-
 	/* if( ldata.front().dist < threshold)
     {
                 std::cout << ".................CAMBIO DIRECCION.................." << std::endl;

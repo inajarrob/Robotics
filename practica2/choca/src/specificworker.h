@@ -29,14 +29,39 @@
 
 #include <genericworker.h>
 #include <innermodel/innermodel.h>
+#include <grid.h>
+    const float threshold = 200; // millimeters
+
 
 class SpecificWorker : public GenericWorker
 {
 Q_OBJECT
 public:
+	enum class State {idle, walk, turn, findObj, spiral};
+	State actual_state;
+	/// Grid
+	struct TCell
+	{
+		uint id;
+		bool free;
+		bool visited;
+		//QGraphicsRectItem* rect;
+		float cost = 1;
+		
+		// method to save the value
+		void save(std::ostream &os) const {	os << free << " " << visited; };
+		void read(std::istream &is) {	is >> free >> visited ;};
+	};
+		
+	using TDim = Grid<TCell>::Dimensions;
+	Grid<TCell> grid;
+
+
 	SpecificWorker(TuplePrx tprx);
 	~SpecificWorker();
 	bool setParams(RoboCompCommonBehavior::ParameterList params);
+	void setState(enum State a_state);
+	enum State getState();
 
 
 public slots:
@@ -44,10 +69,8 @@ public slots:
 	void initialize(int period);
 private:
 	std::shared_ptr<InnerModel> innerModel;
-	enum class State {idle, walk, turnR, turnL, findObj, spiral};
-    State actual_state;
-
-	void walk(RoboCompLaser::TLaserData ldata);
+	void walk(RoboCompLaser::TLaserData ldata, enum State a_state);
+	void findObstacles(RoboCompLaser::TLaserData ldata, enum State a_state);
 
 };
 

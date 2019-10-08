@@ -295,6 +295,8 @@ genericworker.h
 -
 innermodel/innermodel.h
 -
+grid.h
+-
 
 /opt/robocomp/include/innermodel/innermodel.h
 stdexcept
@@ -4040,5 +4042,17 @@ GenericBase.h
 DifferentialRobot.h
 -
 Laser.h
+-
+
+src/grid.h
+unordered_map
+-
+boost/functional/hash.hpp
+-
+iostream
+-
+fstream
+-
+queue
 -
 
