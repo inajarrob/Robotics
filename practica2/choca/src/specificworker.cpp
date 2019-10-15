@@ -23,7 +23,7 @@
 */
 SpecificWorker::SpecificWorker(TuplePrx tprx) : GenericWorker(tprx)
 {
-
+        setState(State::idle);
 }
 
 /**
@@ -58,30 +58,69 @@ void SpecificWorker::initialize(int period)
 
 }
 
+void SpecificWorker::setState(SpecificWorker::State a_state){
+    SpecificWorker::actual_state = a_state;
+} 
+
+void SpecificWorker::idle(){
+    setState(SpecificWorker::State::walk);
+}
+
 void SpecificWorker::walk(RoboCompLaser::TLaserData ldata)
 {
-    int x, y;
-    float alpha;
-
-    differentialrobot_proxy->setSpeedBase(500, 0);
+    // ORDENA DE MENOR A MAYOR DISTANCIA A OBJETOS/PARED
+    std::sort( ldata.begin(), ldata.end(), [](RoboCompLaser::TData a, RoboCompLaser::TData b){ return     a.dist < b.dist; });
+    
+    if(ldata.front().dist < threshold)
+        setState(SpecificWorker::State::turn);
+    else
+        differentialrobot_proxy->setSpeedBase(500, 0);
+    //int x, y;
+    //float alpha;
     /* std::cout << ".................CORRIENDO.................." << std::endl;
     std::cout << "DISTANCIA: " << ldata.front().dist << std::endl;
     differentialrobot_proxy->getBasePose(x, y, alpha);
     std::cout << "Posicion, x: " << x << "y: " << y << std::endl;
     std::cout << "ANGULO: " << ldata.front().angle << std::endl;
     */
-
-    if( ldata.front().dist < threshold)
-        setState(State::findObj);
 }
 
-	void SpecificWorker::setState(State a_state){
-        actual_state = a_state;
-    }
-    
-	enum State SpecificWorker::getState(){
-        return actual_state;
-    }
+void SpecificWorker::turn(RoboCompLaser::TLaserData ldata)
+{
+    static int giro = 0;
+    static bool turning = false;
+    // ORDENA DE MENOR A MAYOR DISTANCIA A OBJETOS/PARED
+    std::sort( ldata.begin(), ldata.end(), [](RoboCompLaser::TData a, RoboCompLaser::TData b){ return     a.dist < b.dist; });
+
+    // Preguntamos si hay que terminar de girar
+    if(ldata.front().dist > threshold)
+    {
+        setState(SpecificWorker::State::walk);
+        turning = false;
+    } else {
+        // Preguntar con qué dato giramos
+        if(turning == false){
+            turning = true;    
+            giro    = rand()%2;
+        } else{
+            if(giro == 0){
+                // Giro izquierda
+                differentialrobot_proxy->setSpeedBase(0, rot);
+            } else{
+                // Giro derecha
+                differentialrobot_proxy->setSpeedBase(0, abs(rot));
+            }
+            // Esto comprobar
+            if(abs(ldata.front().angle) > 1.50){
+                setState(SpecificWorker::State::findObj);
+            }
+        }
+    }        
+}
+
+void SpecificWorker::findObstacle(RoboCompLaser::TLaserData ldata)
+{
+}
 
 void SpecificWorker::compute( )
 {
@@ -90,23 +129,26 @@ void SpecificWorker::compute( )
     {
     	// read laser data 
         RoboCompLaser::TLaserData ldata = laser_proxy->getLaserData(); 
-
-
         //sort laser data from small to large distances using a lambda function.
         // ORDENA DE MENOR A MAYOR DISTANCIA A OBJETOS/PARED
         //std::sort( ldata.begin(), ldata.end(), [](RoboCompLaser::TData a, RoboCompLaser::TData b){ return     a.dist < b.dist; });
 
-        switch(actual_state)
+        switch(SpecificWorker::actual_state)
         {
             case State::idle:
+                    cout << "Estado idle" << endl;
+                    idle();
                 break;
             case State::walk:
-                SpecificWorker::walk(ldata, enum actual_state);
+                    cout << "Estado andando" << endl;
+                    walk(ldata);
                 break;
             case State::turn:
+                    cout << "Estado girar" << endl;
+                    turn(ldata);
                 break;
             case State::findObj:
-                    findObstacles(ldata, enum actual_state);
+                    findObstacle(ldata);
                 break;
         }
     }

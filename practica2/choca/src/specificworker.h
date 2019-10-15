@@ -29,8 +29,11 @@
 
 #include <genericworker.h>
 #include <innermodel/innermodel.h>
-#include <grid.h>
-    const float threshold = 200; // millimeters
+#include "grid.h"
+#include <stdlib.h>
+#include <random>
+const float threshold = 200; // millimeters
+const float rot = -0.75;
 
 
 class SpecificWorker : public GenericWorker
@@ -60,7 +63,7 @@ public:
 	SpecificWorker(TuplePrx tprx);
 	~SpecificWorker();
 	bool setParams(RoboCompCommonBehavior::ParameterList params);
-	void setState(enum State a_state);
+	void setState(SpecificWorker::State a_state);
 	enum State getState();
 
 
@@ -69,8 +72,10 @@ public slots:
 	void initialize(int period);
 private:
 	std::shared_ptr<InnerModel> innerModel;
-	void walk(RoboCompLaser::TLaserData ldata, enum State a_state);
-	void findObstacles(RoboCompLaser::TLaserData ldata, enum State a_state);
+	void idle();
+	void walk(RoboCompLaser::TLaserData ldata);
+	void turn(RoboCompLaser::TLaserData ldata);
+	void findObstacle(RoboCompLaser::TLaserData ldata);
 
 };
 
