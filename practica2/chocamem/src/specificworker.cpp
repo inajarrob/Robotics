@@ -92,11 +92,16 @@ void SpecificWorker::walk(RoboCompLaser::TLaserData ldata)
     // ORDENA DE MENOR A MAYOR DISTANCIA A OBJETOS/PARED
     std::sort( ldata.begin(), ldata.end(), [](RoboCompLaser::TData a, RoboCompLaser::TData b){ return     a.dist < b.dist; });
     
-
+	differentialrobot_proxy->getBaseState(bState);
+	innerModel->updateTransformValues("base", bState.x, 0, bState.z, 0, bState.alpha, 0);
+	auto [valid, cell] = grid.getCell(bState.x, bState.z);
     if(ldata.front().dist < threshold)
         setState(SpecificWorker::State::turn);
     else
-        differentialrobot_proxy->setSpeedBase(500, 0);
+		if(ldata.front().dist < 400)
+			differentialrobot_proxy->setSpeedBase(400, 0);
+		else
+        	differentialrobot_proxy->setSpeedBase(700, 0);
 }
 
 void SpecificWorker::turn(RoboCompLaser::TLaserData ldata)
@@ -107,25 +112,45 @@ void SpecificWorker::turn(RoboCompLaser::TLaserData ldata)
     std::sort( ldata.begin(), ldata.end(), [](RoboCompLaser::TData a, RoboCompLaser::TData b){ return     a.dist < b.dist; });
 
     // Preguntamos si hay que terminar de girar
-    if(ldata.front().dist > threshold)
+	differentialrobot_proxy->getBaseState(bState);
+	innerModel->updateTransformValues("base", bState.x, 0, bState.z, 0, bState.alpha, 0);
+	auto [valid, cell] = grid.getCell(bState.x, bState.z);
+    //if(ldata.front().dist > threshold && !(cell.visited) && (cell.free))
+	if(ldata.front().dist > threshold)
     {
         setState(SpecificWorker::State::walk);
         turning = false;
     } else {
-        // Preguntar con qué dato giramos
+        // ¿Estabamos girando ya?
+		int maxpos = 0;
+		for(int i=0;i<ldata.size(); i++){
+			if(abs(ldata[i].angle) > abs(ldata[maxpos].angle))
+				maxpos = i;
+		}
+		float rot2 = ldata[maxpos].angle;
         if(turning == false){
             turning = true;    
             giro    = rand()%2;
+			if(giro == 0){
+                // Giro izquierda
+                differentialrobot_proxy->setSpeedBase(0, rot2);
+            } else{
+                // Giro derecha
+                differentialrobot_proxy->setSpeedBase(0, rot2);
+		    }
+			if(1.60 >= abs(ldata.front().angle) >= 1.50){
+    			setState(SpecificWorker::State::findObj);
+            }
         } else{
             if(giro == 0){
                 // Giro izquierda
-                differentialrobot_proxy->setSpeedBase(0, rot);
+                differentialrobot_proxy->setSpeedBase(0, rot2);
             } else{
                 // Giro derecha
-                differentialrobot_proxy->setSpeedBase(0, abs(rot));
-            }
+                differentialrobot_proxy->setSpeedBase(0, rot2);
+		    }
             // Esto comprobar
-            if(abs(ldata.front().angle) > 1.50){
+            if(1.60 >= abs(ldata.front().angle) >= 1.50){
                 setState(SpecificWorker::State::findObj);
             }
         }
@@ -141,24 +166,24 @@ void SpecificWorker::compute()
 {
 	// read laser data 
 	RoboCompLaser::TLaserData ldata = laser_proxy->getLaserData(); 
+    readRobotState(ldata);
 
-	readRobotState(ldata);
-    
     switch(SpecificWorker::actual_state)
     {
         case State::idle:
-            cout << "Estado idle" << endl;
+            cout << "Idle" << endl;
             idle();
         break;
         case State::walk:
-            cout << "Estado andando" << endl;
+            cout << "Walking..." << endl;
             walk(ldata);
         break;
         case State::turn:
-            cout << "Estado girar" << endl;
+            cout << "Turn" << endl;
             turn(ldata);
         break;
         case State::findObj:
+			cout << "Find object" << endl;
             findObstacle(ldata);
         break;
     }
@@ -177,7 +202,7 @@ void SpecificWorker::readRobotState(RoboCompLaser::TLaserData ldata)
 		robot->setPos(bState.x, bState.z);
 		robot->setRotation(-180.*bState.alpha/M_PI);
 
-		//update  occupied cells
+		//update occupied cells
 		updateOccupiedCells(bState, ldata);
 	}
 	catch(const Ice::Exception &e)
@@ -204,6 +229,13 @@ void SpecificWorker::updateOccupiedCells(const RoboCompGenericBase::TBaseState &
 			cell.rect->setBrush(Qt::darkRed);
 		}
 	}
+
+	auto [valid, cell] = grid.getCell(bState.x, bState.z);
+	if(!(cell.visited)){
+		cell.visited = true;
+		cell.rect->setBrush(Qt::black);
+	}
+
 }
 
 

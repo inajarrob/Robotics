@@ -52,17 +52,17 @@ public:
 	void setState(SpecificWorker::State a_state);
 	void RCISMousePicker_setPick(const Pick &myPick);
 
-	/// Grid cell definition
-		struct TCell
-		{
-			bool free;
-			bool visited;
-			QGraphicsRectItem* rect;
-			
-			// method to save the value
-			void save(std::ostream &os) const {	os << free << " " << visited; };
-			void read(std::istream &is) {	is >> free >> visited ;};
-		};
+	// Grid cell definition
+	struct TCell
+	{
+		bool free;
+		bool visited;
+		QGraphicsRectItem* rect;
+		
+		// method to save the value
+		void save(std::ostream &os) const {	os << free << " " << visited; };
+		void read(std::istream &is) {	is >> free >> visited ;};
+	};
 
 public slots:
 	void compute();

@@ -70,19 +70,11 @@ void SpecificWorker::walk(RoboCompLaser::TLaserData ldata)
 {
     // ORDENA DE MENOR A MAYOR DISTANCIA A OBJETOS/PARED
     std::sort( ldata.begin(), ldata.end(), [](RoboCompLaser::TData a, RoboCompLaser::TData b){ return     a.dist < b.dist; });
-    
+
     if(ldata.front().dist < threshold)
         setState(SpecificWorker::State::turn);
     else
         differentialrobot_proxy->setSpeedBase(500, 0);
-    //int x, y;
-    //float alpha;
-    /* std::cout << ".................CORRIENDO.................." << std::endl;
-    std::cout << "DISTANCIA: " << ldata.front().dist << std::endl;
-    differentialrobot_proxy->getBasePose(x, y, alpha);
-    std::cout << "Posicion, x: " << x << "y: " << y << std::endl;
-    std::cout << "ANGULO: " << ldata.front().angle << std::endl;
-    */
 }
 
 void SpecificWorker::turn(RoboCompLaser::TLaserData ldata)
