@@ -4,22 +4,22 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/isabel/Escritorio/Robotics/practica2/chocamem/src/ChocaMem_autogen/mocs_compilation.cpp" "/home/isabel/Escritorio/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/ChocaMem_autogen/mocs_compilation.cpp.o"
-  "/home/isabel/Escritorio/Robotics/practica2/chocamem/src/CommonBehavior.cpp" "/home/isabel/Escritorio/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/CommonBehavior.cpp.o"
-  "/home/isabel/Escritorio/Robotics/practica2/chocamem/src/DifferentialRobot.cpp" "/home/isabel/Escritorio/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/DifferentialRobot.cpp.o"
-  "/home/isabel/Escritorio/Robotics/practica2/chocamem/src/GenericBase.cpp" "/home/isabel/Escritorio/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/GenericBase.cpp.o"
-  "/home/isabel/Escritorio/Robotics/practica2/chocamem/src/Laser.cpp" "/home/isabel/Escritorio/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/Laser.cpp.o"
-  "/home/isabel/Escritorio/Robotics/practica2/chocamem/src/RCISMousePicker.cpp" "/home/isabel/Escritorio/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/RCISMousePicker.cpp.o"
-  "/home/isabel/Escritorio/Robotics/practica2/chocamem/src/commonbehaviorI.cpp" "/home/isabel/Escritorio/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/commonbehaviorI.cpp.o"
-  "/home/isabel/Escritorio/Robotics/practica2/chocamem/src/genericmonitor.cpp" "/home/isabel/Escritorio/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/genericmonitor.cpp.o"
-  "/home/isabel/Escritorio/Robotics/practica2/chocamem/src/genericworker.cpp" "/home/isabel/Escritorio/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/genericworker.cpp.o"
-  "/home/isabel/robocomp/classes/qlog/qlog.cpp" "/home/isabel/Escritorio/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/home/isabel/robocomp/classes/qlog/qlog.cpp.o"
-  "/home/isabel/robocomp/classes/rapplication/rapplication.cpp" "/home/isabel/Escritorio/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/home/isabel/robocomp/classes/rapplication/rapplication.cpp.o"
-  "/home/isabel/robocomp/classes/sigwatch/sigwatch.cpp" "/home/isabel/Escritorio/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/home/isabel/robocomp/classes/sigwatch/sigwatch.cpp.o"
-  "/home/isabel/Escritorio/Robotics/practica2/chocamem/src/main.cpp" "/home/isabel/Escritorio/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/main.cpp.o"
-  "/home/isabel/Escritorio/Robotics/practica2/chocamem/src/rcismousepickerI.cpp" "/home/isabel/Escritorio/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/rcismousepickerI.cpp.o"
-  "/home/isabel/Escritorio/Robotics/practica2/chocamem/src/specificmonitor.cpp" "/home/isabel/Escritorio/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/specificmonitor.cpp.o"
-  "/home/isabel/Escritorio/Robotics/practica2/chocamem/src/specificworker.cpp" "/home/isabel/Escritorio/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/specificworker.cpp.o"
+  "/home/jose/Robotics/practica2/chocamem/src/ChocaMem_autogen/mocs_compilation.cpp" "/home/jose/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/ChocaMem_autogen/mocs_compilation.cpp.o"
+  "/home/jose/Robotics/practica2/chocamem/src/CommonBehavior.cpp" "/home/jose/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/CommonBehavior.cpp.o"
+  "/home/jose/Robotics/practica2/chocamem/src/DifferentialRobot.cpp" "/home/jose/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/DifferentialRobot.cpp.o"
+  "/home/jose/Robotics/practica2/chocamem/src/GenericBase.cpp" "/home/jose/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/GenericBase.cpp.o"
+  "/home/jose/Robotics/practica2/chocamem/src/Laser.cpp" "/home/jose/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/Laser.cpp.o"
+  "/home/jose/Robotics/practica2/chocamem/src/RCISMousePicker.cpp" "/home/jose/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/RCISMousePicker.cpp.o"
+  "/home/jose/Robotics/practica2/chocamem/src/commonbehaviorI.cpp" "/home/jose/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/commonbehaviorI.cpp.o"
+  "/home/jose/Robotics/practica2/chocamem/src/genericmonitor.cpp" "/home/jose/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/genericmonitor.cpp.o"
+  "/home/jose/Robotics/practica2/chocamem/src/genericworker.cpp" "/home/jose/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/genericworker.cpp.o"
+  "/home/jose/robocomp/classes/qlog/qlog.cpp" "/home/jose/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/home/jose/robocomp/classes/qlog/qlog.cpp.o"
+  "/home/jose/robocomp/classes/rapplication/rapplication.cpp" "/home/jose/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/home/jose/robocomp/classes/rapplication/rapplication.cpp.o"
+  "/home/jose/robocomp/classes/sigwatch/sigwatch.cpp" "/home/jose/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/home/jose/robocomp/classes/sigwatch/sigwatch.cpp.o"
+  "/home/jose/Robotics/practica2/chocamem/src/main.cpp" "/home/jose/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/main.cpp.o"
+  "/home/jose/Robotics/practica2/chocamem/src/rcismousepickerI.cpp" "/home/jose/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/rcismousepickerI.cpp.o"
+  "/home/jose/Robotics/practica2/chocamem/src/specificmonitor.cpp" "/home/jose/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/specificmonitor.cpp.o"
+  "/home/jose/Robotics/practica2/chocamem/src/specificworker.cpp" "/home/jose/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/specificworker.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -27,12 +27,9 @@ set(CMAKE_CXX_COMPILER_ID "GNU")
 set(CMAKE_TARGET_DEFINITIONS_CXX
   "QT_CORE_LIB"
   "QT_GUI_LIB"
-  "QT_NETWORK_LIB"
   "QT_NO_DEBUG"
   "QT_OPENGL_LIB"
   "QT_SQL_LIB"
-  "QT_WIDGETS_LIB"
-  "QT_XMLPATTERNS_LIB"
   "QT_XML_LIB"
   )
 
@@ -44,29 +41,25 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/opt/robocomp/include"
   "/classes"
   "."
-  "/home/isabel/robocomp/classes"
-  "/home/isabel/robocomp/libs"
-  "/home/isabel/robocomp/interfaces"
+  "/usr/include/qt4"
+  "/usr/include/qt4/QtOpenGL"
+  "/usr/include/qt4/QtGui"
+  "/usr/include/qt4/QtXml"
+  "/usr/include/qt4/QtSql"
+  "/usr/include/qt4/QtCore"
+  "/home/jose/robocomp/classes"
+  "/home/jose/robocomp/libs"
+  "/home/jose/robocomp/interfaces"
   "/include"
-  "/home/isabel/anaconda3/include/qt"
-  "/home/isabel/anaconda3/include/qt/QtGui"
-  "/home/isabel/anaconda3/include/qt/QtCore"
-  "/home/isabel/anaconda3/./mkspecs/linux-g++"
-  "/home/isabel/anaconda3/include/qt/QtWidgets"
-  "/home/isabel/anaconda3/include/qt/QtSql"
-  "/home/isabel/anaconda3/include/qt/QtOpenGL"
-  "/home/isabel/anaconda3/include/qt/QtXml"
-  "/home/isabel/anaconda3/include/qt/QtXmlPatterns"
-  "/home/isabel/anaconda3/include/qt/QtNetwork"
   )
 
 # Pairs of files generated by the same build rule.
 set(CMAKE_MULTIPLE_OUTPUT_PAIRS
-  "/home/isabel/Escritorio/Robotics/practica2/chocamem/src/CommonBehavior.h" "/home/isabel/Escritorio/Robotics/practica2/chocamem/src/CommonBehavior.cpp"
-  "/home/isabel/Escritorio/Robotics/practica2/chocamem/src/DifferentialRobot.h" "/home/isabel/Escritorio/Robotics/practica2/chocamem/src/DifferentialRobot.cpp"
-  "/home/isabel/Escritorio/Robotics/practica2/chocamem/src/GenericBase.h" "/home/isabel/Escritorio/Robotics/practica2/chocamem/src/GenericBase.cpp"
-  "/home/isabel/Escritorio/Robotics/practica2/chocamem/src/Laser.h" "/home/isabel/Escritorio/Robotics/practica2/chocamem/src/Laser.cpp"
-  "/home/isabel/Escritorio/Robotics/practica2/chocamem/src/RCISMousePicker.h" "/home/isabel/Escritorio/Robotics/practica2/chocamem/src/RCISMousePicker.cpp"
+  "/home/jose/Robotics/practica2/chocamem/src/CommonBehavior.h" "/home/jose/Robotics/practica2/chocamem/src/CommonBehavior.cpp"
+  "/home/jose/Robotics/practica2/chocamem/src/DifferentialRobot.h" "/home/jose/Robotics/practica2/chocamem/src/DifferentialRobot.cpp"
+  "/home/jose/Robotics/practica2/chocamem/src/GenericBase.h" "/home/jose/Robotics/practica2/chocamem/src/GenericBase.cpp"
+  "/home/jose/Robotics/practica2/chocamem/src/Laser.h" "/home/jose/Robotics/practica2/chocamem/src/Laser.cpp"
+  "/home/jose/Robotics/practica2/chocamem/src/RCISMousePicker.h" "/home/jose/Robotics/practica2/chocamem/src/RCISMousePicker.cpp"
   )
 
 

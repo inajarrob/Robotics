@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/isabel/Escritorio/Robotics/practica2/chocamem
+CMAKE_SOURCE_DIR = /home/jose/Robotics/practica2/chocamem
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/isabel/Escritorio/Robotics/practica2/chocamem
+CMAKE_BINARY_DIR = /home/jose/Robotics/practica2/chocamem
 
 # Utility rule file for ChocaMem_autogen.
 
@@ -54,8 +54,8 @@ CMAKE_BINARY_DIR = /home/isabel/Escritorio/Robotics/practica2/chocamem
 include src/CMakeFiles/ChocaMem_autogen.dir/progress.make
 
 src/CMakeFiles/ChocaMem_autogen:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/isabel/Escritorio/Robotics/practica2/chocamem/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target ChocaMem"
-	cd /home/isabel/Escritorio/Robotics/practica2/chocamem/src && /usr/bin/cmake -E cmake_autogen /home/isabel/Escritorio/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem_autogen.dir ""
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jose/Robotics/practica2/chocamem/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target ChocaMem"
+	cd /home/jose/Robotics/practica2/chocamem/src && /usr/bin/cmake -E cmake_autogen /home/jose/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem_autogen.dir ""
 
 ChocaMem_autogen: src/CMakeFiles/ChocaMem_autogen
 ChocaMem_autogen: src/CMakeFiles/ChocaMem_autogen.dir/build.make
@@ -68,10 +68,10 @@ src/CMakeFiles/ChocaMem_autogen.dir/build: ChocaMem_autogen
 .PHONY : src/CMakeFiles/ChocaMem_autogen.dir/build
 
 src/CMakeFiles/ChocaMem_autogen.dir/clean:
-	cd /home/isabel/Escritorio/Robotics/practica2/chocamem/src && $(CMAKE_COMMAND) -P CMakeFiles/ChocaMem_autogen.dir/cmake_clean.cmake
+	cd /home/jose/Robotics/practica2/chocamem/src && $(CMAKE_COMMAND) -P CMakeFiles/ChocaMem_autogen.dir/cmake_clean.cmake
 .PHONY : src/CMakeFiles/ChocaMem_autogen.dir/clean
 
 src/CMakeFiles/ChocaMem_autogen.dir/depend:
-	cd /home/isabel/Escritorio/Robotics/practica2/chocamem && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/isabel/Escritorio/Robotics/practica2/chocamem /home/isabel/Escritorio/Robotics/practica2/chocamem/src /home/isabel/Escritorio/Robotics/practica2/chocamem /home/isabel/Escritorio/Robotics/practica2/chocamem/src /home/isabel/Escritorio/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem_autogen.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/jose/Robotics/practica2/chocamem && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/jose/Robotics/practica2/chocamem /home/jose/Robotics/practica2/chocamem/src /home/jose/Robotics/practica2/chocamem /home/jose/Robotics/practica2/chocamem/src /home/jose/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem_autogen.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : src/CMakeFiles/ChocaMem_autogen.dir/depend
 
