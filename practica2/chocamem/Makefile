@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/jose/Robotics/practica2/chocamem
+CMAKE_SOURCE_DIR = /home/salabeta/robocomp/components/Robotics/practica2/chocamem
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/jose/Robotics/practica2/chocamem
+CMAKE_BINARY_DIR = /home/salabeta/robocomp/components/Robotics/practica2/chocamem
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -126,9 +126,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jose/Robotics/practica2/chocamem/CMakeFiles /home/jose/Robotics/practica2/chocamem/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/salabeta/robocomp/components/Robotics/practica2/chocamem/CMakeFiles /home/salabeta/robocomp/components/Robotics/practica2/chocamem/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jose/Robotics/practica2/chocamem/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/salabeta/robocomp/components/Robotics/practica2/chocamem/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

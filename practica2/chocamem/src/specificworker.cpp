@@ -81,6 +81,80 @@ void SpecificWorker::initialize(int period)
 
 }
 
+void SpecificWorker::compute()
+{
+	// read laser data 
+	ldata = laser_proxy->getLaserData(); 
+    readRobotState(ldata);
+
+    switch(SpecificWorker::actual_state)
+    {
+        case State::idle:
+            cout << "Idle" << endl;
+            idle();
+        break;
+        case State::walk:
+            cout << "Walking..." << endl;
+            walk(ldata);
+        break;
+        case State::turn:
+            cout << "Turn" << endl;
+            turn(ldata);
+        break;
+        case State::findObj:
+			cout << "Find object" << endl;
+            findObstacle(ldata);
+        break;
+    }
+}
+
+void SpecificWorker::readRobotState(RoboCompLaser::TLaserData ldata)
+{
+	try
+	{
+		differentialrobot_proxy->getBaseState(bState);
+		innerModel->updateTransformValues("base", bState.x, 0, bState.z, 0, bState.alpha, 0);
+		//RoboCompLaser::TLaserData ldata = laser_proxy->getLaserData();
+		
+		//draw robot
+		robot->setPos(bState.x, bState.z);
+		robot->setRotation(-180.*bState.alpha/M_PI);
+
+		//update occupied cells
+		updateOccupiedCells(bState, ldata);
+	}
+	catch(const Ice::Exception &e)
+	{
+		std::cout << "Error reading from Laser" << e << std::endl;
+	}
+	//Resize world widget if necessary, and render the world
+	if (view.size() != scrollArea->size())
+	 		view.setFixedSize(scrollArea->width(), scrollArea->height());
+}
+
+void SpecificWorker::updateOccupiedCells(const RoboCompGenericBase::TBaseState &bState, const RoboCompLaser::TLaserData &ldata)
+{
+	InnerModelLaser *n = innerModel->getNode<InnerModelLaser>(QString("laser"));
+	for(auto l: ldata)
+	{
+		auto r = n->laserTo(QString("world"), l.dist, l.angle);	// r is in world reference system
+		// we set the cell corresponding to r as occupied 
+		auto [valid, cell] = grid.getCell(r.x(), r.z()); 
+		if(valid)
+		{
+			cell.free = false;
+			cell.rect->setBrush(Qt::darkRed);
+		}
+	}
+
+	auto [valid, cell] = grid.getCell(bState.x, bState.z);
+	if(!(cell.visited)){
+		cell.visited = true;
+		cell.rect->setBrush(Qt::black);
+	}
+
+}
+
 void SpecificWorker::setState(SpecificWorker::State a_state){
     SpecificWorker::actual_state = a_state;
 } 
@@ -115,10 +189,10 @@ void SpecificWorker::walk(RoboCompLaser::TLaserData ldata)
     }
     else
         if(ldata.front().dist < 400){
-            differentialrobot_proxy->setSpeedBase(400, 0);
+            differentialrobot_proxy->setSpeedBase(500, 0);
             walkc++;
         }else{
-        	differentialrobot_proxy->setSpeedBase(700, 0);
+        	differentialrobot_proxy->setSpeedBase(1000, 0);
             walkc++;
         }
 
@@ -150,13 +224,15 @@ void SpecificWorker::turn(RoboCompLaser::TLaserData ldata)
 				maxpos = i;
 		}
 		float rot2 = ldata[maxpos].angle;
+        if(abs(rot2) > 1.0) rot2 = 1.0; 
         if(turning == false){
             turning = true;    
             giro    = rand()%2;
+
             if(br > 10){
                 br = 0;
                cout << "BIG ROTATION.." << endl;
-               differentialrobot_proxy->setSpeedBase(0, 3);
+               differentialrobot_proxy->setSpeedBase(0, 1.0);
             }
 			if(giro == 0){
                 // Giro izquierda
@@ -164,11 +240,11 @@ void SpecificWorker::turn(RoboCompLaser::TLaserData ldata)
                 br++;
             } else{
                 // Giro derecha
-                differentialrobot_proxy->setSpeedBase(0, rot2*2);
+                if(abs(rot2) <= 0.5)
+                     differentialrobot_proxy->setSpeedBase(0, rot2*2);
+                else
+                    differentialrobot_proxy->setSpeedBase(0, rot2);
 		    }
-			if(1.60 >= abs(ldata.front().angle) >= 1.50){
-    			setState(SpecificWorker::State::findObj);
-            }
         } else{
             if(giro == 0){
                 // Giro izquierda
@@ -176,13 +252,11 @@ void SpecificWorker::turn(RoboCompLaser::TLaserData ldata)
                 br++;
             } else{
                 // Giro derecha
-                differentialrobot_proxy->setSpeedBase(0, rot2*2);
+                if(abs(rot2) <= 0.5)
+                     differentialrobot_proxy->setSpeedBase(0, rot2*2);
+                else
+                    differentialrobot_proxy->setSpeedBase(0, rot2);
 		    }
-            // Esto comprobar
-            if(1.60 >= abs(ldata.front().angle) >= 1.50){
-
-                //setState(SpecificWorker::State::findObj);
-            }
         }
     }        
 }
@@ -197,6 +271,7 @@ void SpecificWorker::findObstacle(RoboCompLaser::TLaserData ldata)
             maxpos = i;
     }
     float rot2 = ldata[maxpos].angle;
+     if(abs(rot2) > 1.0) rot2 = 1.0; 
     if(turning == false){
         turning = true;
         giro    = rand()%2;
@@ -207,7 +282,7 @@ void SpecificWorker::findObstacle(RoboCompLaser::TLaserData ldata)
             setState(SpecificWorker::State::walk);
         } else{
             // Giro derecha
-            differentialrobot_proxy->setSpeedBase(0, -rot2);
+            differentialrobot_proxy->setSpeedBase(0, rot2);
 
             setState(SpecificWorker::State::walk);
         }
@@ -220,7 +295,7 @@ void SpecificWorker::findObstacle(RoboCompLaser::TLaserData ldata)
 
         } else{
             // Giro derecha
-            differentialrobot_proxy->setSpeedBase(0, -rot2);
+            differentialrobot_proxy->setSpeedBase(0, rot2);
 
             setState(SpecificWorker::State::walk);
         }
@@ -228,81 +303,7 @@ void SpecificWorker::findObstacle(RoboCompLaser::TLaserData ldata)
 }
 
 
-void SpecificWorker::compute()
-{
-	// read laser data 
-	RoboCompLaser::TLaserData ldata = laser_proxy->getLaserData(); 
-    readRobotState(ldata);
 
-    switch(SpecificWorker::actual_state)
-    {
-        case State::idle:
-            cout << "Idle" << endl;
-            idle();
-        break;
-        case State::walk:
-            cout << "Walking..." << endl;
-            walk(ldata);
-        break;
-        case State::turn:
-            cout << "Turn" << endl;
-            turn(ldata);
-        break;
-        case State::findObj:
-			cout << "Find object" << endl;
-            findObstacle(ldata);
-        break;
-    }
-}
-	
-
-void SpecificWorker::readRobotState(RoboCompLaser::TLaserData ldata)
-{
-	try
-	{
-		differentialrobot_proxy->getBaseState(bState);
-		innerModel->updateTransformValues("base", bState.x, 0, bState.z, 0, bState.alpha, 0);
-		//RoboCompLaser::TLaserData ldata = laser_proxy->getLaserData();
-		
-		//draw robot
-		robot->setPos(bState.x, bState.z);
-		robot->setRotation(-180.*bState.alpha/M_PI);
-
-		//update occupied cells
-		updateOccupiedCells(bState, ldata);
-	}
-	catch(const Ice::Exception &e)
-	{
-		std::cout << "Error reading from Laser" << e << std::endl;
-	}
-	//Resize world widget if necessary, and render the world
-	if (view.size() != scrollArea->size())
-	 		view.setFixedSize(scrollArea->width(), scrollArea->height());
-	
-}
-
-void SpecificWorker::updateOccupiedCells(const RoboCompGenericBase::TBaseState &bState, const RoboCompLaser::TLaserData &ldata)
-{
-	InnerModelLaser *n = innerModel->getNode<InnerModelLaser>(QString("laser"));
-	for(auto l: ldata)
-	{
-		auto r = n->laserTo(QString("world"), l.dist, l.angle);	// r is in world reference system
-		// we set the cell corresponding to r as occupied 
-		auto [valid, cell] = grid.getCell(r.x(), r.z()); 
-		if(valid)
-		{
-			cell.free = false;
-			cell.rect->setBrush(Qt::darkRed);
-		}
-	}
-
-	auto [valid, cell] = grid.getCell(bState.x, bState.z);
-	if(!(cell.visited)){
-		cell.visited = true;
-		cell.rect->setBrush(Qt::black);
-	}
-
-}
 
 
 ///////////////////////////////////////////////////////////////////77

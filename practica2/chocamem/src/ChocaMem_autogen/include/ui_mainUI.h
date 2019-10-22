@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainUI.ui'
 **
-** Created by: Qt User Interface Compiler version 4.8.7
+** Created by: Qt User Interface Compiler version 5.9.5
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -10,15 +10,15 @@
 #define UI_MAINUI_H
 
 #include <QtCore/QVariant>
-#include <QtGui/QAction>
-#include <QtGui/QApplication>
-#include <QtGui/QButtonGroup>
-#include <QtGui/QHBoxLayout>
-#include <QtGui/QHeaderView>
-#include <QtGui/QPushButton>
-#include <QtGui/QScrollArea>
-#include <QtGui/QVBoxLayout>
-#include <QtGui/QWidget>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QScrollArea>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
 
@@ -36,21 +36,21 @@ public:
     void setupUi(QWidget *guiDlg)
     {
         if (guiDlg->objectName().isEmpty())
-            guiDlg->setObjectName(QString::fromUtf8("guiDlg"));
+            guiDlg->setObjectName(QStringLiteral("guiDlg"));
         guiDlg->resize(318, 273);
         verticalLayout_2 = new QVBoxLayout(guiDlg);
-        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
+        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         verticalLayout = new QVBoxLayout();
-        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         buttonRead = new QPushButton(guiDlg);
-        buttonRead->setObjectName(QString::fromUtf8("buttonRead"));
+        buttonRead->setObjectName(QStringLiteral("buttonRead"));
 
         horizontalLayout->addWidget(buttonRead);
 
         buttonSave = new QPushButton(guiDlg);
-        buttonSave->setObjectName(QString::fromUtf8("buttonSave"));
+        buttonSave->setObjectName(QStringLiteral("buttonSave"));
 
         horizontalLayout->addWidget(buttonSave);
 
@@ -58,10 +58,10 @@ public:
         verticalLayout->addLayout(horizontalLayout);
 
         scrollArea = new QScrollArea(guiDlg);
-        scrollArea->setObjectName(QString::fromUtf8("scrollArea"));
+        scrollArea->setObjectName(QStringLiteral("scrollArea"));
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
-        scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
+        scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
         scrollAreaWidgetContents->setGeometry(QRect(0, 0, 296, 216));
         scrollArea->setWidget(scrollAreaWidgetContents);
 
@@ -78,9 +78,9 @@ public:
 
     void retranslateUi(QWidget *guiDlg)
     {
-        guiDlg->setWindowTitle(QApplication::translate("guiDlg", "chocachoca", 0, QApplication::UnicodeUTF8));
-        buttonRead->setText(QApplication::translate("guiDlg", "Load", 0, QApplication::UnicodeUTF8));
-        buttonSave->setText(QApplication::translate("guiDlg", "Save", 0, QApplication::UnicodeUTF8));
+        guiDlg->setWindowTitle(QApplication::translate("guiDlg", "chocachoca", Q_NULLPTR));
+        buttonRead->setText(QApplication::translate("guiDlg", "Load", Q_NULLPTR));
+        buttonSave->setText(QApplication::translate("guiDlg", "Save", Q_NULLPTR));
     } // retranslateUi
 
 };

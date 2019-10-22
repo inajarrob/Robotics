@@ -4,22 +4,22 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/jose/Robotics/practica2/chocamem/src/ChocaMem_autogen/mocs_compilation.cpp" "/home/jose/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/ChocaMem_autogen/mocs_compilation.cpp.o"
-  "/home/jose/Robotics/practica2/chocamem/src/CommonBehavior.cpp" "/home/jose/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/CommonBehavior.cpp.o"
-  "/home/jose/Robotics/practica2/chocamem/src/DifferentialRobot.cpp" "/home/jose/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/DifferentialRobot.cpp.o"
-  "/home/jose/Robotics/practica2/chocamem/src/GenericBase.cpp" "/home/jose/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/GenericBase.cpp.o"
-  "/home/jose/Robotics/practica2/chocamem/src/Laser.cpp" "/home/jose/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/Laser.cpp.o"
-  "/home/jose/Robotics/practica2/chocamem/src/RCISMousePicker.cpp" "/home/jose/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/RCISMousePicker.cpp.o"
-  "/home/jose/Robotics/practica2/chocamem/src/commonbehaviorI.cpp" "/home/jose/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/commonbehaviorI.cpp.o"
-  "/home/jose/Robotics/practica2/chocamem/src/genericmonitor.cpp" "/home/jose/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/genericmonitor.cpp.o"
-  "/home/jose/Robotics/practica2/chocamem/src/genericworker.cpp" "/home/jose/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/genericworker.cpp.o"
-  "/home/jose/robocomp/classes/qlog/qlog.cpp" "/home/jose/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/home/jose/robocomp/classes/qlog/qlog.cpp.o"
-  "/home/jose/robocomp/classes/rapplication/rapplication.cpp" "/home/jose/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/home/jose/robocomp/classes/rapplication/rapplication.cpp.o"
-  "/home/jose/robocomp/classes/sigwatch/sigwatch.cpp" "/home/jose/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/home/jose/robocomp/classes/sigwatch/sigwatch.cpp.o"
-  "/home/jose/Robotics/practica2/chocamem/src/main.cpp" "/home/jose/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/main.cpp.o"
-  "/home/jose/Robotics/practica2/chocamem/src/rcismousepickerI.cpp" "/home/jose/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/rcismousepickerI.cpp.o"
-  "/home/jose/Robotics/practica2/chocamem/src/specificmonitor.cpp" "/home/jose/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/specificmonitor.cpp.o"
-  "/home/jose/Robotics/practica2/chocamem/src/specificworker.cpp" "/home/jose/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/specificworker.cpp.o"
+  "/home/salabeta/robocomp/components/Robotics/practica2/chocamem/src/ChocaMem_autogen/mocs_compilation.cpp" "/home/salabeta/robocomp/components/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/ChocaMem_autogen/mocs_compilation.cpp.o"
+  "/home/salabeta/robocomp/components/Robotics/practica2/chocamem/src/CommonBehavior.cpp" "/home/salabeta/robocomp/components/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/CommonBehavior.cpp.o"
+  "/home/salabeta/robocomp/components/Robotics/practica2/chocamem/src/DifferentialRobot.cpp" "/home/salabeta/robocomp/components/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/DifferentialRobot.cpp.o"
+  "/home/salabeta/robocomp/components/Robotics/practica2/chocamem/src/GenericBase.cpp" "/home/salabeta/robocomp/components/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/GenericBase.cpp.o"
+  "/home/salabeta/robocomp/components/Robotics/practica2/chocamem/src/Laser.cpp" "/home/salabeta/robocomp/components/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/Laser.cpp.o"
+  "/home/salabeta/robocomp/components/Robotics/practica2/chocamem/src/RCISMousePicker.cpp" "/home/salabeta/robocomp/components/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/RCISMousePicker.cpp.o"
+  "/home/salabeta/robocomp/components/Robotics/practica2/chocamem/src/commonbehaviorI.cpp" "/home/salabeta/robocomp/components/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/commonbehaviorI.cpp.o"
+  "/home/salabeta/robocomp/components/Robotics/practica2/chocamem/src/genericmonitor.cpp" "/home/salabeta/robocomp/components/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/genericmonitor.cpp.o"
+  "/home/salabeta/robocomp/components/Robotics/practica2/chocamem/src/genericworker.cpp" "/home/salabeta/robocomp/components/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/genericworker.cpp.o"
+  "/home/salabeta/robocomp/classes/qlog/qlog.cpp" "/home/salabeta/robocomp/components/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/home/salabeta/robocomp/classes/qlog/qlog.cpp.o"
+  "/home/salabeta/robocomp/classes/rapplication/rapplication.cpp" "/home/salabeta/robocomp/components/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/home/salabeta/robocomp/classes/rapplication/rapplication.cpp.o"
+  "/home/salabeta/robocomp/classes/sigwatch/sigwatch.cpp" "/home/salabeta/robocomp/components/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/home/salabeta/robocomp/classes/sigwatch/sigwatch.cpp.o"
+  "/home/salabeta/robocomp/components/Robotics/practica2/chocamem/src/main.cpp" "/home/salabeta/robocomp/components/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/main.cpp.o"
+  "/home/salabeta/robocomp/components/Robotics/practica2/chocamem/src/rcismousepickerI.cpp" "/home/salabeta/robocomp/components/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/rcismousepickerI.cpp.o"
+  "/home/salabeta/robocomp/components/Robotics/practica2/chocamem/src/specificmonitor.cpp" "/home/salabeta/robocomp/components/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/specificmonitor.cpp.o"
+  "/home/salabeta/robocomp/components/Robotics/practica2/chocamem/src/specificworker.cpp" "/home/salabeta/robocomp/components/Robotics/practica2/chocamem/src/CMakeFiles/ChocaMem.dir/specificworker.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -27,9 +27,12 @@ set(CMAKE_CXX_COMPILER_ID "GNU")
 set(CMAKE_TARGET_DEFINITIONS_CXX
   "QT_CORE_LIB"
   "QT_GUI_LIB"
+  "QT_NETWORK_LIB"
   "QT_NO_DEBUG"
   "QT_OPENGL_LIB"
   "QT_SQL_LIB"
+  "QT_WIDGETS_LIB"
+  "QT_XMLPATTERNS_LIB"
   "QT_XML_LIB"
   )
 
@@ -41,25 +44,29 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/opt/robocomp/include"
   "/classes"
   "."
-  "/usr/include/qt4"
-  "/usr/include/qt4/QtOpenGL"
-  "/usr/include/qt4/QtGui"
-  "/usr/include/qt4/QtXml"
-  "/usr/include/qt4/QtSql"
-  "/usr/include/qt4/QtCore"
-  "/home/jose/robocomp/classes"
-  "/home/jose/robocomp/libs"
-  "/home/jose/robocomp/interfaces"
+  "/home/salabeta/robocomp/classes"
+  "/home/salabeta/robocomp/libs"
+  "/home/salabeta/robocomp/interfaces"
   "/include"
+  "/usr/include/x86_64-linux-gnu/qt5"
+  "/usr/include/x86_64-linux-gnu/qt5/QtGui"
+  "/usr/include/x86_64-linux-gnu/qt5/QtCore"
+  "/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++"
+  "/usr/include/x86_64-linux-gnu/qt5/QtWidgets"
+  "/usr/include/x86_64-linux-gnu/qt5/QtSql"
+  "/usr/include/x86_64-linux-gnu/qt5/QtOpenGL"
+  "/usr/include/x86_64-linux-gnu/qt5/QtXml"
+  "/usr/include/x86_64-linux-gnu/qt5/QtXmlPatterns"
+  "/usr/include/x86_64-linux-gnu/qt5/QtNetwork"
   )
 
 # Pairs of files generated by the same build rule.
 set(CMAKE_MULTIPLE_OUTPUT_PAIRS
-  "/home/jose/Robotics/practica2/chocamem/src/CommonBehavior.h" "/home/jose/Robotics/practica2/chocamem/src/CommonBehavior.cpp"
-  "/home/jose/Robotics/practica2/chocamem/src/DifferentialRobot.h" "/home/jose/Robotics/practica2/chocamem/src/DifferentialRobot.cpp"
-  "/home/jose/Robotics/practica2/chocamem/src/GenericBase.h" "/home/jose/Robotics/practica2/chocamem/src/GenericBase.cpp"
-  "/home/jose/Robotics/practica2/chocamem/src/Laser.h" "/home/jose/Robotics/practica2/chocamem/src/Laser.cpp"
-  "/home/jose/Robotics/practica2/chocamem/src/RCISMousePicker.h" "/home/jose/Robotics/practica2/chocamem/src/RCISMousePicker.cpp"
+  "/home/salabeta/robocomp/components/Robotics/practica2/chocamem/src/CommonBehavior.h" "/home/salabeta/robocomp/components/Robotics/practica2/chocamem/src/CommonBehavior.cpp"
+  "/home/salabeta/robocomp/components/Robotics/practica2/chocamem/src/DifferentialRobot.h" "/home/salabeta/robocomp/components/Robotics/practica2/chocamem/src/DifferentialRobot.cpp"
+  "/home/salabeta/robocomp/components/Robotics/practica2/chocamem/src/GenericBase.h" "/home/salabeta/robocomp/components/Robotics/practica2/chocamem/src/GenericBase.cpp"
+  "/home/salabeta/robocomp/components/Robotics/practica2/chocamem/src/Laser.h" "/home/salabeta/robocomp/components/Robotics/practica2/chocamem/src/Laser.cpp"
+  "/home/salabeta/robocomp/components/Robotics/practica2/chocamem/src/RCISMousePicker.h" "/home/salabeta/robocomp/components/Robotics/practica2/chocamem/src/RCISMousePicker.cpp"
   )
 
 
