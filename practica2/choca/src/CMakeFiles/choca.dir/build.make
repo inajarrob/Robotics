@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/isabel/Escritorio/Robotics/practica2/choca
+CMAKE_SOURCE_DIR = /home/salabeta/robocomp/components/Robotics/practica2/choca
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/isabel/Escritorio/Robotics/practica2/choca
+CMAKE_BINARY_DIR = /home/salabeta/robocomp/components/Robotics/practica2/choca
 
 # Include any dependencies generated for this target.
 include src/CMakeFiles/choca.dir/depend.make
@@ -57,46 +57,46 @@ include src/CMakeFiles/choca.dir/progress.make
 # Include the compile flags for this target's objects.
 include src/CMakeFiles/choca.dir/flags.make
 
-src/CommonBehavior.cpp: /home/isabel/robocomp/interfaces/CommonBehavior.ice
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/isabel/Escritorio/Robotics/practica2/choca/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating CommonBehavior.cpp and CommonBehavior.h from CommonBehavior.ice"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && slice2cpp --underscore -I/home/isabel/robocomp//interfaces/ -I/home/isabel/robocomp/interfaces -I/opt/robocomp/interfaces -I. /home/isabel/robocomp/interfaces/CommonBehavior.ice --output-dir .
+src/CommonBehavior.cpp: /home/salabeta/robocomp/interfaces/CommonBehavior.ice
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/salabeta/robocomp/components/Robotics/practica2/choca/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating CommonBehavior.cpp and CommonBehavior.h from CommonBehavior.ice"
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && slice2cpp --underscore -I/home/salabeta/robocomp//interfaces/ -I/home/salabeta/robocomp/interfaces -I/opt/robocomp/interfaces -I. /home/salabeta/robocomp/interfaces/CommonBehavior.ice --output-dir .
 
 src/CommonBehavior.h: src/CommonBehavior.cpp
 	@$(CMAKE_COMMAND) -E touch_nocreate src/CommonBehavior.h
 
-src/GenericBase.cpp: /home/isabel/robocomp/interfaces/GenericBase.ice
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/isabel/Escritorio/Robotics/practica2/choca/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating GenericBase.cpp and GenericBase.h from GenericBase.ice"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && slice2cpp --underscore -I/home/isabel/robocomp//interfaces/ -I/home/isabel/robocomp/interfaces -I/opt/robocomp/interfaces -I. /home/isabel/robocomp/interfaces/GenericBase.ice --output-dir .
+src/GenericBase.cpp: /home/salabeta/robocomp/interfaces/GenericBase.ice
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/salabeta/robocomp/components/Robotics/practica2/choca/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating GenericBase.cpp and GenericBase.h from GenericBase.ice"
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && slice2cpp --underscore -I/home/salabeta/robocomp//interfaces/ -I/home/salabeta/robocomp/interfaces -I/opt/robocomp/interfaces -I. /home/salabeta/robocomp/interfaces/GenericBase.ice --output-dir .
 
 src/GenericBase.h: src/GenericBase.cpp
 	@$(CMAKE_COMMAND) -E touch_nocreate src/GenericBase.h
 
-src/DifferentialRobot.cpp: /home/isabel/robocomp/interfaces/DifferentialRobot.ice
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/isabel/Escritorio/Robotics/practica2/choca/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating DifferentialRobot.cpp and DifferentialRobot.h from DifferentialRobot.ice"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && slice2cpp --underscore -I/home/isabel/robocomp//interfaces/ -I/home/isabel/robocomp/interfaces -I/opt/robocomp/interfaces -I. /home/isabel/robocomp/interfaces/DifferentialRobot.ice --output-dir .
+src/DifferentialRobot.cpp: /home/salabeta/robocomp/interfaces/DifferentialRobot.ice
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/salabeta/robocomp/components/Robotics/practica2/choca/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating DifferentialRobot.cpp and DifferentialRobot.h from DifferentialRobot.ice"
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && slice2cpp --underscore -I/home/salabeta/robocomp//interfaces/ -I/home/salabeta/robocomp/interfaces -I/opt/robocomp/interfaces -I. /home/salabeta/robocomp/interfaces/DifferentialRobot.ice --output-dir .
 
 src/DifferentialRobot.h: src/DifferentialRobot.cpp
 	@$(CMAKE_COMMAND) -E touch_nocreate src/DifferentialRobot.h
 
-src/Laser.cpp: /home/isabel/robocomp/interfaces/Laser.ice
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/isabel/Escritorio/Robotics/practica2/choca/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating Laser.cpp and Laser.h from Laser.ice"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && slice2cpp --underscore -I/home/isabel/robocomp//interfaces/ -I/home/isabel/robocomp/interfaces -I/opt/robocomp/interfaces -I. /home/isabel/robocomp/interfaces/Laser.ice --output-dir .
+src/Laser.cpp: /home/salabeta/robocomp/interfaces/Laser.ice
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/salabeta/robocomp/components/Robotics/practica2/choca/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating Laser.cpp and Laser.h from Laser.ice"
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && slice2cpp --underscore -I/home/salabeta/robocomp//interfaces/ -I/home/salabeta/robocomp/interfaces -I/opt/robocomp/interfaces -I. /home/salabeta/robocomp/interfaces/Laser.ice --output-dir .
 
 src/Laser.h: src/Laser.cpp
 	@$(CMAKE_COMMAND) -E touch_nocreate src/Laser.h
 
 src/CMakeFiles/choca.dir/specificworker.cpp.o: src/CMakeFiles/choca.dir/flags.make
 src/CMakeFiles/choca.dir/specificworker.cpp.o: src/specificworker.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/isabel/Escritorio/Robotics/practica2/choca/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/CMakeFiles/choca.dir/specificworker.cpp.o"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/choca.dir/specificworker.cpp.o -c /home/isabel/Escritorio/Robotics/practica2/choca/src/specificworker.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/practica2/choca/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/CMakeFiles/choca.dir/specificworker.cpp.o"
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/choca.dir/specificworker.cpp.o -c /home/salabeta/robocomp/components/Robotics/practica2/choca/src/specificworker.cpp
 
 src/CMakeFiles/choca.dir/specificworker.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/choca.dir/specificworker.cpp.i"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/isabel/Escritorio/Robotics/practica2/choca/src/specificworker.cpp > CMakeFiles/choca.dir/specificworker.cpp.i
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/salabeta/robocomp/components/Robotics/practica2/choca/src/specificworker.cpp > CMakeFiles/choca.dir/specificworker.cpp.i
 
 src/CMakeFiles/choca.dir/specificworker.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/choca.dir/specificworker.cpp.s"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/isabel/Escritorio/Robotics/practica2/choca/src/specificworker.cpp -o CMakeFiles/choca.dir/specificworker.cpp.s
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/salabeta/robocomp/components/Robotics/practica2/choca/src/specificworker.cpp -o CMakeFiles/choca.dir/specificworker.cpp.s
 
 src/CMakeFiles/choca.dir/specificworker.cpp.o.requires:
 
@@ -111,16 +111,16 @@ src/CMakeFiles/choca.dir/specificworker.cpp.o.provides.build: src/CMakeFiles/cho
 
 src/CMakeFiles/choca.dir/specificmonitor.cpp.o: src/CMakeFiles/choca.dir/flags.make
 src/CMakeFiles/choca.dir/specificmonitor.cpp.o: src/specificmonitor.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/isabel/Escritorio/Robotics/practica2/choca/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/CMakeFiles/choca.dir/specificmonitor.cpp.o"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/choca.dir/specificmonitor.cpp.o -c /home/isabel/Escritorio/Robotics/practica2/choca/src/specificmonitor.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/practica2/choca/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/CMakeFiles/choca.dir/specificmonitor.cpp.o"
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/choca.dir/specificmonitor.cpp.o -c /home/salabeta/robocomp/components/Robotics/practica2/choca/src/specificmonitor.cpp
 
 src/CMakeFiles/choca.dir/specificmonitor.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/choca.dir/specificmonitor.cpp.i"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/isabel/Escritorio/Robotics/practica2/choca/src/specificmonitor.cpp > CMakeFiles/choca.dir/specificmonitor.cpp.i
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/salabeta/robocomp/components/Robotics/practica2/choca/src/specificmonitor.cpp > CMakeFiles/choca.dir/specificmonitor.cpp.i
 
 src/CMakeFiles/choca.dir/specificmonitor.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/choca.dir/specificmonitor.cpp.s"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/isabel/Escritorio/Robotics/practica2/choca/src/specificmonitor.cpp -o CMakeFiles/choca.dir/specificmonitor.cpp.s
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/salabeta/robocomp/components/Robotics/practica2/choca/src/specificmonitor.cpp -o CMakeFiles/choca.dir/specificmonitor.cpp.s
 
 src/CMakeFiles/choca.dir/specificmonitor.cpp.o.requires:
 
@@ -133,90 +133,90 @@ src/CMakeFiles/choca.dir/specificmonitor.cpp.o.provides: src/CMakeFiles/choca.di
 src/CMakeFiles/choca.dir/specificmonitor.cpp.o.provides.build: src/CMakeFiles/choca.dir/specificmonitor.cpp.o
 
 
-src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/rapplication/rapplication.cpp.o: src/CMakeFiles/choca.dir/flags.make
-src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/rapplication/rapplication.cpp.o: /home/isabel/robocomp/classes/rapplication/rapplication.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/isabel/Escritorio/Robotics/practica2/choca/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/rapplication/rapplication.cpp.o"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/choca.dir/home/isabel/robocomp/classes/rapplication/rapplication.cpp.o -c /home/isabel/robocomp/classes/rapplication/rapplication.cpp
+src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/rapplication/rapplication.cpp.o: src/CMakeFiles/choca.dir/flags.make
+src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/rapplication/rapplication.cpp.o: /home/salabeta/robocomp/classes/rapplication/rapplication.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/practica2/choca/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/rapplication/rapplication.cpp.o"
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/choca.dir/home/salabeta/robocomp/classes/rapplication/rapplication.cpp.o -c /home/salabeta/robocomp/classes/rapplication/rapplication.cpp
 
-src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/rapplication/rapplication.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/choca.dir/home/isabel/robocomp/classes/rapplication/rapplication.cpp.i"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/isabel/robocomp/classes/rapplication/rapplication.cpp > CMakeFiles/choca.dir/home/isabel/robocomp/classes/rapplication/rapplication.cpp.i
+src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/rapplication/rapplication.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/choca.dir/home/salabeta/robocomp/classes/rapplication/rapplication.cpp.i"
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/salabeta/robocomp/classes/rapplication/rapplication.cpp > CMakeFiles/choca.dir/home/salabeta/robocomp/classes/rapplication/rapplication.cpp.i
 
-src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/rapplication/rapplication.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/choca.dir/home/isabel/robocomp/classes/rapplication/rapplication.cpp.s"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/isabel/robocomp/classes/rapplication/rapplication.cpp -o CMakeFiles/choca.dir/home/isabel/robocomp/classes/rapplication/rapplication.cpp.s
+src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/rapplication/rapplication.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/choca.dir/home/salabeta/robocomp/classes/rapplication/rapplication.cpp.s"
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/salabeta/robocomp/classes/rapplication/rapplication.cpp -o CMakeFiles/choca.dir/home/salabeta/robocomp/classes/rapplication/rapplication.cpp.s
 
-src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/rapplication/rapplication.cpp.o.requires:
+src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/rapplication/rapplication.cpp.o.requires:
 
-.PHONY : src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/rapplication/rapplication.cpp.o.requires
+.PHONY : src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/rapplication/rapplication.cpp.o.requires
 
-src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/rapplication/rapplication.cpp.o.provides: src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/rapplication/rapplication.cpp.o.requires
-	$(MAKE) -f src/CMakeFiles/choca.dir/build.make src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/rapplication/rapplication.cpp.o.provides.build
-.PHONY : src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/rapplication/rapplication.cpp.o.provides
+src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/rapplication/rapplication.cpp.o.provides: src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/rapplication/rapplication.cpp.o.requires
+	$(MAKE) -f src/CMakeFiles/choca.dir/build.make src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/rapplication/rapplication.cpp.o.provides.build
+.PHONY : src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/rapplication/rapplication.cpp.o.provides
 
-src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/rapplication/rapplication.cpp.o.provides.build: src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/rapplication/rapplication.cpp.o
-
-
-src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/sigwatch/sigwatch.cpp.o: src/CMakeFiles/choca.dir/flags.make
-src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/sigwatch/sigwatch.cpp.o: /home/isabel/robocomp/classes/sigwatch/sigwatch.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/isabel/Escritorio/Robotics/practica2/choca/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/sigwatch/sigwatch.cpp.o"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/choca.dir/home/isabel/robocomp/classes/sigwatch/sigwatch.cpp.o -c /home/isabel/robocomp/classes/sigwatch/sigwatch.cpp
-
-src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/sigwatch/sigwatch.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/choca.dir/home/isabel/robocomp/classes/sigwatch/sigwatch.cpp.i"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/isabel/robocomp/classes/sigwatch/sigwatch.cpp > CMakeFiles/choca.dir/home/isabel/robocomp/classes/sigwatch/sigwatch.cpp.i
-
-src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/sigwatch/sigwatch.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/choca.dir/home/isabel/robocomp/classes/sigwatch/sigwatch.cpp.s"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/isabel/robocomp/classes/sigwatch/sigwatch.cpp -o CMakeFiles/choca.dir/home/isabel/robocomp/classes/sigwatch/sigwatch.cpp.s
-
-src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/sigwatch/sigwatch.cpp.o.requires:
-
-.PHONY : src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/sigwatch/sigwatch.cpp.o.requires
-
-src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/sigwatch/sigwatch.cpp.o.provides: src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/sigwatch/sigwatch.cpp.o.requires
-	$(MAKE) -f src/CMakeFiles/choca.dir/build.make src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/sigwatch/sigwatch.cpp.o.provides.build
-.PHONY : src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/sigwatch/sigwatch.cpp.o.provides
-
-src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/sigwatch/sigwatch.cpp.o.provides.build: src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/sigwatch/sigwatch.cpp.o
+src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/rapplication/rapplication.cpp.o.provides.build: src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/rapplication/rapplication.cpp.o
 
 
-src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/qlog/qlog.cpp.o: src/CMakeFiles/choca.dir/flags.make
-src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/qlog/qlog.cpp.o: /home/isabel/robocomp/classes/qlog/qlog.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/isabel/Escritorio/Robotics/practica2/choca/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/qlog/qlog.cpp.o"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/choca.dir/home/isabel/robocomp/classes/qlog/qlog.cpp.o -c /home/isabel/robocomp/classes/qlog/qlog.cpp
+src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/sigwatch/sigwatch.cpp.o: src/CMakeFiles/choca.dir/flags.make
+src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/sigwatch/sigwatch.cpp.o: /home/salabeta/robocomp/classes/sigwatch/sigwatch.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/practica2/choca/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/sigwatch/sigwatch.cpp.o"
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/choca.dir/home/salabeta/robocomp/classes/sigwatch/sigwatch.cpp.o -c /home/salabeta/robocomp/classes/sigwatch/sigwatch.cpp
 
-src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/qlog/qlog.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/choca.dir/home/isabel/robocomp/classes/qlog/qlog.cpp.i"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/isabel/robocomp/classes/qlog/qlog.cpp > CMakeFiles/choca.dir/home/isabel/robocomp/classes/qlog/qlog.cpp.i
+src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/sigwatch/sigwatch.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/choca.dir/home/salabeta/robocomp/classes/sigwatch/sigwatch.cpp.i"
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/salabeta/robocomp/classes/sigwatch/sigwatch.cpp > CMakeFiles/choca.dir/home/salabeta/robocomp/classes/sigwatch/sigwatch.cpp.i
 
-src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/qlog/qlog.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/choca.dir/home/isabel/robocomp/classes/qlog/qlog.cpp.s"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/isabel/robocomp/classes/qlog/qlog.cpp -o CMakeFiles/choca.dir/home/isabel/robocomp/classes/qlog/qlog.cpp.s
+src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/sigwatch/sigwatch.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/choca.dir/home/salabeta/robocomp/classes/sigwatch/sigwatch.cpp.s"
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/salabeta/robocomp/classes/sigwatch/sigwatch.cpp -o CMakeFiles/choca.dir/home/salabeta/robocomp/classes/sigwatch/sigwatch.cpp.s
 
-src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/qlog/qlog.cpp.o.requires:
+src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/sigwatch/sigwatch.cpp.o.requires:
 
-.PHONY : src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/qlog/qlog.cpp.o.requires
+.PHONY : src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/sigwatch/sigwatch.cpp.o.requires
 
-src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/qlog/qlog.cpp.o.provides: src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/qlog/qlog.cpp.o.requires
-	$(MAKE) -f src/CMakeFiles/choca.dir/build.make src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/qlog/qlog.cpp.o.provides.build
-.PHONY : src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/qlog/qlog.cpp.o.provides
+src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/sigwatch/sigwatch.cpp.o.provides: src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/sigwatch/sigwatch.cpp.o.requires
+	$(MAKE) -f src/CMakeFiles/choca.dir/build.make src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/sigwatch/sigwatch.cpp.o.provides.build
+.PHONY : src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/sigwatch/sigwatch.cpp.o.provides
 
-src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/qlog/qlog.cpp.o.provides.build: src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/qlog/qlog.cpp.o
+src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/sigwatch/sigwatch.cpp.o.provides.build: src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/sigwatch/sigwatch.cpp.o
+
+
+src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/qlog/qlog.cpp.o: src/CMakeFiles/choca.dir/flags.make
+src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/qlog/qlog.cpp.o: /home/salabeta/robocomp/classes/qlog/qlog.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/practica2/choca/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/qlog/qlog.cpp.o"
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/choca.dir/home/salabeta/robocomp/classes/qlog/qlog.cpp.o -c /home/salabeta/robocomp/classes/qlog/qlog.cpp
+
+src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/qlog/qlog.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/choca.dir/home/salabeta/robocomp/classes/qlog/qlog.cpp.i"
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/salabeta/robocomp/classes/qlog/qlog.cpp > CMakeFiles/choca.dir/home/salabeta/robocomp/classes/qlog/qlog.cpp.i
+
+src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/qlog/qlog.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/choca.dir/home/salabeta/robocomp/classes/qlog/qlog.cpp.s"
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/salabeta/robocomp/classes/qlog/qlog.cpp -o CMakeFiles/choca.dir/home/salabeta/robocomp/classes/qlog/qlog.cpp.s
+
+src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/qlog/qlog.cpp.o.requires:
+
+.PHONY : src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/qlog/qlog.cpp.o.requires
+
+src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/qlog/qlog.cpp.o.provides: src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/qlog/qlog.cpp.o.requires
+	$(MAKE) -f src/CMakeFiles/choca.dir/build.make src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/qlog/qlog.cpp.o.provides.build
+.PHONY : src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/qlog/qlog.cpp.o.provides
+
+src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/qlog/qlog.cpp.o.provides.build: src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/qlog/qlog.cpp.o
 
 
 src/CMakeFiles/choca.dir/main.cpp.o: src/CMakeFiles/choca.dir/flags.make
 src/CMakeFiles/choca.dir/main.cpp.o: src/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/isabel/Escritorio/Robotics/practica2/choca/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object src/CMakeFiles/choca.dir/main.cpp.o"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/choca.dir/main.cpp.o -c /home/isabel/Escritorio/Robotics/practica2/choca/src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/practica2/choca/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object src/CMakeFiles/choca.dir/main.cpp.o"
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/choca.dir/main.cpp.o -c /home/salabeta/robocomp/components/Robotics/practica2/choca/src/main.cpp
 
 src/CMakeFiles/choca.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/choca.dir/main.cpp.i"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/isabel/Escritorio/Robotics/practica2/choca/src/main.cpp > CMakeFiles/choca.dir/main.cpp.i
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/salabeta/robocomp/components/Robotics/practica2/choca/src/main.cpp > CMakeFiles/choca.dir/main.cpp.i
 
 src/CMakeFiles/choca.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/choca.dir/main.cpp.s"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/isabel/Escritorio/Robotics/practica2/choca/src/main.cpp -o CMakeFiles/choca.dir/main.cpp.s
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/salabeta/robocomp/components/Robotics/practica2/choca/src/main.cpp -o CMakeFiles/choca.dir/main.cpp.s
 
 src/CMakeFiles/choca.dir/main.cpp.o.requires:
 
@@ -231,16 +231,16 @@ src/CMakeFiles/choca.dir/main.cpp.o.provides.build: src/CMakeFiles/choca.dir/mai
 
 src/CMakeFiles/choca.dir/genericmonitor.cpp.o: src/CMakeFiles/choca.dir/flags.make
 src/CMakeFiles/choca.dir/genericmonitor.cpp.o: src/genericmonitor.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/isabel/Escritorio/Robotics/practica2/choca/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object src/CMakeFiles/choca.dir/genericmonitor.cpp.o"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/choca.dir/genericmonitor.cpp.o -c /home/isabel/Escritorio/Robotics/practica2/choca/src/genericmonitor.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/practica2/choca/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object src/CMakeFiles/choca.dir/genericmonitor.cpp.o"
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/choca.dir/genericmonitor.cpp.o -c /home/salabeta/robocomp/components/Robotics/practica2/choca/src/genericmonitor.cpp
 
 src/CMakeFiles/choca.dir/genericmonitor.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/choca.dir/genericmonitor.cpp.i"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/isabel/Escritorio/Robotics/practica2/choca/src/genericmonitor.cpp > CMakeFiles/choca.dir/genericmonitor.cpp.i
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/salabeta/robocomp/components/Robotics/practica2/choca/src/genericmonitor.cpp > CMakeFiles/choca.dir/genericmonitor.cpp.i
 
 src/CMakeFiles/choca.dir/genericmonitor.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/choca.dir/genericmonitor.cpp.s"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/isabel/Escritorio/Robotics/practica2/choca/src/genericmonitor.cpp -o CMakeFiles/choca.dir/genericmonitor.cpp.s
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/salabeta/robocomp/components/Robotics/practica2/choca/src/genericmonitor.cpp -o CMakeFiles/choca.dir/genericmonitor.cpp.s
 
 src/CMakeFiles/choca.dir/genericmonitor.cpp.o.requires:
 
@@ -255,16 +255,16 @@ src/CMakeFiles/choca.dir/genericmonitor.cpp.o.provides.build: src/CMakeFiles/cho
 
 src/CMakeFiles/choca.dir/commonbehaviorI.cpp.o: src/CMakeFiles/choca.dir/flags.make
 src/CMakeFiles/choca.dir/commonbehaviorI.cpp.o: src/commonbehaviorI.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/isabel/Escritorio/Robotics/practica2/choca/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object src/CMakeFiles/choca.dir/commonbehaviorI.cpp.o"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/choca.dir/commonbehaviorI.cpp.o -c /home/isabel/Escritorio/Robotics/practica2/choca/src/commonbehaviorI.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/practica2/choca/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object src/CMakeFiles/choca.dir/commonbehaviorI.cpp.o"
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/choca.dir/commonbehaviorI.cpp.o -c /home/salabeta/robocomp/components/Robotics/practica2/choca/src/commonbehaviorI.cpp
 
 src/CMakeFiles/choca.dir/commonbehaviorI.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/choca.dir/commonbehaviorI.cpp.i"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/isabel/Escritorio/Robotics/practica2/choca/src/commonbehaviorI.cpp > CMakeFiles/choca.dir/commonbehaviorI.cpp.i
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/salabeta/robocomp/components/Robotics/practica2/choca/src/commonbehaviorI.cpp > CMakeFiles/choca.dir/commonbehaviorI.cpp.i
 
 src/CMakeFiles/choca.dir/commonbehaviorI.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/choca.dir/commonbehaviorI.cpp.s"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/isabel/Escritorio/Robotics/practica2/choca/src/commonbehaviorI.cpp -o CMakeFiles/choca.dir/commonbehaviorI.cpp.s
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/salabeta/robocomp/components/Robotics/practica2/choca/src/commonbehaviorI.cpp -o CMakeFiles/choca.dir/commonbehaviorI.cpp.s
 
 src/CMakeFiles/choca.dir/commonbehaviorI.cpp.o.requires:
 
@@ -279,16 +279,16 @@ src/CMakeFiles/choca.dir/commonbehaviorI.cpp.o.provides.build: src/CMakeFiles/ch
 
 src/CMakeFiles/choca.dir/genericworker.cpp.o: src/CMakeFiles/choca.dir/flags.make
 src/CMakeFiles/choca.dir/genericworker.cpp.o: src/genericworker.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/isabel/Escritorio/Robotics/practica2/choca/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object src/CMakeFiles/choca.dir/genericworker.cpp.o"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/choca.dir/genericworker.cpp.o -c /home/isabel/Escritorio/Robotics/practica2/choca/src/genericworker.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/practica2/choca/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object src/CMakeFiles/choca.dir/genericworker.cpp.o"
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/choca.dir/genericworker.cpp.o -c /home/salabeta/robocomp/components/Robotics/practica2/choca/src/genericworker.cpp
 
 src/CMakeFiles/choca.dir/genericworker.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/choca.dir/genericworker.cpp.i"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/isabel/Escritorio/Robotics/practica2/choca/src/genericworker.cpp > CMakeFiles/choca.dir/genericworker.cpp.i
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/salabeta/robocomp/components/Robotics/practica2/choca/src/genericworker.cpp > CMakeFiles/choca.dir/genericworker.cpp.i
 
 src/CMakeFiles/choca.dir/genericworker.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/choca.dir/genericworker.cpp.s"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/isabel/Escritorio/Robotics/practica2/choca/src/genericworker.cpp -o CMakeFiles/choca.dir/genericworker.cpp.s
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/salabeta/robocomp/components/Robotics/practica2/choca/src/genericworker.cpp -o CMakeFiles/choca.dir/genericworker.cpp.s
 
 src/CMakeFiles/choca.dir/genericworker.cpp.o.requires:
 
@@ -303,16 +303,16 @@ src/CMakeFiles/choca.dir/genericworker.cpp.o.provides.build: src/CMakeFiles/choc
 
 src/CMakeFiles/choca.dir/CommonBehavior.cpp.o: src/CMakeFiles/choca.dir/flags.make
 src/CMakeFiles/choca.dir/CommonBehavior.cpp.o: src/CommonBehavior.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/isabel/Escritorio/Robotics/practica2/choca/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object src/CMakeFiles/choca.dir/CommonBehavior.cpp.o"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/choca.dir/CommonBehavior.cpp.o -c /home/isabel/Escritorio/Robotics/practica2/choca/src/CommonBehavior.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/practica2/choca/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object src/CMakeFiles/choca.dir/CommonBehavior.cpp.o"
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/choca.dir/CommonBehavior.cpp.o -c /home/salabeta/robocomp/components/Robotics/practica2/choca/src/CommonBehavior.cpp
 
 src/CMakeFiles/choca.dir/CommonBehavior.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/choca.dir/CommonBehavior.cpp.i"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/isabel/Escritorio/Robotics/practica2/choca/src/CommonBehavior.cpp > CMakeFiles/choca.dir/CommonBehavior.cpp.i
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/salabeta/robocomp/components/Robotics/practica2/choca/src/CommonBehavior.cpp > CMakeFiles/choca.dir/CommonBehavior.cpp.i
 
 src/CMakeFiles/choca.dir/CommonBehavior.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/choca.dir/CommonBehavior.cpp.s"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/isabel/Escritorio/Robotics/practica2/choca/src/CommonBehavior.cpp -o CMakeFiles/choca.dir/CommonBehavior.cpp.s
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/salabeta/robocomp/components/Robotics/practica2/choca/src/CommonBehavior.cpp -o CMakeFiles/choca.dir/CommonBehavior.cpp.s
 
 src/CMakeFiles/choca.dir/CommonBehavior.cpp.o.requires:
 
@@ -327,16 +327,16 @@ src/CMakeFiles/choca.dir/CommonBehavior.cpp.o.provides.build: src/CMakeFiles/cho
 
 src/CMakeFiles/choca.dir/GenericBase.cpp.o: src/CMakeFiles/choca.dir/flags.make
 src/CMakeFiles/choca.dir/GenericBase.cpp.o: src/GenericBase.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/isabel/Escritorio/Robotics/practica2/choca/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object src/CMakeFiles/choca.dir/GenericBase.cpp.o"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/choca.dir/GenericBase.cpp.o -c /home/isabel/Escritorio/Robotics/practica2/choca/src/GenericBase.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/practica2/choca/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object src/CMakeFiles/choca.dir/GenericBase.cpp.o"
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/choca.dir/GenericBase.cpp.o -c /home/salabeta/robocomp/components/Robotics/practica2/choca/src/GenericBase.cpp
 
 src/CMakeFiles/choca.dir/GenericBase.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/choca.dir/GenericBase.cpp.i"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/isabel/Escritorio/Robotics/practica2/choca/src/GenericBase.cpp > CMakeFiles/choca.dir/GenericBase.cpp.i
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/salabeta/robocomp/components/Robotics/practica2/choca/src/GenericBase.cpp > CMakeFiles/choca.dir/GenericBase.cpp.i
 
 src/CMakeFiles/choca.dir/GenericBase.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/choca.dir/GenericBase.cpp.s"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/isabel/Escritorio/Robotics/practica2/choca/src/GenericBase.cpp -o CMakeFiles/choca.dir/GenericBase.cpp.s
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/salabeta/robocomp/components/Robotics/practica2/choca/src/GenericBase.cpp -o CMakeFiles/choca.dir/GenericBase.cpp.s
 
 src/CMakeFiles/choca.dir/GenericBase.cpp.o.requires:
 
@@ -351,16 +351,16 @@ src/CMakeFiles/choca.dir/GenericBase.cpp.o.provides.build: src/CMakeFiles/choca.
 
 src/CMakeFiles/choca.dir/DifferentialRobot.cpp.o: src/CMakeFiles/choca.dir/flags.make
 src/CMakeFiles/choca.dir/DifferentialRobot.cpp.o: src/DifferentialRobot.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/isabel/Escritorio/Robotics/practica2/choca/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object src/CMakeFiles/choca.dir/DifferentialRobot.cpp.o"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/choca.dir/DifferentialRobot.cpp.o -c /home/isabel/Escritorio/Robotics/practica2/choca/src/DifferentialRobot.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/practica2/choca/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object src/CMakeFiles/choca.dir/DifferentialRobot.cpp.o"
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/choca.dir/DifferentialRobot.cpp.o -c /home/salabeta/robocomp/components/Robotics/practica2/choca/src/DifferentialRobot.cpp
 
 src/CMakeFiles/choca.dir/DifferentialRobot.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/choca.dir/DifferentialRobot.cpp.i"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/isabel/Escritorio/Robotics/practica2/choca/src/DifferentialRobot.cpp > CMakeFiles/choca.dir/DifferentialRobot.cpp.i
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/salabeta/robocomp/components/Robotics/practica2/choca/src/DifferentialRobot.cpp > CMakeFiles/choca.dir/DifferentialRobot.cpp.i
 
 src/CMakeFiles/choca.dir/DifferentialRobot.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/choca.dir/DifferentialRobot.cpp.s"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/isabel/Escritorio/Robotics/practica2/choca/src/DifferentialRobot.cpp -o CMakeFiles/choca.dir/DifferentialRobot.cpp.s
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/salabeta/robocomp/components/Robotics/practica2/choca/src/DifferentialRobot.cpp -o CMakeFiles/choca.dir/DifferentialRobot.cpp.s
 
 src/CMakeFiles/choca.dir/DifferentialRobot.cpp.o.requires:
 
@@ -375,16 +375,16 @@ src/CMakeFiles/choca.dir/DifferentialRobot.cpp.o.provides.build: src/CMakeFiles/
 
 src/CMakeFiles/choca.dir/Laser.cpp.o: src/CMakeFiles/choca.dir/flags.make
 src/CMakeFiles/choca.dir/Laser.cpp.o: src/Laser.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/isabel/Escritorio/Robotics/practica2/choca/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object src/CMakeFiles/choca.dir/Laser.cpp.o"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/choca.dir/Laser.cpp.o -c /home/isabel/Escritorio/Robotics/practica2/choca/src/Laser.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/practica2/choca/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object src/CMakeFiles/choca.dir/Laser.cpp.o"
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/choca.dir/Laser.cpp.o -c /home/salabeta/robocomp/components/Robotics/practica2/choca/src/Laser.cpp
 
 src/CMakeFiles/choca.dir/Laser.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/choca.dir/Laser.cpp.i"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/isabel/Escritorio/Robotics/practica2/choca/src/Laser.cpp > CMakeFiles/choca.dir/Laser.cpp.i
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/salabeta/robocomp/components/Robotics/practica2/choca/src/Laser.cpp > CMakeFiles/choca.dir/Laser.cpp.i
 
 src/CMakeFiles/choca.dir/Laser.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/choca.dir/Laser.cpp.s"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/isabel/Escritorio/Robotics/practica2/choca/src/Laser.cpp -o CMakeFiles/choca.dir/Laser.cpp.s
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/salabeta/robocomp/components/Robotics/practica2/choca/src/Laser.cpp -o CMakeFiles/choca.dir/Laser.cpp.s
 
 src/CMakeFiles/choca.dir/Laser.cpp.o.requires:
 
@@ -399,16 +399,16 @@ src/CMakeFiles/choca.dir/Laser.cpp.o.provides.build: src/CMakeFiles/choca.dir/La
 
 src/CMakeFiles/choca.dir/choca_autogen/mocs_compilation.cpp.o: src/CMakeFiles/choca.dir/flags.make
 src/CMakeFiles/choca.dir/choca_autogen/mocs_compilation.cpp.o: src/choca_autogen/mocs_compilation.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/isabel/Escritorio/Robotics/practica2/choca/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object src/CMakeFiles/choca.dir/choca_autogen/mocs_compilation.cpp.o"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/choca.dir/choca_autogen/mocs_compilation.cpp.o -c /home/isabel/Escritorio/Robotics/practica2/choca/src/choca_autogen/mocs_compilation.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/practica2/choca/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object src/CMakeFiles/choca.dir/choca_autogen/mocs_compilation.cpp.o"
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/choca.dir/choca_autogen/mocs_compilation.cpp.o -c /home/salabeta/robocomp/components/Robotics/practica2/choca/src/choca_autogen/mocs_compilation.cpp
 
 src/CMakeFiles/choca.dir/choca_autogen/mocs_compilation.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/choca.dir/choca_autogen/mocs_compilation.cpp.i"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/isabel/Escritorio/Robotics/practica2/choca/src/choca_autogen/mocs_compilation.cpp > CMakeFiles/choca.dir/choca_autogen/mocs_compilation.cpp.i
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/salabeta/robocomp/components/Robotics/practica2/choca/src/choca_autogen/mocs_compilation.cpp > CMakeFiles/choca.dir/choca_autogen/mocs_compilation.cpp.i
 
 src/CMakeFiles/choca.dir/choca_autogen/mocs_compilation.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/choca.dir/choca_autogen/mocs_compilation.cpp.s"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/isabel/Escritorio/Robotics/practica2/choca/src/choca_autogen/mocs_compilation.cpp -o CMakeFiles/choca.dir/choca_autogen/mocs_compilation.cpp.s
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/salabeta/robocomp/components/Robotics/practica2/choca/src/choca_autogen/mocs_compilation.cpp -o CMakeFiles/choca.dir/choca_autogen/mocs_compilation.cpp.s
 
 src/CMakeFiles/choca.dir/choca_autogen/mocs_compilation.cpp.o.requires:
 
@@ -425,9 +425,9 @@ src/CMakeFiles/choca.dir/choca_autogen/mocs_compilation.cpp.o.provides.build: sr
 choca_OBJECTS = \
 "CMakeFiles/choca.dir/specificworker.cpp.o" \
 "CMakeFiles/choca.dir/specificmonitor.cpp.o" \
-"CMakeFiles/choca.dir/home/isabel/robocomp/classes/rapplication/rapplication.cpp.o" \
-"CMakeFiles/choca.dir/home/isabel/robocomp/classes/sigwatch/sigwatch.cpp.o" \
-"CMakeFiles/choca.dir/home/isabel/robocomp/classes/qlog/qlog.cpp.o" \
+"CMakeFiles/choca.dir/home/salabeta/robocomp/classes/rapplication/rapplication.cpp.o" \
+"CMakeFiles/choca.dir/home/salabeta/robocomp/classes/sigwatch/sigwatch.cpp.o" \
+"CMakeFiles/choca.dir/home/salabeta/robocomp/classes/qlog/qlog.cpp.o" \
 "CMakeFiles/choca.dir/main.cpp.o" \
 "CMakeFiles/choca.dir/genericmonitor.cpp.o" \
 "CMakeFiles/choca.dir/commonbehaviorI.cpp.o" \
@@ -443,9 +443,9 @@ choca_EXTERNAL_OBJECTS =
 
 bin/choca: src/CMakeFiles/choca.dir/specificworker.cpp.o
 bin/choca: src/CMakeFiles/choca.dir/specificmonitor.cpp.o
-bin/choca: src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/rapplication/rapplication.cpp.o
-bin/choca: src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/sigwatch/sigwatch.cpp.o
-bin/choca: src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/qlog/qlog.cpp.o
+bin/choca: src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/rapplication/rapplication.cpp.o
+bin/choca: src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/sigwatch/sigwatch.cpp.o
+bin/choca: src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/qlog/qlog.cpp.o
 bin/choca: src/CMakeFiles/choca.dir/main.cpp.o
 bin/choca: src/CMakeFiles/choca.dir/genericmonitor.cpp.o
 bin/choca: src/CMakeFiles/choca.dir/commonbehaviorI.cpp.o
@@ -456,21 +456,21 @@ bin/choca: src/CMakeFiles/choca.dir/DifferentialRobot.cpp.o
 bin/choca: src/CMakeFiles/choca.dir/Laser.cpp.o
 bin/choca: src/CMakeFiles/choca.dir/choca_autogen/mocs_compilation.cpp.o
 bin/choca: src/CMakeFiles/choca.dir/build.make
-bin/choca: /home/isabel/anaconda3/lib/libQt5Sql.so.5.9.7
-bin/choca: /home/isabel/anaconda3/lib/libQt5OpenGL.so.5.9.7
-bin/choca: /home/isabel/anaconda3/lib/libQt5Xml.so.5.9.7
-bin/choca: /home/isabel/anaconda3/lib/libQt5XmlPatterns.so.5.9.7
+bin/choca: /usr/lib/x86_64-linux-gnu/libQt5Sql.so.5.9.5
+bin/choca: /usr/lib/x86_64-linux-gnu/libQt5OpenGL.so.5.9.5
+bin/choca: /usr/lib/x86_64-linux-gnu/libQt5Xml.so.5.9.5
+bin/choca: /usr/lib/x86_64-linux-gnu/libQt5XmlPatterns.so.5.9.5
 bin/choca: /usr/lib/x86_64-linux-gnu/libIce++11.so
 bin/choca: /usr/lib/x86_64-linux-gnu/libIceStorm++11.so
 bin/choca: /usr/lib/x86_64-linux-gnu/libIce.so
 bin/choca: /usr/lib/x86_64-linux-gnu/libIceStorm.so
-bin/choca: /home/isabel/anaconda3/lib/libQt5Widgets.so.5.9.7
-bin/choca: /home/isabel/anaconda3/lib/libQt5Gui.so.5.9.7
-bin/choca: /home/isabel/anaconda3/lib/libQt5Network.so.5.9.7
-bin/choca: /home/isabel/anaconda3/lib/libQt5Core.so.5.9.7
+bin/choca: /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.9.5
+bin/choca: /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.9.5
+bin/choca: /usr/lib/x86_64-linux-gnu/libQt5Network.so.5.9.5
+bin/choca: /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.9.5
 bin/choca: src/CMakeFiles/choca.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/isabel/Escritorio/Robotics/practica2/choca/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Linking CXX executable ../bin/choca"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/choca.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/salabeta/robocomp/components/Robotics/practica2/choca/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Linking CXX executable ../bin/choca"
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/choca.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 src/CMakeFiles/choca.dir/build: bin/choca
@@ -479,9 +479,9 @@ src/CMakeFiles/choca.dir/build: bin/choca
 
 src/CMakeFiles/choca.dir/requires: src/CMakeFiles/choca.dir/specificworker.cpp.o.requires
 src/CMakeFiles/choca.dir/requires: src/CMakeFiles/choca.dir/specificmonitor.cpp.o.requires
-src/CMakeFiles/choca.dir/requires: src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/rapplication/rapplication.cpp.o.requires
-src/CMakeFiles/choca.dir/requires: src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/sigwatch/sigwatch.cpp.o.requires
-src/CMakeFiles/choca.dir/requires: src/CMakeFiles/choca.dir/home/isabel/robocomp/classes/qlog/qlog.cpp.o.requires
+src/CMakeFiles/choca.dir/requires: src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/rapplication/rapplication.cpp.o.requires
+src/CMakeFiles/choca.dir/requires: src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/sigwatch/sigwatch.cpp.o.requires
+src/CMakeFiles/choca.dir/requires: src/CMakeFiles/choca.dir/home/salabeta/robocomp/classes/qlog/qlog.cpp.o.requires
 src/CMakeFiles/choca.dir/requires: src/CMakeFiles/choca.dir/main.cpp.o.requires
 src/CMakeFiles/choca.dir/requires: src/CMakeFiles/choca.dir/genericmonitor.cpp.o.requires
 src/CMakeFiles/choca.dir/requires: src/CMakeFiles/choca.dir/commonbehaviorI.cpp.o.requires
@@ -495,7 +495,7 @@ src/CMakeFiles/choca.dir/requires: src/CMakeFiles/choca.dir/choca_autogen/mocs_c
 .PHONY : src/CMakeFiles/choca.dir/requires
 
 src/CMakeFiles/choca.dir/clean:
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && $(CMAKE_COMMAND) -P CMakeFiles/choca.dir/cmake_clean.cmake
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && $(CMAKE_COMMAND) -P CMakeFiles/choca.dir/cmake_clean.cmake
 .PHONY : src/CMakeFiles/choca.dir/clean
 
 src/CMakeFiles/choca.dir/depend: src/CommonBehavior.cpp
@@ -506,6 +506,6 @@ src/CMakeFiles/choca.dir/depend: src/DifferentialRobot.cpp
 src/CMakeFiles/choca.dir/depend: src/DifferentialRobot.h
 src/CMakeFiles/choca.dir/depend: src/Laser.cpp
 src/CMakeFiles/choca.dir/depend: src/Laser.h
-	cd /home/isabel/Escritorio/Robotics/practica2/choca && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/isabel/Escritorio/Robotics/practica2/choca /home/isabel/Escritorio/Robotics/practica2/choca/src /home/isabel/Escritorio/Robotics/practica2/choca /home/isabel/Escritorio/Robotics/practica2/choca/src /home/isabel/Escritorio/Robotics/practica2/choca/src/CMakeFiles/choca.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/salabeta/robocomp/components/Robotics/practica2/choca /home/salabeta/robocomp/components/Robotics/practica2/choca/src /home/salabeta/robocomp/components/Robotics/practica2/choca /home/salabeta/robocomp/components/Robotics/practica2/choca/src /home/salabeta/robocomp/components/Robotics/practica2/choca/src/CMakeFiles/choca.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : src/CMakeFiles/choca.dir/depend
 

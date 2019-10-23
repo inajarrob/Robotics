@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/isabel/Escritorio/Robotics/practica2/choca
+CMAKE_SOURCE_DIR = /home/salabeta/robocomp/components/Robotics/practica2/choca
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/isabel/Escritorio/Robotics/practica2/choca
+CMAKE_BINARY_DIR = /home/salabeta/robocomp/components/Robotics/practica2/choca
 
 # Utility rule file for choca_autogen.
 
@@ -54,8 +54,8 @@ CMAKE_BINARY_DIR = /home/isabel/Escritorio/Robotics/practica2/choca
 include src/CMakeFiles/choca_autogen.dir/progress.make
 
 src/CMakeFiles/choca_autogen:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/isabel/Escritorio/Robotics/practica2/choca/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target choca"
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && /usr/bin/cmake -E cmake_autogen /home/isabel/Escritorio/Robotics/practica2/choca/src/CMakeFiles/choca_autogen.dir ""
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/salabeta/robocomp/components/Robotics/practica2/choca/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target choca"
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && /usr/bin/cmake -E cmake_autogen /home/salabeta/robocomp/components/Robotics/practica2/choca/src/CMakeFiles/choca_autogen.dir ""
 
 choca_autogen: src/CMakeFiles/choca_autogen
 choca_autogen: src/CMakeFiles/choca_autogen.dir/build.make
@@ -68,10 +68,10 @@ src/CMakeFiles/choca_autogen.dir/build: choca_autogen
 .PHONY : src/CMakeFiles/choca_autogen.dir/build
 
 src/CMakeFiles/choca_autogen.dir/clean:
-	cd /home/isabel/Escritorio/Robotics/practica2/choca/src && $(CMAKE_COMMAND) -P CMakeFiles/choca_autogen.dir/cmake_clean.cmake
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca/src && $(CMAKE_COMMAND) -P CMakeFiles/choca_autogen.dir/cmake_clean.cmake
 .PHONY : src/CMakeFiles/choca_autogen.dir/clean
 
 src/CMakeFiles/choca_autogen.dir/depend:
-	cd /home/isabel/Escritorio/Robotics/practica2/choca && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/isabel/Escritorio/Robotics/practica2/choca /home/isabel/Escritorio/Robotics/practica2/choca/src /home/isabel/Escritorio/Robotics/practica2/choca /home/isabel/Escritorio/Robotics/practica2/choca/src /home/isabel/Escritorio/Robotics/practica2/choca/src/CMakeFiles/choca_autogen.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/salabeta/robocomp/components/Robotics/practica2/choca && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/salabeta/robocomp/components/Robotics/practica2/choca /home/salabeta/robocomp/components/Robotics/practica2/choca/src /home/salabeta/robocomp/components/Robotics/practica2/choca /home/salabeta/robocomp/components/Robotics/practica2/choca/src /home/salabeta/robocomp/components/Robotics/practica2/choca/src/CMakeFiles/choca_autogen.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : src/CMakeFiles/choca_autogen.dir/depend
 

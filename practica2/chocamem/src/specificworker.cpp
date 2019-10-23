@@ -87,7 +87,7 @@ void SpecificWorker::compute()
 	//ldata = laser_proxy->getLaserData(); 
     readRobotState(ldata);
 
-    switch(SpecificWorker::actual_state)
+   /* switch(SpecificWorker::actual_state)
     {
         case State::idle:
             idle();
@@ -101,7 +101,7 @@ void SpecificWorker::compute()
         case State::findObj:
             findObstacle(ldata);
         break;
-    }
+    }*/
 }
 
 void SpecificWorker::readRobotState(RoboCompLaser::TLaserData &ldata)
@@ -171,18 +171,19 @@ void SpecificWorker::walk(RoboCompLaser::TLaserData ldata)
     if(ldata.front().dist < threshold){
         setState(SpecificWorker::State::turn);
     }
+    else{
+        if(ldata.front().dist < 400){
+            differentialrobot_proxy->setSpeedBase(400, 0);
+            walkc++;
+        }else{
+        	differentialrobot_proxy->setSpeedBase(800, 0);
+            walkc++;
+        }
+    }
     if(walkc>50){
         walkc = 0;
         setState(SpecificWorker::State::findObj);
     }
-    else
-        if(ldata.front().dist < 200){
-            differentialrobot_proxy->setSpeedBase(500, 0);
-            walkc++;
-        }else{
-        	differentialrobot_proxy->setSpeedBase(1000, 0);
-            walkc++;
-        }
 
 }
 
@@ -200,37 +201,41 @@ void SpecificWorker::turn(RoboCompLaser::TLaserData ldata)
 	innerModel->updateTransformValues("base", bState.x, 0, bState.z, 0, bState.alpha, 0);
 	auto [valid, cell] = grid.getCell(bState.x, bState.z);*/
     //if(ldata.front().dist > threshold && !(cell.visited) && (cell.free))
+
+    differentialrobot_proxy->stopBase();
+
     if(ldata.front().dist > threshold)
     {
         setState(SpecificWorker::State::walk);
         turning = false;
     } else {
         // ¿Estabamos girando ya?
+        
         if(turning == false){
             turning = true;    
             giro    = rand()%2;
 
             if(br > 20){
                 br = 0;
-               differentialrobot_proxy->setSpeedBase(1, -1.5);
+               differentialrobot_proxy->setSpeedBase(0, -1.5);
             }
 			if(giro == 0){
                 // Giro izquierda
-                differentialrobot_proxy->setSpeedBase(1, 1.5);
+                differentialrobot_proxy->setSpeedBase(0, 1.5);
                 br++;
             } else{
                 // Giro derecha
-                 differentialrobot_proxy->setSpeedBase(1, 2);
+                 differentialrobot_proxy->setSpeedBase(0, 2);
                  br++;
 		    }
         } else{
             if(giro == 0){
                 // Giro izquierda
-                differentialrobot_proxy->setSpeedBase(1, 1.5);
+                differentialrobot_proxy->setSpeedBase(0, 1.5);
                  br++;
             } else{
                 // Giro derecha
-                differentialrobot_proxy->setSpeedBase(1, 2);
+                differentialrobot_proxy->setSpeedBase(0, 2);
                 br++;
 		    }
         }
@@ -241,13 +246,14 @@ void SpecificWorker::findObstacle(RoboCompLaser::TLaserData ldata)
 {
     static int giro = 0;
     giro    = rand()%2;
+    differentialrobot_proxy->stopBase();
     if(giro == 0){
         // Giro izquierda
-        differentialrobot_proxy->setSpeedBase(1, 2);
+        differentialrobot_proxy->setSpeedBase(0, 2);
         setState(SpecificWorker::State::walk);
     } else{
         // Giro izquierda
-        differentialrobot_proxy->setSpeedBase(1, 1.5);
+        differentialrobot_proxy->setSpeedBase(0, 1.5);
         setState(SpecificWorker::State::walk);
     }
  }
