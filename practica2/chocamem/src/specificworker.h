@@ -85,7 +85,7 @@ private:
 	RoboCompLaser::TLaserData ldata;
 
 	void updateOccupiedCells(const RoboCompGenericBase::TBaseState &bState, const RoboCompLaser::TLaserData &ldata);
-	void readRobotState(RoboCompLaser::TLaserData ldata);
+	void readRobotState(RoboCompLaser::TLaserData &ldata);
 	void idle();
 	void walk(RoboCompLaser::TLaserData ldata);
 	void turn(RoboCompLaser::TLaserData ldata);
