@@ -19,6 +19,8 @@
 #include "specificworker.h"
 
  static int walkc = 0;
+ static bool t = false;
+ static float tdone = 0;
 
 /**
 * \brief Default constructor
@@ -87,7 +89,7 @@ void SpecificWorker::compute()
 	//ldata = laser_proxy->getLaserData(); 
     readRobotState(ldata);
 
-   /* switch(SpecificWorker::actual_state)
+    switch(SpecificWorker::actual_state)
     {
         case State::idle:
             idle();
@@ -101,7 +103,7 @@ void SpecificWorker::compute()
         case State::findObj:
             findObstacle(ldata);
         break;
-    }*/
+    }
 }
 
 void SpecificWorker::readRobotState(RoboCompLaser::TLaserData &ldata)
@@ -163,103 +165,78 @@ void SpecificWorker::walk(RoboCompLaser::TLaserData ldata)
 {
     // ORDENA DE MENOR A MAYOR DISTANCIA A OBJETOS/PARED
     std::sort( ldata.begin(), ldata.end(), [](RoboCompLaser::TData a, RoboCompLaser::TData b){ return     a.dist < b.dist; });
+
     //static int walkc = 0;
 	/*differentialrobot_proxy->getBaseState(bState);
 	innerModel->updateTransformValues("base", bState.x, 0, bState.z, 0, bState.alpha, 0);
 	auto [valid, cell] = grid.getCell(bState.x, bState.z);*/
 
     if(ldata.front().dist < threshold){
-        setState(SpecificWorker::State::turn);
+        t = true;
+        setState(SpecificWorker::State::turn);   
+           
     }
     else{
         if(ldata.front().dist < 400){
-            differentialrobot_proxy->setSpeedBase(400, 0);
+            differentialrobot_proxy->setSpeedBase(500, 0);
             walkc++;
         }else{
-        	differentialrobot_proxy->setSpeedBase(800, 0);
+        	differentialrobot_proxy->setSpeedBase(999, 0);
             walkc++;
         }
     }
-    if(walkc>50){
+    if(walkc>40){
         walkc = 0;
         setState(SpecificWorker::State::findObj);
     }
-
 }
 
 void SpecificWorker::turn(RoboCompLaser::TLaserData ldata)
 {
-    static int giro = 0;
-    static int br = 0;
-    static bool turning = false;
-
+    
+   
     // ORDENA DE MENOR A MAYOR DISTANCIA A OBJETOS/PARED
     std::sort( ldata.begin(), ldata.end(), [](RoboCompLaser::TData a, RoboCompLaser::TData b){ return     a.dist < b.dist; });
 
-    // Preguntamos si hay que terminar de girar
-	/*differentialrobot_proxy->getBaseState(bState);
-	innerModel->updateTransformValues("base", bState.x, 0, bState.z, 0, bState.alpha, 0);
-	auto [valid, cell] = grid.getCell(bState.x, bState.z);*/
-    //if(ldata.front().dist > threshold && !(cell.visited) && (cell.free))
-
-    differentialrobot_proxy->stopBase();
-
-    if(ldata.front().dist > threshold)
-    {
+    //mutex.lock();
+    if (t == true){
+        differentialrobot_proxy->setSpeedBase(0, rot);
+        usleep(rand()%(1500000-100000+1) + 100000);  
+        t = false;
+    }
+    else
         setState(SpecificWorker::State::walk);
-        turning = false;
-    } else {
-        // ¿Estabamos girando ya?
-        
-        if(turning == false){
-            turning = true;    
-            giro    = rand()%2;
+    
 
-            if(br > 20){
-                br = 0;
-               differentialrobot_proxy->setSpeedBase(0, -1.5);
-            }
-			if(giro == 0){
-                // Giro izquierda
-                differentialrobot_proxy->setSpeedBase(0, 1.5);
-                br++;
-            } else{
-                // Giro derecha
-                 differentialrobot_proxy->setSpeedBase(0, 2);
-                 br++;
-		    }
-        } else{
-            if(giro == 0){
-                // Giro izquierda
-                differentialrobot_proxy->setSpeedBase(0, 1.5);
-                 br++;
-            } else{
-                // Giro derecha
-                differentialrobot_proxy->setSpeedBase(0, 2);
-                br++;
-		    }
-        }
-    }        
-}
+} 
 
 void SpecificWorker::findObstacle(RoboCompLaser::TLaserData ldata)
 {
     static int giro = 0;
-    giro    = rand()%2;
-    differentialrobot_proxy->stopBase();
+    giro    = rand()%10;
+    if(giro==0){
+         differentialrobot_proxy->setSpeedBase(0, -rot);
+    
+    }
+    else{
+        differentialrobot_proxy->setSpeedBase(0, rot);
+    }
+    
+    setState(SpecificWorker::State::walk);
+
+    /*static int giro = 0;
+    //giro    = rand()%2;
+    //differentialrobot_proxy->stopBase();
     if(giro == 0){
         // Giro izquierda
-        differentialrobot_proxy->setSpeedBase(0, 2);
+        differentialrobot_proxy->setSpeedBase(0, rot);
         setState(SpecificWorker::State::walk);
     } else{
         // Giro izquierda
-        differentialrobot_proxy->setSpeedBase(0, 1.5);
+        differentialrobot_proxy->setSpeedBase(0, rot);
         setState(SpecificWorker::State::walk);
-    }
+    }*/
  }
-
-
-
 
 
 

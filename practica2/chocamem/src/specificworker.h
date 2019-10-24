@@ -38,7 +38,8 @@
 #include <stdlib.h>
 #include <random>
 const float threshold = 200; // millimeters
-const float rot = -0.75;
+const float rot = 0.50;
+
 
 class SpecificWorker : public GenericWorker
 {
@@ -51,12 +52,14 @@ public:
 	bool setParams(RoboCompCommonBehavior::ParameterList params);
 	void setState(SpecificWorker::State a_state);
 	void RCISMousePicker_setPick(const Pick &myPick);
-
+	//QMutex mutex;
+	
 	// Grid cell definition
 	struct TCell
 	{
 		bool free;
 		bool visited;
+		
 		QGraphicsRectItem* rect;
 		
 		// method to save the value
@@ -90,6 +93,7 @@ private:
 	void walk(RoboCompLaser::TLaserData ldata);
 	void turn(RoboCompLaser::TLaserData ldata);
 	void findObstacle(RoboCompLaser::TLaserData ldata);
+	void turning();
 };
 
 #endif
