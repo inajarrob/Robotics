@@ -20,7 +20,6 @@
 
  static int walkc = 0;
  static bool t = false;
- static float tdone = 0;
 
 /**
 * \brief Default constructor
@@ -100,8 +99,8 @@ void SpecificWorker::compute()
         case State::turn:
             turn(ldata);
         break;
-        case State::findObj:
-            findObstacle(ldata);
+        case State::randTurn:
+            randTurn(ldata);
         break;
     }
 }
@@ -181,36 +180,45 @@ void SpecificWorker::walk(RoboCompLaser::TLaserData ldata)
             differentialrobot_proxy->setSpeedBase(500, 0);
             walkc++;
         }else{
-        	differentialrobot_proxy->setSpeedBase(999, 0);
+        	differentialrobot_proxy->setSpeedBase(1000, 0);
             walkc++;
         }
     }
     if(walkc>40){
         walkc = 0;
-        setState(SpecificWorker::State::findObj);
+        setState(SpecificWorker::State::randTurn);
     }
 }
 
 void SpecificWorker::turn(RoboCompLaser::TLaserData ldata)
 {
     
-   
     // ORDENA DE MENOR A MAYOR DISTANCIA A OBJETOS/PARED
     std::sort( ldata.begin(), ldata.end(), [](RoboCompLaser::TData a, RoboCompLaser::TData b){ return     a.dist < b.dist; });
-
-    //mutex.lock();
+	
     if (t == true){
-        differentialrobot_proxy->setSpeedBase(0, rot);
-        usleep(rand()%(1500000-100000+1) + 100000);  
+		if(ldata.front().dist < 100 && ldata.back().dist < 100){
+			cout << "++++++++Esquina+++++++++" << endl;
+			differentialrobot_proxy->setSpeedBase(0, rot);
+			usleep(1000000);
+		}
+		if(ldata.front().angle > 0){
+			differentialrobot_proxy->setSpeedBase(0, -rot);
+        	usleep(rand()%(1500000-100000+1) + 100000);  
+		}else{
+			differentialrobot_proxy->setSpeedBase(0, rot);
+        	usleep(rand()%(1500000-100000+1) + 100000);  
+	}      
         t = false;
-    }
+    }	
     else
         setState(SpecificWorker::State::walk);
+
     
 
 } 
 
-void SpecificWorker::findObstacle(RoboCompLaser::TLaserData ldata)
+void SpecificWorker::randTurn(RoboCompLaser::TLaserData ldata)
 {
     static int giro = 0;
     giro    = rand()%10;

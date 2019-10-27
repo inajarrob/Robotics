@@ -45,7 +45,7 @@ class SpecificWorker : public GenericWorker
 {
 Q_OBJECT
 public:
-	enum class State {idle, walk, turn, findObj, spiral};
+	enum class State {idle, walk, turn, randTurn, spiral};
 	SpecificWorker::State actual_state;
 	SpecificWorker(MapPrx& mprx);
 	~SpecificWorker();
@@ -92,7 +92,7 @@ private:
 	void idle();
 	void walk(RoboCompLaser::TLaserData ldata);
 	void turn(RoboCompLaser::TLaserData ldata);
-	void findObstacle(RoboCompLaser::TLaserData ldata);
+	void randTurn(RoboCompLaser::TLaserData ldata);
 	void turning();
 };
 
