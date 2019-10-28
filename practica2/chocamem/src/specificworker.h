@@ -38,13 +38,14 @@
 #include <stdlib.h>
 #include <random>
 const float threshold = 200; // millimeters
-const float rot = 0.50;
+const float rot = 0.70;
 
 
 class SpecificWorker : public GenericWorker
 {
 Q_OBJECT
 public:
+	int iteration = 0;
 	enum class State {idle, walk, turn, randTurn, spiral};
 	SpecificWorker::State actual_state;
 	SpecificWorker(MapPrx& mprx);
@@ -90,9 +91,9 @@ private:
 	void updateOccupiedCells(const RoboCompGenericBase::TBaseState &bState, const RoboCompLaser::TLaserData &ldata);
 	void readRobotState(RoboCompLaser::TLaserData &ldata);
 	void idle();
-	void walk(RoboCompLaser::TLaserData ldata);
-	void turn(RoboCompLaser::TLaserData ldata);
-	void randTurn(RoboCompLaser::TLaserData ldata);
+	void walk();
+	void turn();
+	void randTurn();
 	void turning();
 };
 

@@ -94,13 +94,13 @@ void SpecificWorker::compute()
             idle();
         break;
         case State::walk:
-            walk(ldata);
+            walk();
         break;
         case State::turn:
-            turn(ldata);
+            turn();
         break;
         case State::randTurn:
-            randTurn(ldata);
+            randTurn();
         break;
     }
 }
@@ -160,23 +160,17 @@ void SpecificWorker::idle(){
     setState(SpecificWorker::State::walk);
 }
 
-void SpecificWorker::walk(RoboCompLaser::TLaserData ldata)
+void SpecificWorker::walk()
 {
     // ORDENA DE MENOR A MAYOR DISTANCIA A OBJETOS/PARED
     std::sort( ldata.begin(), ldata.end(), [](RoboCompLaser::TData a, RoboCompLaser::TData b){ return     a.dist < b.dist; });
 
-    //static int walkc = 0;
-	/*differentialrobot_proxy->getBaseState(bState);
-	innerModel->updateTransformValues("base", bState.x, 0, bState.z, 0, bState.alpha, 0);
-	auto [valid, cell] = grid.getCell(bState.x, bState.z);*/
-
     if(ldata.front().dist < threshold){
         t = true;
-        setState(SpecificWorker::State::turn);   
-           
+        setState(SpecificWorker::State::turn);          
     }
     else{
-        if(ldata.front().dist < 400){
+        if(ldata.front().dist < 250){
             differentialrobot_proxy->setSpeedBase(500, 0);
             walkc++;
         }else{
@@ -190,60 +184,59 @@ void SpecificWorker::walk(RoboCompLaser::TLaserData ldata)
     }
 }
 
-void SpecificWorker::turn(RoboCompLaser::TLaserData ldata)
+void SpecificWorker::turn()
 {
-    
+    // auxiliar vector for corners
+	RoboCompLaser::TLaserData aux = ldata;
+
     // ORDENA DE MENOR A MAYOR DISTANCIA A OBJETOS/PARED
     std::sort( ldata.begin(), ldata.end(), [](RoboCompLaser::TData a, RoboCompLaser::TData b){ return     a.dist < b.dist; });
 	
     if (t == true){
-		if(ldata.front().dist < 100 && ldata.back().dist < 100){
-			cout << "++++++++Esquina+++++++++" << endl;
-			differentialrobot_proxy->setSpeedBase(0, rot);
-			usleep(1000000);
+		iteration++;
+		if(iteration%15 == 0){
+			if(ldata.front().angle > 0){
+				differentialrobot_proxy->setSpeedBase(0, rot);
+        		//usleep(rand()%(1500000-100000+1) + 100000);  
+			}else{
+				differentialrobot_proxy->setSpeedBase(0, -rot);
+        		//usleep(rand()%(1500000-100000+1) + 100000);  
+			} 
+			usleep(100000);	
+		} 
+		else {
+			if(ldata.back().angle > 0){
+				differentialrobot_proxy->setSpeedBase(0, rot);
+        		//usleep(rand()%(1500000-100000+1) + 100000);  
+			}else{
+				differentialrobot_proxy->setSpeedBase(0, -rot);
+        		//usleep(rand()%(1500000-100000+1) + 100000);  
+			} 
+			usleep(rand()%(1500000-100000+1) + 100000);
 		}
-		if(ldata.front().angle > 0){
-			differentialrobot_proxy->setSpeedBase(0, -rot);
-        	usleep(rand()%(1500000-100000+1) + 100000);  
-		}else{
-			differentialrobot_proxy->setSpeedBase(0, rot);
-        	usleep(rand()%(1500000-100000+1) + 100000);  
-	}      
+
         t = false;
     }	
-    else
-        setState(SpecificWorker::State::walk);
-
-    
-
+    else {
+		setState(SpecificWorker::State::walk);
+		iteration = 0;
+	}
+        
 } 
 
-void SpecificWorker::randTurn(RoboCompLaser::TLaserData ldata)
+void SpecificWorker::randTurn()
 {
     static int giro = 0;
     giro    = rand()%10;
+	cout << "Random" << endl;
     if(giro==0){
-         differentialrobot_proxy->setSpeedBase(0, -rot);
-    
+        differentialrobot_proxy->setSpeedBase(0, -rot);
     }
     else{
         differentialrobot_proxy->setSpeedBase(0, rot);
     }
-    
-    setState(SpecificWorker::State::walk);
 
-    /*static int giro = 0;
-    //giro    = rand()%2;
-    //differentialrobot_proxy->stopBase();
-    if(giro == 0){
-        // Giro izquierda
-        differentialrobot_proxy->setSpeedBase(0, rot);
-        setState(SpecificWorker::State::walk);
-    } else{
-        // Giro izquierda
-        differentialrobot_proxy->setSpeedBase(0, rot);
-        setState(SpecificWorker::State::walk);
-    }*/
+    setState(SpecificWorker::State::walk);
  }
 
 
