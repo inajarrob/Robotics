@@ -19,6 +19,8 @@
 #include "specificworker.h"
 
  static int walkc = 0;
+ static int spiralc = 0;
+ static int circle = 0;
  static bool t = false;
 
 /**
@@ -102,6 +104,9 @@ void SpecificWorker::compute()
         case State::randTurn:
             randTurn();
         break;
+		case State::spiral:
+            spiral();
+        break;
     }
 }
 
@@ -166,18 +171,26 @@ void SpecificWorker::walk()
     std::sort( ldata.begin(), ldata.end(), [](RoboCompLaser::TData a, RoboCompLaser::TData b){ return     a.dist < b.dist; });
 
     if(ldata.front().dist < threshold){
-        t = true;
-        setState(SpecificWorker::State::turn);          
+        t = true; 
+        setState(SpecificWorker::State::turn); 
+		      
     }
     else{
         if(ldata.front().dist < 250){
             differentialrobot_proxy->setSpeedBase(500, 0);
-            walkc++;
+            spiralc++;
+			walkc++;
+			
         }else{
         	differentialrobot_proxy->setSpeedBase(1000, 0);
+			spiralc++;
             walkc++;
         }
     }
+	if(spiralc>15){
+		spiralc = 0;
+		setState(SpecificWorker::State::spiral);
+	}
     if(walkc>40){
         walkc = 0;
         setState(SpecificWorker::State::randTurn);
@@ -216,13 +229,39 @@ void SpecificWorker::turn()
 		}
 
         t = false;
+		spiralc = 0;
     }	
     else {
-		setState(SpecificWorker::State::walk);
 		iteration = 0;
+		setState(SpecificWorker::State::walk);
+		
 	}
         
 } 
+
+void SpecificWorker::spiral(){
+
+	if(ldata.front().dist < 400 || ldata.back().dist < 400){
+		t = true;
+		differentialrobot_proxy->setSpeedBase(100, 0);
+		spiralc = 0;
+		setState(SpecificWorker::State::turn);
+	}
+	else{
+		if(ldata.front().dist > 400 && circle < 50){
+			differentialrobot_proxy->setSpeedBase(600, 0.5);
+			circle++;
+	 		setState(SpecificWorker::State::spiral);
+		}
+		else{
+			circle = 0;
+			setState(SpecificWorker::State::walk);
+		}
+		
+	}
+	 
+
+}
 
 void SpecificWorker::randTurn()
 {

@@ -93,8 +93,9 @@ private:
 	void idle();
 	void walk();
 	void turn();
+	void spiral();
 	void randTurn();
-	void turning();
+
 };
 
 #endif
