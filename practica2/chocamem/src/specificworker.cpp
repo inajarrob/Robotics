@@ -87,8 +87,7 @@ void SpecificWorker::initialize(int period)
 
 void SpecificWorker::compute()
 {
-	// read laser data 
-	//ldata = laser_proxy->getLaserData(); 
+
     readRobotState(ldata);
 
     switch(SpecificWorker::actual_state)
@@ -168,7 +167,7 @@ void SpecificWorker::idle(){
 
 void SpecificWorker::walk()
 {
-    // ORDENA DE MENOR A MAYOR DISTANCIA A OBJETOS/PARED
+    // Sort from min to max distance to objects or wall
     std::sort( ldata.begin(), ldata.end(), [](RoboCompLaser::TData a, RoboCompLaser::TData b){ return     a.dist < b.dist; });
 
     if(ldata.front().dist < threshold){
@@ -208,14 +207,13 @@ void SpecificWorker::walk()
 
 void SpecificWorker::turn()
 {
-
-    // ORDENA DE mayor a menor DISTANCIA A OBJETOS/PARED
+	// Sort from max to min distance to objects or wall
     std::sort( ldata.begin(), ldata.end(), [](RoboCompLaser::TData a, RoboCompLaser::TData b){ return     a.dist > b.dist; });
 	
 	if(iteration == 0) {
 		iteration = 1;
-		if(ldata.front().angle > 0) turning = 1; // giro izquierda
-		else						turning = 2; // giro derecha
+		if(ldata.front().angle > 0) turning = 1; // left
+		else						turning = 2; // right
 	}
 
     if (t == true){
@@ -234,10 +232,8 @@ void SpecificWorker::turn()
         
 } 
 
-void SpecificWorker::spiral(){
-
-	
-
+void SpecificWorker::spiral()
+{
 	if(ldata.front().dist < 400 || ldata[ldata.size()/2].dist < 400 || ldata.back().dist < 400){
 		t = true;
 		differentialrobot_proxy->setSpeedBase(100, 0);
@@ -270,21 +266,12 @@ void SpecificWorker::randTurn()
 {
     static int giro = 0;
     giro    = rand()%10;
-	//if(iteration == 0){
-		if(giro==0){
-        differentialrobot_proxy->setSpeedBase(0, -rot);
-		} else{
-        	differentialrobot_proxy->setSpeedBase(0, rot);
-    	}
-	/*} else {
-		if(turning == 1){
-			differentialrobot_proxy->setSpeedBase(0, rot); 
-		}else{
-			differentialrobot_proxy->setSpeedBase(0, -rot);  
-		} 
-	}*/
-    
 
+	if(giro==0){
+    	differentialrobot_proxy->setSpeedBase(0, -rot);
+	} else{
+    	differentialrobot_proxy->setSpeedBase(0, rot);
+	}
     setState(SpecificWorker::State::walk);
  }
 
