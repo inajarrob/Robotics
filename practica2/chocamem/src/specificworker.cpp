@@ -21,6 +21,7 @@
  static int walkc = 0;
  static int spiralc = 0;
  static int circle = 0;
+ static int inc = 0;
  static bool t = false;
 
 /**
@@ -195,10 +196,10 @@ void SpecificWorker::walk()
 		}
 
     }
-	/*if(spiralc>25){
+	if(spiralc>30){
 		spiralc = 0;
 		setState(SpecificWorker::State::spiral);
-	}*/
+	}
     if(walkc>40){
         walkc = 0;
         setState(SpecificWorker::State::randTurn);
@@ -235,20 +236,28 @@ void SpecificWorker::turn()
 
 void SpecificWorker::spiral(){
 
-	if(ldata.front().dist < 400 || ldata.back().dist < 400){
+	
+
+	if(ldata.front().dist < 400 || ldata[ldata.size()/2].dist < 400 || ldata.back().dist < 400){
 		t = true;
 		differentialrobot_proxy->setSpeedBase(100, 0);
 		spiralc = 0;
 		setState(SpecificWorker::State::turn);
 	}
 	else{
-		if(ldata.front().dist > 400 && circle < 50){
-			differentialrobot_proxy->setSpeedBase(600, 0.5);
+		if(ldata.front().dist > 400 && circle < 100){
+			differentialrobot_proxy->setSpeedBase(200+inc, 0.5);
 			circle++;
+			inc = inc+50;
+			if(inc >400){
+				inc = 0;
+			}
+			
 	 		setState(SpecificWorker::State::spiral);
 		}
 		else{
 			circle = 0;
+			inc = 0;
 			setState(SpecificWorker::State::walk);
 		}
 		
@@ -261,7 +270,6 @@ void SpecificWorker::randTurn()
 {
     static int giro = 0;
     giro    = rand()%10;
-	cout << "Random" << endl;
 	//if(iteration == 0){
 		if(giro==0){
         differentialrobot_proxy->setSpeedBase(0, -rot);
