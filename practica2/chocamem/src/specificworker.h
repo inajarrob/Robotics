@@ -46,6 +46,7 @@ class SpecificWorker : public GenericWorker
 Q_OBJECT
 public:
 	int iteration = 0;
+	int turning;
 	enum class State {idle, walk, turn, randTurn, spiral};
 	SpecificWorker::State actual_state;
 	SpecificWorker(MapPrx& mprx);

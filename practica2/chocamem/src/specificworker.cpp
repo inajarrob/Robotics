@@ -176,21 +176,29 @@ void SpecificWorker::walk()
 		      
     }
     else{
-        if(ldata.front().dist < 250){
-            differentialrobot_proxy->setSpeedBase(500, 0);
+		iteration = 0;
+		if(ldata.front().dist < 400){
+            differentialrobot_proxy->setSpeedBase(700, 0);
             spiralc++;
 			walkc++;
 			
-        }else{
-        	differentialrobot_proxy->setSpeedBase(1000, 0);
-			spiralc++;
-            walkc++;
+        } else {
+			if(ldata.front().dist < 250){
+            	differentialrobot_proxy->setSpeedBase(500, 0);
+            	spiralc++;
+				walkc++;
+        	}else{
+        		differentialrobot_proxy->setSpeedBase(1000, 0);
+				spiralc++;
+            	walkc++;
         }
+		}
+
     }
-	if(spiralc>15){
+	/*if(spiralc>25){
 		spiralc = 0;
 		setState(SpecificWorker::State::spiral);
-	}
+	}*/
     if(walkc>40){
         walkc = 0;
         setState(SpecificWorker::State::randTurn);
@@ -199,42 +207,28 @@ void SpecificWorker::walk()
 
 void SpecificWorker::turn()
 {
-    // auxiliar vector for corners
-	RoboCompLaser::TLaserData aux = ldata;
 
-    // ORDENA DE MENOR A MAYOR DISTANCIA A OBJETOS/PARED
-    std::sort( ldata.begin(), ldata.end(), [](RoboCompLaser::TData a, RoboCompLaser::TData b){ return     a.dist < b.dist; });
+    // ORDENA DE mayor a menor DISTANCIA A OBJETOS/PARED
+    std::sort( ldata.begin(), ldata.end(), [](RoboCompLaser::TData a, RoboCompLaser::TData b){ return     a.dist > b.dist; });
 	
-    if (t == true){
-		iteration++;
-		if(iteration%15 == 0){
-			if(ldata.front().angle > 0){
-				differentialrobot_proxy->setSpeedBase(0, rot);
-        		//usleep(rand()%(1500000-100000+1) + 100000);  
-			}else{
-				differentialrobot_proxy->setSpeedBase(0, -rot);
-        		//usleep(rand()%(1500000-100000+1) + 100000);  
-			} 
-			usleep(100000);	
-		} 
-		else {
-			if(ldata.back().angle > 0){
-				differentialrobot_proxy->setSpeedBase(0, rot);
-        		//usleep(rand()%(1500000-100000+1) + 100000);  
-			}else{
-				differentialrobot_proxy->setSpeedBase(0, -rot);
-        		//usleep(rand()%(1500000-100000+1) + 100000);  
-			} 
-			usleep(rand()%(1500000-100000+1) + 100000);
-		}
+	if(iteration == 0) {
+		iteration = 1;
+		if(ldata.front().angle > 0) turning = 1; // giro izquierda
+		else						turning = 2; // giro derecha
+	}
 
+    if (t == true){
+		if(turning == 1){
+			differentialrobot_proxy->setSpeedBase(0, rot); 
+		}else{
+			differentialrobot_proxy->setSpeedBase(0, -rot);  
+		} 
+		usleep(rand()%(1500000-100000+1) + 100000);
         t = false;
 		spiralc = 0;
     }	
     else {
-		iteration = 0;
 		setState(SpecificWorker::State::walk);
-		
 	}
         
 } 
@@ -268,12 +262,20 @@ void SpecificWorker::randTurn()
     static int giro = 0;
     giro    = rand()%10;
 	cout << "Random" << endl;
-    if(giro==0){
+	//if(iteration == 0){
+		if(giro==0){
         differentialrobot_proxy->setSpeedBase(0, -rot);
-    }
-    else{
-        differentialrobot_proxy->setSpeedBase(0, rot);
-    }
+		} else{
+        	differentialrobot_proxy->setSpeedBase(0, rot);
+    	}
+	/*} else {
+		if(turning == 1){
+			differentialrobot_proxy->setSpeedBase(0, rot); 
+		}else{
+			differentialrobot_proxy->setSpeedBase(0, -rot);  
+		} 
+	}*/
+    
 
     setState(SpecificWorker::State::walk);
  }
