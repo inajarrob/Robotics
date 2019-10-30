@@ -25,7 +25,6 @@ SET ( SOURCES
   genericmonitor.cpp
   commonbehaviorI.cpp
   genericworker.cpp
-  gotopointI.cpp
   rcismousepickerI.cpp
 )
 
@@ -36,7 +35,7 @@ FIND_PACKAGE( Ice REQUIRED COMPONENTS Ice++11 IceStorm++11)
 
 #ROBOCOMP
 ROBOCOMP_INITIALIZE( $ENV{ROBOCOMP}/ )
-ROBOCOMP_WRAP_ICE( CommonBehavior GenericBase GotoPoint DifferentialRobot Laser RCISMousePicker)
+ROBOCOMP_WRAP_ICE( CommonBehavior GenericBase DifferentialRobot Laser RCISMousePicker)
 SET (EXECUTABLE_OUTPUT_PATH ${RC_COMPONENT_DEVEL_PATH}/bin)
 
 QT_WRAP_UI( UI_HEADERS mainUI.ui )

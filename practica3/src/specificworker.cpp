@@ -76,39 +76,38 @@ void SpecificWorker::compute()
 //	{
 //		std::cout << "Error reading from Camera" << e << std::endl;
 //	}
+
+IDLE
+	if(c.isActive())
+	{
+		robot_actual = bState;
+		state = State::ORIENTAR;
+	}
+
+	case state = State::ORIENTAR
+
+
+	case state = State::AVANZAR
+
+	case state = State::BORDEAR
+
+}
+	
+	
+
+	c.getCoords();
+	cout << "X: "<< c.pick_us.x << " Y: " << c.pick_used.y << " Z: " << c.pick_used.z << " Nombre: " << c.pick_used.objectName << endl;
+
 }
 
 
 
 
-bool SpecificWorker::GotoPoint_atTarget()
-{
-//implementCODE
-
-}
-
-void SpecificWorker::GotoPoint_go(string nodo, float x, float y, float alpha)
-{
-//implementCODE
-
-}
-
-void SpecificWorker::GotoPoint_stop()
-{
-//implementCODE
-
-}
-
-void SpecificWorker::GotoPoint_turn(float speed)
-{
-//implementCODE
-
-}
 
 void SpecificWorker::RCISMousePicker_setPick(Pick myPick)
 {
-//subscribesToCODE
-
+	//subscribesToCODE
+	c.setCoords(myPick);
 }
 
 
