@@ -34,46 +34,17 @@ class SpecificWorker : public GenericWorker
 {
 Q_OBJECT
 public:
-	//enum class State {idle, walk, turn, goto};
-	//SpecificWorker::State actual_state;
 	SpecificWorker(TuplePrx tprx);
 	~SpecificWorker();
 	bool setParams(RoboCompCommonBehavior::ParameterList params);
-	
+
 	void RCISMousePicker_setPick(Pick myPick);
-
-	struct Coords
-	{
-		Pick pick;
-		QMutex mutex;
-		std::atomic<bool> active = false;
-
-		Pick getCoords(){
-			QMutexLocker ml(&mutex);
-			return pick;
-		}
-		void setCoords(Pick p){
-			QMutexLocker ml(&mutex);
-			pick = p;
-			active.store(true);
-		}
-		bool isActive()
-		{
-			return active.load();
-		}
-	};
-	Coords c;
 
 public slots:
 	void compute();
 	void initialize(int period);
 private:
 	std::shared_ptr<InnerModel> innerModel;
-	//void updateOccupiedCells(const RoboCompGenericBase::TBaseState &bState, const RoboCompLaser::TLaserData &ldata);
-	//void readRobotState(RoboCompLaser::TLaserData &ldata);
-	//void idle();
-	//void walk();
-	//void turn();
 
 };
 
