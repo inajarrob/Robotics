@@ -16,16 +16,13 @@
  *    You should have received a copy of the GNU General Public License
  *    along with RoboComp.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "specificworker.h"
 
-/**
-* \brief Default constructor
-*/
-SpecificWorker::SpecificWorker(TuplePrx tprx) : GenericWorker(tprx)
+SpecificWorker::SpecificWorker(TuplePrx tprx)
 {
 
 }
-
 /**
 * \brief Default destructor
 */
@@ -76,9 +73,35 @@ void SpecificWorker::compute()
 //	{
 //		std::cout << "Error reading from Camera" << e << std::endl;
 //	}
+	switch(SpecificWorker::actual_state){
+		case State::idle:
+			idle();
+		break;
+		case State::goTo:
+		break;
+		case State::walk:
+		break;
+		case State::skirt:
+		break;
+	}
 }
 
+void idle()
+{
+	if(c.isActive())
+	{
+		differentialrobot_proxy->getBaseState(bState);
+		innerModel->updateTransformValues("base", bState.x, 0, bState.z, 0, bState.alpha, 0);
+		SpecificWorker::actual_state = SpecificWorker::State::goTo;
+	}
+	else {
+		// ¿pasaria a andar?
+	}
+}
 
+void goTo(){
+	//innerModel->updateTransformValues("base", c.pick_used.x, 0, bState.z, 0, bState.alpha, 0);
+}
 
 
 void SpecificWorker::RCISMousePicker_setPick(Pick myPick)
