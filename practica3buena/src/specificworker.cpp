@@ -23,7 +23,7 @@
 */
 SpecificWorker::SpecificWorker(TuplePrx tprx) : GenericWorker(tprx)
 {
-
+	actual_state = State::idle;
 }
 
 /**
@@ -38,19 +38,12 @@ bool SpecificWorker::setParams(RoboCompCommonBehavior::ParameterList params)
 {
 //       THE FOLLOWING IS JUST AN EXAMPLE
 //	To use innerModelPath parameter you should uncomment specificmonitor.cpp readConfig method content
-//	try
-//	{
-//		RoboCompCommonBehavior::Parameter par = params.at("InnerModelPath");
-//		std::string innermodel_path = par.value;
-//		innerModel = new InnerModel(innermodel_path);
-//	}
-//	catch(const std::exception &e) { qFatal("Error reading config params"); }
-
-
-
-	
-
-
+	try
+	{
+		RoboCompCommonBehavior::Parameter par = params.at("InnerModelPath");
+		innerModel = std::make_shared<InnerModel>(par.value);
+	}
+		catch(const std::exception &e) { qFatal("Error reading config params"); }
 	return true;
 }
 
@@ -76,15 +69,58 @@ void SpecificWorker::compute()
 //	{
 //		std::cout << "Error reading from Camera" << e << std::endl;
 //	}
+	differentialrobot_proxy->getBaseState(bState);
+	innerModel->updateTransformValues("base", bState.x, 0, bState.z, 0, bState.alpha, 0);
+	ldata = laser_proxy->getLaserData();
+
+	switch(actual_state){
+		case State::idle:
+			idle();
+		break;
+		case State::goTo:
+			goTo();
+		break;
+		case State::walk:
+		break;
+		case State::skirt:
+		break;
+	}
 }
 
+void SpecificWorker::idle()
+{
+	if(c.isActive())
+	{
+		SpecificWorker::actual_state = SpecificWorker::State::goTo;
+	}
+}
 
+// Orientarse
+void SpecificWorker::goTo(){
+	// hasta que no este orientado al pick sigue girando	
+	QVec r = innerModel->transform("base", QVec::vec3(c.pick.x, 0, c.pick.z), "world");
+	
+	// hacer arcotangente para saber rotacion
+	double rot = atan2(r.x(),r.z());
+
+	// Robot orientado
+	if(fabs(rot) < 0.05) {
+		differentialrobot_proxy->setSpeedBase(0,0);
+		actual_state = State::idle;
+		return;
+	}
+	differentialrobot_proxy->setSpeedBase(0,rot);
+}
+
+void SpecificWorker::walk(){
+	//if()
+}
 
 
 void SpecificWorker::RCISMousePicker_setPick(Pick myPick)
 {
 //subscribesToCODE
-
+	c.setCoords(myPick);
 }
 
 

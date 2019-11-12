@@ -29,6 +29,9 @@
 
 #include <genericworker.h>
 #include <innermodel/innermodel.h>
+#include <stdlib.h>
+#include <QVector>
+#include <math.h>
 
 class SpecificWorker : public GenericWorker
 {
@@ -39,13 +42,42 @@ public:
 	bool setParams(RoboCompCommonBehavior::ParameterList params);
 
 	void RCISMousePicker_setPick(Pick myPick);
+	enum class State {idle, walk, goTo, skirt};
+	SpecificWorker::State actual_state;
+	RoboCompGenericBase::TBaseState bState;
+	RoboCompLaser::TLaserData ldata;
+
+	struct Coords
+	{
+		Pick pick;
+		QMutex mutex;
+		std::atomic<bool> active = false;
+
+		Pick getCoords(){
+			QMutexLocker ml(&mutex);
+			return pick;
+		}
+		void setCoords(Pick p){
+			QMutexLocker ml(&mutex);
+			pick = p;
+			active.store(true);
+		}
+		bool isActive()
+		{
+			//active=true si tenemos pick
+			return active.load();
+		}
+	};
+	Coords c;
 
 public slots:
 	void compute();
 	void initialize(int period);
 private:
 	std::shared_ptr<InnerModel> innerModel;
-
+	void idle();
+	void goTo();
+	void walk();
 };
 
 #endif
