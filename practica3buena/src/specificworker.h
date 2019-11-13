@@ -32,6 +32,7 @@
 #include <stdlib.h>
 #include <QVector>
 #include <math.h>
+const int threshold = 200; // 200 milimeters
 
 class SpecificWorker : public GenericWorker
 {
@@ -42,10 +43,11 @@ public:
 	bool setParams(RoboCompCommonBehavior::ParameterList params);
 
 	void RCISMousePicker_setPick(Pick myPick);
-	enum class State {idle, walk, goTo, skirt};
+	enum class State {idle, walk, goTo, turn, skirt};
 	SpecificWorker::State actual_state;
 	RoboCompGenericBase::TBaseState bState;
 	RoboCompLaser::TLaserData ldata;
+	QVec r;
 
 	struct Coords
 	{
@@ -75,9 +77,12 @@ public slots:
 	void initialize(int period);
 private:
 	std::shared_ptr<InnerModel> innerModel;
+	bool checkInTarget();
 	void idle();
 	void goTo();
 	void walk();
+	void turn();
+	void skirt();
 };
 
 #endif

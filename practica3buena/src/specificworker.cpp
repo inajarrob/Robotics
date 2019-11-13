@@ -81,8 +81,13 @@ void SpecificWorker::compute()
 			goTo();
 		break;
 		case State::walk:
+			walk();
+		break;
+		case State::turn:
+			turn();
 		break;
 		case State::skirt:
+			skirt();
 		break;
 	}
 }
@@ -98,7 +103,7 @@ void SpecificWorker::idle()
 // Orientarse
 void SpecificWorker::goTo(){
 	// hasta que no este orientado al pick sigue girando	
-	QVec r = innerModel->transform("base", QVec::vec3(c.pick.x, 0, c.pick.z), "world");
+	r = innerModel->transform("base", QVec::vec3(c.pick.x, 0, c.pick.z), "world");
 	
 	// hacer arcotangente para saber rotacion
 	double rot = atan2(r.x(),r.z());
@@ -106,14 +111,28 @@ void SpecificWorker::goTo(){
 	// Robot orientado
 	if(fabs(rot) < 0.05) {
 		differentialrobot_proxy->setSpeedBase(0,0);
-		actual_state = State::idle;
+		actual_state = State::walk;
 		return;
 	}
 	differentialrobot_proxy->setSpeedBase(0,rot);
 }
+bool SpecificWorker::checkInTarget(){
+	auto x = abs(c.pick.x - bState.x);
+	auto z = abs(c.pick.z - bState.z);
+	auto d = sqrt((x*x) + (z*z));
+	cout << "DISTANCIA: " << d << endl;
+	return (d<=100);
+}
 
-void SpecificWorker::walk(){
-	//if()
+void SpecificWorker::walk(){	
+	if(checkInTarget()){
+		differentialrobot_proxy->setSpeedBase(0,0);
+		c.active.store(false);
+		actual_state = State::idle;
+	} else{
+		if(d < 500)
+			differentialrobot_proxy->setSpeedBase(500,0);
+	}
 }
 
 
@@ -124,3 +143,5 @@ void SpecificWorker::RCISMousePicker_setPick(Pick myPick)
 }
 
 
+/* HAY QUE MODIFICAR ESTADOS Y HACER UN ORIENTAR Y AVANZAR A LA VEZ (FOTO ISA EJEM) 
+*/
