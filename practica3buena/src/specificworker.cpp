@@ -24,6 +24,7 @@
 SpecificWorker::SpecificWorker(TuplePrx tprx) : GenericWorker(tprx)
 {
 	actual_state = State::idle;
+	s = -((log(a))/(b*b));
 }
 
 /**
@@ -77,11 +78,8 @@ void SpecificWorker::compute()
 		case State::idle:
 			idle();
 		break;
-		case State::goTo:
-			goTo();
-		break;
-		case State::walk:
-			walk();
+		case State::goToAndWalk:
+			goToAndWalk();
 		break;
 		case State::turn:
 			turn();
@@ -96,11 +94,83 @@ void SpecificWorker::idle()
 {
 	if(c.isActive())
 	{
-		SpecificWorker::actual_state = SpecificWorker::State::goTo;
+		SpecificWorker::actual_state = SpecificWorker::State::goToAndWalk;
 	}
 }
 
 // Orientarse
+void SpecificWorker::goToAndWalk(){
+	// hasta que no este orientado al pick sigue girando	
+	r = innerModel->transform("base", QVec::vec3(c.pick.x, 0, c.pick.z), "world");
+		
+	// hacer arcotangente para saber rotacion
+	rot = atan2(r.x(),r.z());
+
+	/*double gauss = exp(M_E, -exp(s*));
+	forwardSpeed = 800**/
+
+	// Sort from min to max distance to objects or wall
+	auto v = ldata;
+    std::sort(v.begin(), v.end(), [](RoboCompLaser::TData a, RoboCompLaser::TData b){ return     a.dist < b.dist; });
+
+	if(v.front().dist < threshold)
+		actual_state = State::turn;
+	
+	if(fabs(rot) > 1){
+		// Robot orientado
+		if(fabs(rot) < 0.05) {
+			differentialrobot_proxy->setSpeedBase(0,0);
+			//actual_state = State::walk;
+			return;
+		}
+		differentialrobot_proxy->setSpeedBase(0,rot);
+	} else{
+		if(checkInTarget()){
+			differentialrobot_proxy->setSpeedBase(0,0);
+			c.active.store(false);
+			actual_state = State::idle;
+		} else{
+			if(d > 800)
+				differentialrobot_proxy->setSpeedBase(800, rot);
+			else
+				differentialrobot_proxy->setSpeedBase(d, rot);
+			}
+	}
+}
+
+bool SpecificWorker::checkInTarget(){
+	auto x = abs(c.pick.x - bState.x);
+	auto z = abs(c.pick.z - bState.z);
+	d = sqrt((x*x) + (z*z));
+	cout << "DISTANCIA: " << d << endl;
+	return (d<=100);
+}
+
+void SpecificWorker::turn(){
+	if((ldata.back().angle >= 1.56) || (ldata.front().angle >= 1.56)){
+		actual_state = State::skirt;
+		cout << "EH LETS GO" << endl;
+	}else{
+		differentialrobot_proxy->setSpeedBase(0, 0.2);
+	}
+}
+
+void SpecificWorker::skirt(){
+	differentialrobot_proxy->setSpeedBase(0, 0);
+}
+
+
+/*
+void SpecificWorker::walk(){	
+	if(checkInTarget()){
+		differentialrobot_proxy->setSpeedBase(0,0);
+		c.active.store(false);
+		actual_state = State::idle;
+	} else{
+		if(d < 500)
+			differentialrobot_proxy->setSpeedBase(500,0);
+	}
+}
 void SpecificWorker::goTo(){
 	// hasta que no este orientado al pick sigue girando	
 	r = innerModel->transform("base", QVec::vec3(c.pick.x, 0, c.pick.z), "world");
@@ -116,24 +186,7 @@ void SpecificWorker::goTo(){
 	}
 	differentialrobot_proxy->setSpeedBase(0,rot);
 }
-bool SpecificWorker::checkInTarget(){
-	auto x = abs(c.pick.x - bState.x);
-	auto z = abs(c.pick.z - bState.z);
-	auto d = sqrt((x*x) + (z*z));
-	cout << "DISTANCIA: " << d << endl;
-	return (d<=100);
-}
-
-void SpecificWorker::walk(){	
-	if(checkInTarget()){
-		differentialrobot_proxy->setSpeedBase(0,0);
-		c.active.store(false);
-		actual_state = State::idle;
-	} else{
-		if(d < 500)
-			differentialrobot_proxy->setSpeedBase(500,0);
-	}
-}
+*/
 
 
 void SpecificWorker::RCISMousePicker_setPick(Pick myPick)
