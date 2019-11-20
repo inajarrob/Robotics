@@ -130,8 +130,8 @@ void SpecificWorker::goToAndWalk(){
 			c.active.store(false);
 			actual_state = State::idle;
 		} else{
-			if(d > 800)
-				differentialrobot_proxy->setSpeedBase(800, rot);
+			if(d > 600)
+				differentialrobot_proxy->setSpeedBase(400, rot);
 			else
 				differentialrobot_proxy->setSpeedBase(d, rot);
 			}
@@ -147,16 +147,32 @@ bool SpecificWorker::checkInTarget(){
 }
 
 void SpecificWorker::turn(){
-	if((ldata.back().angle >= 1.56) || (ldata.front().angle >= 1.56)){
+	auto v = ldata;
+	std::sort(v.begin(), v.end(), [](RoboCompLaser::TData a, RoboCompLaser::TData b){ return     a.dist < b.dist; });
+
+	differentialrobot_proxy->setSpeedBase(0, 0.2);
+		cout << fabs(v[0].angle) << endl;
+	if((fabs(v[0].angle) >= 1.45) && (fabs(v[0].angle) <= 1.60)){
 		actual_state = State::skirt;
 		cout << "EH LETS GO" << endl;
-	}else{
-		differentialrobot_proxy->setSpeedBase(0, 0.2);
 	}
+	
 }
 
 void SpecificWorker::skirt(){
-	differentialrobot_proxy->setSpeedBase(0, 0);
+	// tenemos que bordear el objeto que tenemos a la izda o la dcha
+	auto v = ldata;
+	std::sort(v.begin()+50, v.end(), [](RoboCompLaser::TData a, RoboCompLaser::TData b){ return     a.dist < b.dist; });
+	cout << v[50].dist << endl;
+	if(v[50].dist < 400){
+		differentialrobot_proxy->setSpeedBase(100, 0);
+	} else {
+		if(targetVisible()){
+			actual_state = State::goToAndWalk;
+		}
+		differentialrobot_proxy->setSpeedBase(0, -0.2);
+	}
+	
 }
 
 

@@ -88,6 +88,7 @@ private:
 	void goToAndWalk();
 	void turn();
 	void skirt();
+	void targetVisible();
 };
 
 #endif
