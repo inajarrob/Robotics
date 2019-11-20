@@ -131,7 +131,7 @@ void SpecificWorker::goToAndWalk(){
 			actual_state = State::idle;
 		} else{
 			if(d > 600)
-				differentialrobot_proxy->setSpeedBase(400, rot);
+				differentialrobot_proxy->setSpeedBase(600, rot);
 			else
 				differentialrobot_proxy->setSpeedBase(d, rot);
 			}
@@ -150,7 +150,7 @@ void SpecificWorker::turn(){
 	auto v = ldata;
 	std::sort(v.begin(), v.end(), [](RoboCompLaser::TData a, RoboCompLaser::TData b){ return     a.dist < b.dist; });
 
-	differentialrobot_proxy->setSpeedBase(0, 0.2);
+	differentialrobot_proxy->setSpeedBase(0, 0.3);
 		cout << fabs(v[0].angle) << endl;
 	if((fabs(v[0].angle) >= 1.45) && (fabs(v[0].angle) <= 1.60)){
 		actual_state = State::skirt;
@@ -160,21 +160,46 @@ void SpecificWorker::turn(){
 }
 
 void SpecificWorker::skirt(){
-	// tenemos que bordear el objeto que tenemos a la izda o la dcha
+	// MEJORAR: tenemos que bordear el objeto que tenemos a la izda o la dcha
 	auto v = ldata;
 	std::sort(v.begin()+50, v.end(), [](RoboCompLaser::TData a, RoboCompLaser::TData b){ return     a.dist < b.dist; });
 	cout << v[50].dist << endl;
-	if(v[50].dist < 400){
-		differentialrobot_proxy->setSpeedBase(100, 0);
+	if(v[50].dist < 500){
+		differentialrobot_proxy->setSpeedBase(200, 0);
 	} else {
-		if(targetVisible()){
+		if(targetVisible() || inLine()){
 			actual_state = State::goToAndWalk;
+			return;
 		}
-		differentialrobot_proxy->setSpeedBase(0, -0.2);
+		differentialrobot_proxy->setSpeedBase(0, -0.3);
 	}
 	
 }
 
+bool SpecificWorker::targetVisible(){
+	bool visible = false;
+	QPolygonF polygon;
+	auto x = innerModel->getNode<InnerModelLaser>(std::string("laser"));
+	
+	for(const auto &l: ldata)
+	{  
+		auto r = x->laserTo(std::string("world"), l.dist, l.angle);
+		polygon << QPointF(r.x(), r.z());
+	}
+	visible = polygon.containsPoint(QPointF(c.pick.x, c.pick.z), Qt::OddEvenFill);
+	return visible;
+}
+
+// pasas pos robot y sustituyes en la eciacion y devuelve si estas en la recta 
+bool SpecificWorker::inLine(){
+	return (fabs(c.a*bState.x + c.b*bState.z + c.n) < 400);
+}
+
+void SpecificWorker::RCISMousePicker_setPick(Pick myPick)
+{
+//subscribesToCODE
+	c.setCoords(myPick, bState);
+}
 
 /*
 void SpecificWorker::walk(){	
@@ -202,15 +227,4 @@ void SpecificWorker::goTo(){
 	}
 	differentialrobot_proxy->setSpeedBase(0,rot);
 }
-*/
-
-
-void SpecificWorker::RCISMousePicker_setPick(Pick myPick)
-{
-//subscribesToCODE
-	c.setCoords(myPick);
-}
-
-
-/* HAY QUE MODIFICAR ESTADOS Y HACER UN ORIENTAR Y AVANZAR A LA VEZ (FOTO ISA EJEM) 
 */

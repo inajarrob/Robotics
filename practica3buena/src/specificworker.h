@@ -32,6 +32,7 @@
 #include <stdlib.h>
 #include <QVector>
 #include <math.h>
+#include <Qt>
 const int threshold = 200; // 200 milimeters
 const float a = 0.5;
 const float b = 0.5;
@@ -43,6 +44,7 @@ public:
 	SpecificWorker(TuplePrx tprx);
 	~SpecificWorker();
 	bool setParams(RoboCompCommonBehavior::ParameterList params);
+
 
 	void RCISMousePicker_setPick(Pick myPick);
 	enum class State {idle, goToAndWalk, turn, skirt};
@@ -56,15 +58,21 @@ public:
 		Pick pick;
 		QMutex mutex;
 		std::atomic<bool> active = false;
+		float a;
+		float b;
+		float n;
 
 		Pick getCoords(){
 			QMutexLocker ml(&mutex);
 			return pick;
 		}
-		void setCoords(Pick p){
+		void setCoords(Pick p, const RoboCompGenericBase::TBaseState &bState){
 			QMutexLocker ml(&mutex);
 			pick = p;
 			active.store(true);
+			a = bState.x - pick.x;
+			b = -(bState.z - pick.z);
+			n = -(b*bState.x) - (a*bState.z);
 		}
 		bool isActive()
 		{
@@ -78,6 +86,7 @@ public:
 	double s;
 	double forwardSpeed;
 
+
 public slots:
 	void compute();
 	void initialize(int period);
@@ -88,7 +97,10 @@ private:
 	void goToAndWalk();
 	void turn();
 	void skirt();
-	void targetVisible();
+	bool targetVisible();
+	bool inLine();
+
+
 };
 
 #endif
