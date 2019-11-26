@@ -66,13 +66,13 @@ public:
 			QMutexLocker ml(&mutex);
 			return pick;
 		}
-		void setCoords(Pick p, const RoboCompGenericBase::TBaseState &bState){
+		void setCoords(Pick p, const RoboCompGenericBase::TBaseState &bState, const QVec &r2){
 			QMutexLocker ml(&mutex);
 			pick = p;
 			active.store(true);
-			a = bState.x - pick.x;
-			b = -(bState.z - pick.z);
-			n = -(b*bState.x) - (a*bState.z);
+			a = r2.x() - bState.x;
+			b = -(r2.z() - bState.z);
+			n = -(a*bState.z) - (b*bState.x);
 		}
 		bool isActive()
 		{

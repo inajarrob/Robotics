@@ -151,7 +151,7 @@ void SpecificWorker::turn(){
 	std::sort(v.begin(), v.end(), [](RoboCompLaser::TData a, RoboCompLaser::TData b){ return     a.dist < b.dist; });
 
 	differentialrobot_proxy->setSpeedBase(0, 0.3);
-		cout << fabs(v[0].angle) << endl;
+	//cout << fabs(v[0].angle) << endl;
 	if((fabs(v[0].angle) >= 1.45) && (fabs(v[0].angle) <= 1.60)){
 		actual_state = State::skirt;
 		cout << "EH LETS GO" << endl;
@@ -192,13 +192,17 @@ bool SpecificWorker::targetVisible(){
 
 // pasas pos robot y sustituyes en la eciacion y devuelve si estas en la recta 
 bool SpecificWorker::inLine(){
-	return (fabs(c.a*bState.x + c.b*bState.z + c.n) < 400);
+	cout << "++++++++++++++++ " << fabs(c.a*bState.x + c.b*bState.z + c.n) << endl;
+	float res = fabs(c.a*bState.x + c.b*bState.z + c.n);
+	//float hipotenusa = sqrt(c.a*c.a+c.b*c.b);
+	return (res < 400);
 }
 
 void SpecificWorker::RCISMousePicker_setPick(Pick myPick)
 {
 //subscribesToCODE
-	c.setCoords(myPick, bState);
+	auto r2 = innerModel->transform("base", QVec::vec3(c.pick.x, 0, c.pick.z), "world");
+	c.setCoords(myPick, bState, r2);
 }
 
 /*
