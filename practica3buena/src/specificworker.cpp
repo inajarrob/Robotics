@@ -105,9 +105,25 @@ void SpecificWorker::goToAndWalk(){
 		
 	// hacer arcotangente para saber rotacion
 	rot = atan2(r.x(),r.z());
+	/*double speed;
+	float hipotenusa = sqrt(c.a*c.a+c.b*c.b+c.n*c.n);
+	if(hipotenusa >800){
+		hipotenusa = 800;
+	}
+	speed = hipotenusa*(1/100);*/
 
-	/*double gauss = exp(M_E, -exp(s*));
-	forwardSpeed = 800**/
+	 
+
+	/*double gauss = exp((-s*(rot*rot)));
+	double distTarget;
+	if(d > 1000){
+		distTarget = 1;
+	} 
+	else{
+		distTarget = d*(1/1000);
+	} 
+	//double distTarget = (1/(1+exp(-rot)));
+	forwardSpeed = 800*gauss*distTarget;*/
 
 	// Sort from min to max distance to objects or wall
 	auto v = ldata;
@@ -120,7 +136,6 @@ void SpecificWorker::goToAndWalk(){
 		// Robot orientado
 		if(fabs(rot) < 0.05) {
 			differentialrobot_proxy->setSpeedBase(0,0);
-			//actual_state = State::walk;
 			return;
 		}
 		differentialrobot_proxy->setSpeedBase(0,rot);
@@ -130,8 +145,8 @@ void SpecificWorker::goToAndWalk(){
 			c.active.store(false);
 			actual_state = State::idle;
 		} else{
-			if(d > 600)
-				differentialrobot_proxy->setSpeedBase(600, rot);
+			if(d > 800)
+				differentialrobot_proxy->setSpeedBase(800, rot);
 			else
 				differentialrobot_proxy->setSpeedBase(d, rot);
 			}
@@ -143,18 +158,17 @@ bool SpecificWorker::checkInTarget(){
 	auto z = abs(c.pick.z - bState.z);
 	d = sqrt((x*x) + (z*z));
 	cout << "DISTANCIA: " << d << endl;
-	return (d<=100);
+	return (d<=150);
 }
 
 void SpecificWorker::turn(){
 	auto v = ldata;
 	std::sort(v.begin(), v.end(), [](RoboCompLaser::TData a, RoboCompLaser::TData b){ return     a.dist < b.dist; });
 
-	differentialrobot_proxy->setSpeedBase(0, 0.3);
-	//cout << fabs(v[0].angle) << endl;
 	if((fabs(v[0].angle) >= 1.45) && (fabs(v[0].angle) <= 1.60)){
 		actual_state = State::skirt;
-		cout << "EH LETS GO" << endl;
+	} else {
+		differentialrobot_proxy->setSpeedBase(0, 0.3);
 	}
 	
 }
@@ -164,13 +178,18 @@ void SpecificWorker::skirt(){
 	auto v = ldata;
 	std::sort(v.begin()+50, v.end(), [](RoboCompLaser::TData a, RoboCompLaser::TData b){ return     a.dist < b.dist; });
 	cout << v[50].dist << endl;
-	if(v[50].dist < 500){
+	if(v[50].dist < 550){
 		differentialrobot_proxy->setSpeedBase(200, 0);
 	} else {
-		if(targetVisible() || inLine()){
+		if(targetVisible()){
 			actual_state = State::goToAndWalk;
 			return;
 		}
+		if(inLine()){
+			actual_state = State::goToAndWalk;
+			return;
+		}
+		//if(ldata.)
 		differentialrobot_proxy->setSpeedBase(0, -0.3);
 	}
 	
@@ -190,12 +209,12 @@ bool SpecificWorker::targetVisible(){
 	return visible;
 }
 
-// pasas pos robot y sustituyes en la eciacion y devuelve si estas en la recta 
+// pasas pos robot y sustituyes en la ecuacion y devuelve si estas en la recta 
 bool SpecificWorker::inLine(){
 	cout << "++++++++++++++++ " << fabs(c.a*bState.x + c.b*bState.z + c.n) << endl;
 	float res = fabs(c.a*bState.x + c.b*bState.z + c.n);
-	//float hipotenusa = sqrt(c.a*c.a+c.b*c.b);
-	return (res < 400);
+	float hipotenusa = sqrt(c.a*c.a+c.b*c.b+c.n*c.n);
+	return (res/hipotenusa < 400);
 }
 
 void SpecificWorker::RCISMousePicker_setPick(Pick myPick)
@@ -203,32 +222,8 @@ void SpecificWorker::RCISMousePicker_setPick(Pick myPick)
 //subscribesToCODE
 	auto r2 = innerModel->transform("base", QVec::vec3(c.pick.x, 0, c.pick.z), "world");
 	c.setCoords(myPick, bState, r2);
+	actual_state = State::idle;
 }
 
-/*
-void SpecificWorker::walk(){	
-	if(checkInTarget()){
-		differentialrobot_proxy->setSpeedBase(0,0);
-		c.active.store(false);
-		actual_state = State::idle;
-	} else{
-		if(d < 500)
-			differentialrobot_proxy->setSpeedBase(500,0);
-	}
-}
-void SpecificWorker::goTo(){
-	// hasta que no este orientado al pick sigue girando	
-	r = innerModel->transform("base", QVec::vec3(c.pick.x, 0, c.pick.z), "world");
-	
-	// hacer arcotangente para saber rotacion
-	double rot = atan2(r.x(),r.z());
 
-	// Robot orientado
-	if(fabs(rot) < 0.05) {
-		differentialrobot_proxy->setSpeedBase(0,0);
-		actual_state = State::walk;
-		return;
-	}
-	differentialrobot_proxy->setSpeedBase(0,rot);
-}
-*/
+// HAY QUE HACER QUE GIRE PARA AMBOS SENTIDOS
