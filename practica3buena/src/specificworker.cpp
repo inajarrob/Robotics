@@ -206,6 +206,29 @@ bool SpecificWorker::targetVisible(){
 		polygon << QPointF(r.x(), r.z());
 	}
 	visible = polygon.containsPoint(QPointF(c.pick.x, c.pick.z), Qt::OddEvenFill);
+	cout << "  ES VISIBLE!!    " << visible << endl;
+	if(visible){
+		float dist = (QVec::vec3(bState.x,0,bState.z)-r).norm2();
+		auto ml0 = innerModel->transform("world", QVec::vec3(-200, 0, 0), "base");
+		auto ml = innerModel->transform("world", QVec::vec3(-200, 0, dist), "base");
+		auto mr0 = innerModel->transform("world", QVec::vec3(200, 0, 0), "base");
+		auto mr = innerModel->transform("world", QVec::vec3(200, 0, dist), "base");
+		//QLineF right = QLineF(200, 0, 200, dist);
+		QLineF left = QLineF(ml0.toQPointF(), ml.toQPointF());
+		QLineF right = QLineF(mr0.toQPointF(), mr.toQPointF());
+		QLineF middle = QLineF(QPointF(bState.x, bState.z), QPointF(r.x(),r.z()));
+		float distR = dist/400; //numero de veces que vamos a recorrer la linea
+		float delta = 1.f/distR; // intervalos que vamos a recorrer
+		for(float i=0; i<1;i+=delta){
+			if(!polygon.containsPoint(left.pointAt(i),Qt::OddEvenFill) or
+			   !polygon.containsPoint(middle.pointAt(i),Qt::OddEvenFill) or
+			   !polygon.containsPoint(right.pointAt(i),Qt::OddEvenFill)){
+				    visible = false;
+					break;
+			   }
+		}
+	}
+	cout << "      " << visible << endl;
 	return visible;
 }
 
@@ -226,4 +249,4 @@ void SpecificWorker::RCISMousePicker_setPick(Pick myPick)
 }
 
 
-// HAY QUE HACER QUE GIRE PARA AMBOS SENTIDOS
+// HAY QUE ARREGLAR QUE NO ENTRE EN LOS OBJETOS, EL GIRO QUE HEMOS HECHO AYER, LA VELOCIDAD (GAUSS). 
