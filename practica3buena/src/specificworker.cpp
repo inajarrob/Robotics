@@ -122,7 +122,7 @@ void SpecificWorker::goToAndWalk(){
 	else{
 		distTarget = d*(1/1000);
 	} 
-	//double distTarget = (1/(1+exp(-rot)));
+	//double distTarget = (1/(1+exp(-rot)))-0.5;
 	forwardSpeed = 800*gauss*distTarget;*/
 
 	// Sort from min to max distance to objects or wall
@@ -208,22 +208,28 @@ bool SpecificWorker::targetVisible(){
 	visible = polygon.containsPoint(QPointF(c.pick.x, c.pick.z), Qt::OddEvenFill);
 	cout << "  ES VISIBLE!!    " << visible << endl;
 	if(visible){
-		float dist = (QVec::vec3(bState.x,0,bState.z)-r).norm2();
-		auto ml0 = innerModel->transform("world", QVec::vec3(-200, 0, 0), "base");
-		auto ml = innerModel->transform("world", QVec::vec3(-200, 0, dist), "base");
-		auto mr0 = innerModel->transform("world", QVec::vec3(200, 0, 0), "base");
-		auto mr = innerModel->transform("world", QVec::vec3(200, 0, dist), "base");
-		//QLineF right = QLineF(200, 0, 200, dist);
-		QLineF left = QLineF(ml0.toQPointF(), ml.toQPointF());
-		QLineF right = QLineF(mr0.toQPointF(), mr.toQPointF());
-		QLineF middle = QLineF(QPointF(bState.x, bState.z), QPointF(r.x(),r.z()));
+		float dist = (QVec::vec3(bState.x,0,bState.z)-QVec::vec3(c.pick.x,0, c.pick.z)).norm2();
+		auto tr = innerModel->transform("base", QVec::vec3(c.pick.x, 0, c.pick.z), "world");
+		auto ml0 = innerModel->transform("world", QVec::vec3(-250, 0, 0), "base");
+		auto ml = innerModel->transform("world", QVec::vec3(tr.x()-250, 0, tr.z()), "base");
+		auto mr0 = innerModel->transform("world", QVec::vec3(250, 0, 0), "base");
+		auto mr = innerModel->transform("world", QVec::vec3(tr.x()+250, 0, tr.z()), "base");
+
+		QLineF left = QLineF(QPointF(ml0.x(), ml0.z()), QPointF(ml.x(), ml.z()));
+		QLineF right = QLineF(QPointF(mr0.x(), mr0.z()), QPointF(mr.x(), mr.z()));
+		QLineF middle = QLineF(QPointF(bState.x, bState.z), QPointF(c.pick.x,c.pick.z));
 		float distR = dist/400; //numero de veces que vamos a recorrer la linea
 		float delta = 1.f/distR; // intervalos que vamos a recorrer
-		for(float i=0; i<1;i+=delta){
+		for(float i=delta; i<1;i+=delta)
+		{
+
+			cout << "i: " << i << " Izda: " << polygon.containsPoint(left.pointAt(i),Qt::OddEvenFill) << " Centro: " << polygon.containsPoint(middle.pointAt(i),Qt::OddEvenFill) << " Dcha: " << polygon.containsPoint(right.pointAt(i),Qt::OddEvenFill) << endl;
 			if(!polygon.containsPoint(left.pointAt(i),Qt::OddEvenFill) or
 			   !polygon.containsPoint(middle.pointAt(i),Qt::OddEvenFill) or
-			   !polygon.containsPoint(right.pointAt(i),Qt::OddEvenFill)){
+			   !polygon.containsPoint(right.pointAt(i),Qt::OddEvenFill))
+			   {
 				    visible = false;
+					cout << "NO VISIBLE" << endl;
 					break;
 			   }
 		}
