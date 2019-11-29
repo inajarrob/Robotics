@@ -105,25 +105,11 @@ void SpecificWorker::goToAndWalk(){
 		
 	// hacer arcotangente para saber rotacion
 	rot = atan2(r.x(),r.z());
-	/*double speed;
-	float hipotenusa = sqrt(c.a*c.a+c.b*c.b+c.n*c.n);
-	if(hipotenusa >800){
-		hipotenusa = 800;
-	}
-	speed = hipotenusa*(1/100);*/
 
-	 
+	double distTarget = (1/(1+exp(-r.norm2())))-0.5; // sinusoide
+	double gauss = exp((-s*(rot*rot)));
 
-	/*double gauss = exp((-s*(rot*rot)));
-	double distTarget;
-	if(d > 1000){
-		distTarget = 1;
-	} 
-	else{
-		distTarget = d*(1/1000);
-	} 
-	//double distTarget = (1/(1+exp(-rot)))-0.5;
-	forwardSpeed = 800*gauss*distTarget;*/
+	forwardSpeed = 600*gauss*distTarget;
 
 	// Sort from min to max distance to objects or wall
 	auto v = ldata;
@@ -145,10 +131,10 @@ void SpecificWorker::goToAndWalk(){
 			c.active.store(false);
 			actual_state = State::idle;
 		} else{
-			if(d > 800)
+			if(forwardSpeed > 800)
 				differentialrobot_proxy->setSpeedBase(800, rot);
 			else
-				differentialrobot_proxy->setSpeedBase(d, rot);
+				differentialrobot_proxy->setSpeedBase(forwardSpeed, rot);
 			}
 	}
 }
@@ -157,7 +143,7 @@ bool SpecificWorker::checkInTarget(){
 	auto x = abs(c.pick.x - bState.x);
 	auto z = abs(c.pick.z - bState.z);
 	d = sqrt((x*x) + (z*z));
-	cout << "DISTANCIA: " << d << endl;
+	//cout << "DISTANCIA: " << d << endl;
 	return (d<=150);
 }
 
@@ -166,8 +152,10 @@ void SpecificWorker::turn(){
 	std::sort(v.begin(), v.end(), [](RoboCompLaser::TData a, RoboCompLaser::TData b){ return     a.dist < b.dist; });
 
 	if((fabs(v[0].angle) >= 1.45) && (fabs(v[0].angle) <= 1.60)){
+		turning = false;
 		actual_state = State::skirt;
 	} else {
+		turning = true;
 		differentialrobot_proxy->setSpeedBase(0, 0.3);
 	}
 	
@@ -178,18 +166,17 @@ void SpecificWorker::skirt(){
 	auto v = ldata;
 	std::sort(v.begin()+50, v.end(), [](RoboCompLaser::TData a, RoboCompLaser::TData b){ return     a.dist < b.dist; });
 	cout << v[50].dist << endl;
-	if(v[50].dist < 550){
+	if(v[50].dist < 550 && !turning){
 		differentialrobot_proxy->setSpeedBase(200, 0);
 	} else {
 		if(targetVisible()){
-			actual_state = State::goToAndWalk;
+			//actual_state = State::goToAndWalk;
 			return;
 		}
 		if(inLine()){
 			actual_state = State::goToAndWalk;
 			return;
 		}
-		//if(ldata.)
 		differentialrobot_proxy->setSpeedBase(0, -0.3);
 	}
 	
@@ -198,11 +185,11 @@ void SpecificWorker::skirt(){
 bool SpecificWorker::targetVisible(){
 	bool visible = false;
 	QPolygonF polygon;
-	auto x = innerModel->getNode<InnerModelLaser>(std::string("laser"));
+	auto x = innerModel->getNode<InnerModelLaser>("laser");
 	
 	for(const auto &l: ldata)
 	{  
-		auto r = x->laserTo(std::string("world"), l.dist, l.angle);
+		auto r = x->laserTo("world", l.dist, l.angle);
 		polygon << QPointF(r.x(), r.z());
 	}
 	visible = polygon.containsPoint(QPointF(c.pick.x, c.pick.z), Qt::OddEvenFill);
@@ -233,7 +220,9 @@ bool SpecificWorker::targetVisible(){
 					break;
 			   }
 		}
+		
 	}
+	actual_state = State::goToAndWalk;
 	cout << "      " << visible << endl;
 	return visible;
 }
