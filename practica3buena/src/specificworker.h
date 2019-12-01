@@ -101,7 +101,7 @@ private:
 	void skirt();
 	bool targetVisible();
 	bool inLine();
-
+	bool withoutObject(RoboCompLaser::TLaserData ld);
 
 };
 

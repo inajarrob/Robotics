@@ -115,15 +115,19 @@ void SpecificWorker::goToAndWalk(){
 	auto v = ldata;
     std::sort(v.begin(), v.end(), [](RoboCompLaser::TData a, RoboCompLaser::TData b){ return     a.dist < b.dist; });
 
-	if(v.front().dist < threshold)
+	if(v.front().dist < threshold){
 		actual_state = State::turn;
-	
+		cout << "Saltamos a TURN" << endl;
+		return;
+	}
+		
 	if(fabs(rot) > 1){
 		// Robot orientado
 		if(fabs(rot) < 0.05) {
 			differentialrobot_proxy->setSpeedBase(0,0);
 			return;
 		}
+		cout << "Orientamos a: " << rot << endl;
 		differentialrobot_proxy->setSpeedBase(0,rot);
 	} else{
 		if(checkInTarget()){
@@ -131,6 +135,7 @@ void SpecificWorker::goToAndWalk(){
 			c.active.store(false);
 			actual_state = State::idle;
 		} else{
+			cout << "Andando" << endl;
 			if(forwardSpeed > 800)
 				differentialrobot_proxy->setSpeedBase(800, rot);
 			else
@@ -143,7 +148,6 @@ bool SpecificWorker::checkInTarget(){
 	auto x = abs(c.pick.x - bState.x);
 	auto z = abs(c.pick.z - bState.z);
 	d = sqrt((x*x) + (z*z));
-	//cout << "DISTANCIA: " << d << endl;
 	return (d<=150);
 }
 
@@ -153,47 +157,62 @@ void SpecificWorker::turn(){
 
 	if((fabs(v[0].angle) >= 1.45) && (fabs(v[0].angle) <= 1.60)){
 		turning = false;
+		cout << "Saltamos a SKIRT" << endl;
 		actual_state = State::skirt;
 	} else {
 		turning = true;
+		cout << "Girando a 0.3 en turn" << endl;
 		differentialrobot_proxy->setSpeedBase(0, 0.3);
 	}
 	
 }
 
 void SpecificWorker::skirt(){
-	// MEJORAR: tenemos que bordear el objeto que tenemos a la izda o la dcha
 	auto v = ldata;
 	std::sort(v.begin()+50, v.end(), [](RoboCompLaser::TData a, RoboCompLaser::TData b){ return     a.dist < b.dist; });
-	cout << v[50].dist << endl;
-	if(v[50].dist < 550 && !turning){
-		differentialrobot_proxy->setSpeedBase(200, 0);
+	//cout << v[50].dist << endl;
+	if(v[50].dist < 430 && !turning){
+		differentialrobot_proxy->setSpeedBase(200, 0.1);
+		cout << "Andando paralelo..." << endl;
 	} else {
-		if(targetVisible()){
-			//actual_state = State::goToAndWalk;
-			return;
-		}
-		if(inLine()){
+		if(targetVisible() && withoutObject(v)){
+			cout << "Target visible" << endl;
 			actual_state = State::goToAndWalk;
 			return;
 		}
-		differentialrobot_proxy->setSpeedBase(0, -0.3);
+		if(inLine() && withoutObject(v)){
+			cout << "En linea" << endl;
+			actual_state = State::goToAndWalk;
+			return;
+		}
+		if (!withoutObject(v)){
+			cout << "Giro de 0.3" << endl;
+			differentialrobot_proxy->setSpeedBase(0, -0.3);
+		}
 	}
 	
+}
+
+bool SpecificWorker::withoutObject(RoboCompLaser::TLaserData ld){
+	std::sort(ld.begin(), ld.end(), [](RoboCompLaser::TData a, RoboCompLaser::TData b){ return     a.dist < b.dist; });
+	//for(int i=0; i < 100; i++){
+		if(ld.front().dist < 250) return false;
+	//}
+	return true;
 }
 
 bool SpecificWorker::targetVisible(){
 	bool visible = false;
 	QPolygonF polygon;
-	auto x = innerModel->getNode<InnerModelLaser>("laser");
+	auto x = innerModel->getNode<InnerModelLaser>(QString("laser"));
 	
 	for(const auto &l: ldata)
 	{  
-		auto r = x->laserTo("world", l.dist, l.angle);
+		auto r = x->laserTo(QString("world"), l.dist, l.angle);
 		polygon << QPointF(r.x(), r.z());
 	}
 	visible = polygon.containsPoint(QPointF(c.pick.x, c.pick.z), Qt::OddEvenFill);
-	cout << "  ES VISIBLE!!    " << visible << endl;
+	//cout << "  ES VISIBLE!!    " << visible << endl;
 	if(visible){
 		float dist = (QVec::vec3(bState.x,0,bState.z)-QVec::vec3(c.pick.x,0, c.pick.z)).norm2();
 		auto tr = innerModel->transform("base", QVec::vec3(c.pick.x, 0, c.pick.z), "world");
@@ -210,26 +229,25 @@ bool SpecificWorker::targetVisible(){
 		for(float i=delta; i<1;i+=delta)
 		{
 
-			cout << "i: " << i << " Izda: " << polygon.containsPoint(left.pointAt(i),Qt::OddEvenFill) << " Centro: " << polygon.containsPoint(middle.pointAt(i),Qt::OddEvenFill) << " Dcha: " << polygon.containsPoint(right.pointAt(i),Qt::OddEvenFill) << endl;
+			//cout << "i: " << i << " Izda: " << polygon.containsPoint(left.pointAt(i),Qt::OddEvenFill) << " Centro: " << polygon.containsPoint(middle.pointAt(i),Qt::OddEvenFill) << " Dcha: " << polygon.containsPoint(right.pointAt(i),Qt::OddEvenFill) << endl;
 			if(!polygon.containsPoint(left.pointAt(i),Qt::OddEvenFill) or
 			   !polygon.containsPoint(middle.pointAt(i),Qt::OddEvenFill) or
 			   !polygon.containsPoint(right.pointAt(i),Qt::OddEvenFill))
 			   {
 				    visible = false;
-					cout << "NO VISIBLE" << endl;
+					//cout << "NO VISIBLE" << endl;
 					break;
 			   }
 		}
 		
 	}
-	actual_state = State::goToAndWalk;
-	cout << "      " << visible << endl;
+	//cout << "      " << visible << endl;
 	return visible;
 }
 
 // pasas pos robot y sustituyes en la ecuacion y devuelve si estas en la recta 
 bool SpecificWorker::inLine(){
-	cout << "++++++++++++++++ " << fabs(c.a*bState.x + c.b*bState.z + c.n) << endl;
+	//cout << "++++++++++++++++ " << fabs(c.a*bState.x + c.b*bState.z + c.n) << endl;
 	float res = fabs(c.a*bState.x + c.b*bState.z + c.n);
 	float hipotenusa = sqrt(c.a*c.a+c.b*c.b+c.n*c.n);
 	return (res/hipotenusa < 400);
