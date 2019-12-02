@@ -118,7 +118,7 @@ void SpecificWorker::goToAndWalk(){
 	if(v.front().dist < threshold){
 		actual_state = State::turn;
 		cout << "Saltamos a TURN" << endl;
-		return;
+		//return;
 	}
 		
 	if(fabs(rot) > 1){
@@ -172,7 +172,7 @@ void SpecificWorker::skirt(){
 	std::sort(v.begin()+50, v.end(), [](RoboCompLaser::TData a, RoboCompLaser::TData b){ return     a.dist < b.dist; });
 	//cout << v[50].dist << endl;
 	if(v[50].dist < 430 && !turning){
-		differentialrobot_proxy->setSpeedBase(200, 0.1);
+		differentialrobot_proxy->setSpeedBase(200, 0.2);
 		cout << "Andando paralelo..." << endl;
 	} else {
 		if(targetVisible() && withoutObject(v)){
@@ -185,19 +185,17 @@ void SpecificWorker::skirt(){
 			actual_state = State::goToAndWalk;
 			return;
 		}
-		if (!withoutObject(v)){
-			cout << "Giro de 0.3" << endl;
-			differentialrobot_proxy->setSpeedBase(0, -0.3);
-		}
+		cout << "Giro de 0.3" << endl;
+		differentialrobot_proxy->setSpeedBase(0, -0.3);
 	}
 	
 }
 
 bool SpecificWorker::withoutObject(RoboCompLaser::TLaserData ld){
 	std::sort(ld.begin(), ld.end(), [](RoboCompLaser::TData a, RoboCompLaser::TData b){ return     a.dist < b.dist; });
-	//for(int i=0; i < 100; i++){
-		if(ld.front().dist < 250) return false;
-	//}
+	for(int i=0; i < 20; i++){
+		if(ld[99-i].dist < 250) return false;
+	}
 	return true;
 }
 
