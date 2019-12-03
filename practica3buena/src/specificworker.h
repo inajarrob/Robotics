@@ -87,6 +87,7 @@ public:
 	double s;
 	double forwardSpeed;
 	bool turning = false;
+	bool tVisible = false;
 
 
 public slots:

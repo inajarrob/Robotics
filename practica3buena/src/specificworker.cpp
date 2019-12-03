@@ -162,7 +162,7 @@ void SpecificWorker::turn(){
 	} else {
 		turning = true;
 		cout << "Girando a 0.3 en turn" << endl;
-		differentialrobot_proxy->setSpeedBase(0, 0.3);
+		differentialrobot_proxy->setSpeedBase(1, 0.3);
 	}
 	
 }
@@ -176,6 +176,7 @@ void SpecificWorker::skirt(){
 		cout << "Andando paralelo..." << endl;
 	} else {
 		if(targetVisible() && withoutObject(v)){
+			tVisible = true;
 			cout << "Target visible" << endl;
 			actual_state = State::goToAndWalk;
 			return;
@@ -186,7 +187,7 @@ void SpecificWorker::skirt(){
 			return;
 		}
 		cout << "Giro de 0.3" << endl;
-		differentialrobot_proxy->setSpeedBase(0, -0.3);
+		differentialrobot_proxy->setSpeedBase(1, -0.3);
 	}
 	
 }
