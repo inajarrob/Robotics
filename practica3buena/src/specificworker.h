@@ -34,7 +34,7 @@
 #include <math.h>
 #include <Qt>
 #include<QLineF>
-const int threshold = 300; // 300 milimeters
+const int threshold = 200; // 300 milimeters
 const float a = 0.5;
 const float b = 0.5;
 

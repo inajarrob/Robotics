@@ -175,13 +175,13 @@ void SpecificWorker::skirt(){
 		differentialrobot_proxy->setSpeedBase(200, 0.2);
 		cout << "Andando paralelo..." << endl;
 	} else {
-		if(targetVisible() && withoutObject(v)){
+		if(targetVisible() /*&& withoutObject(v)*/){
 			tVisible = true;
 			cout << "Target visible" << endl;
 			actual_state = State::goToAndWalk;
 			return;
 		}
-		if(inLine() && withoutObject(v)){
+		if(inLine() /*&& withoutObject(v)*/){
 			cout << "En linea" << endl;
 			actual_state = State::goToAndWalk;
 			return;
@@ -195,7 +195,7 @@ void SpecificWorker::skirt(){
 bool SpecificWorker::withoutObject(RoboCompLaser::TLaserData ld){
 	std::sort(ld.begin(), ld.end(), [](RoboCompLaser::TData a, RoboCompLaser::TData b){ return     a.dist < b.dist; });
 	for(int i=0; i < 20; i++){
-		if(ld[99-i].dist < 250) return false;
+		if(ld[99-i].dist < 200) return false;
 	}
 	return true;
 }
@@ -215,10 +215,10 @@ bool SpecificWorker::targetVisible(){
 	if(visible){
 		float dist = (QVec::vec3(bState.x,0,bState.z)-QVec::vec3(c.pick.x,0, c.pick.z)).norm2();
 		auto tr = innerModel->transform("base", QVec::vec3(c.pick.x, 0, c.pick.z), "world");
-		auto ml0 = innerModel->transform("world", QVec::vec3(-250, 0, 0), "base");
-		auto ml = innerModel->transform("world", QVec::vec3(tr.x()-250, 0, tr.z()), "base");
-		auto mr0 = innerModel->transform("world", QVec::vec3(250, 0, 0), "base");
-		auto mr = innerModel->transform("world", QVec::vec3(tr.x()+250, 0, tr.z()), "base");
+		auto ml0 = innerModel->transform("world", QVec::vec3(-200, 0, 0), "base");
+		auto ml = innerModel->transform("world", QVec::vec3(tr.x()-200, 0, tr.z()), "base");
+		auto mr0 = innerModel->transform("world", QVec::vec3(200, 0, 0), "base");
+		auto mr = innerModel->transform("world", QVec::vec3(tr.x()+200, 0, tr.z()), "base");
 
 		QLineF left = QLineF(QPointF(ml0.x(), ml0.z()), QPointF(ml.x(), ml.z()));
 		QLineF right = QLineF(QPointF(mr0.x(), mr0.z()), QPointF(mr.x(), mr.z()));
