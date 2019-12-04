@@ -260,5 +260,9 @@ void SpecificWorker::RCISMousePicker_setPick(Pick myPick)
 	actual_state = State::idle;
 }
 
-
+	bool SpecificWorker::GotoPoint_atTarget(){}
+	void SpecificWorker::GotoPoint_go(string nodo, float x, float y, float alpha){}
+	void SpecificWorker::GotoPoint_stop(){}
+	void SpecificWorker::GotoPoint_turn(float speed){}
+	void go(::std::string, float, float, float, const ::Ice::Current&){}
 // HAY QUE ARREGLAR QUE NO ENTRE EN LOS OBJETOS, EL GIRO QUE HEMOS HECHO AYER, LA VELOCIDAD (GAUSS). 

@@ -104,6 +104,11 @@ private:
 	bool inLine();
 	bool withoutObject(RoboCompLaser::TLaserData ld);
 
+
+	bool GotoPoint_atTarget();
+	void GotoPoint_go(string nodo, float x, float y, float alpha);
+	void GotoPoint_stop();
+	void GotoPoint_turn(float speed);
 };
 
 #endif
