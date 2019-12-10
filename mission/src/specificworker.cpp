@@ -88,7 +88,7 @@ bool SpecificWorker::GotoPoint_atTarget()
 {
 	auto x = abs(c.x - bState.x);
 	auto z = abs(c.z - bState.z);
-	d = sqrt((x*x) + (z*z));
+	auto d = sqrt((x*x) + (z*z));
 	return (d<=150);
 }
 
@@ -115,10 +115,9 @@ void SpecificWorker::GotoPoint_turn(float speed)
 
 }
 
-/*void SpecificWorker::RCISMousePicker_setPick(Pick myPick)
+void SpecificWorker::RCISMousePicker_setPick(Pick myPick)
 {
 	//subscribesToCODE
-	c.setCoords(myPick, bState, r2);
-}*/
+}
 
 

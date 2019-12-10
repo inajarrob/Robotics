@@ -29,6 +29,7 @@
 
 #include <genericworker.h>
 #include <innermodel/innermodel.h>
+#include <stdlib.h>
 
 class SpecificWorker : public GenericWorker
 {
@@ -41,12 +42,16 @@ public:
 	void AprilTags_newAprilTag(tagsList tags);
 	void AprilTags_newAprilTagAndPose(tagsList tags, RoboCompGenericBase::TBaseState bState, RoboCompJointMotor::MotorStateMap hState);
 
+	enum class State {idle, turn, check_target};
+	SpecificWorker::State actual_state;
 public slots:
 	void compute();
 	void initialize(int period);
 private:
 	std::shared_ptr<InnerModel> innerModel;
-
+	void idle();
+	void check_target();
+	void turn();
 };
 
 #endif

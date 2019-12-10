@@ -23,7 +23,7 @@
 */
 SpecificWorker::SpecificWorker(TuplePrx tprx) : GenericWorker(tprx)
 {
-
+	actual_state = State::idle;
 }
 
 /**
@@ -64,22 +64,51 @@ void SpecificWorker::initialize(int period)
 
 void SpecificWorker::compute()
 {
-//computeCODE
-//QMutexLocker locker(mutex);
-//	try
-//	{
-//		camera_proxy->getYImage(0,img, cState, bState);
-//		memcpy(image_gray.data, &img[0], m_width*m_height*sizeof(uchar));
-//		searchTags(image_gray);
-//	}
-//	catch(const Ice::Exception &e)
-//	{
-//		std::cout << "Error reading from Camera" << e << std::endl;
-//	}
+	// computeCODE
+	// QMutexLocker locker(mutex);
+	// try
+	// {
+	// 		camera_proxy->getYImage(0,img, cState, bState);
+	// 		memcpy(image_gray.data, &img[0], m_width*m_height*sizeof(uchar));
+	// 		searchTags(image_gray);
+	// }
+	// catch(const Ice::Exception &e)
+	// {
+	// 		std::cout << "Error reading from Camera" << e << std::endl;
+	// }
+	switch(actual_state){
+		case State::idle:
+			idle();
+		break;
+		case State::turn:
+			turn();
+		break;
+		case State::check_target:
+			check_target();
+		break;
+	}
 }
 
+void SpecificWorker::idle(){
+	actual_state = State::turn;
+}
 
+void SpecificWorker::turn(){
+	try
+	{
+		gotopoint_proxy->turn(0.5);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	
+	
+}
 
+void SpecificWorker::check_target(){
+
+}
 
 void SpecificWorker::AprilTags_newAprilTag(tagsList tags)
 {
