@@ -79,21 +79,6 @@ void SpecificWorker::compute()
 	differentialrobot_proxy->getBaseState(bState);
 	innerModel->updateTransformValues("base", bState.x, 0, bState.z, 0, bState.alpha, 0);
 	ldata = laser_proxy->getLaserData();
-
-	switch(actual_state){
-		case State::idle:
-			idle();
-		break;
-		case State::goToAndWalk:
-			GotoPoint_go();
-		break;
-		case State::turn:
-			GotoPoint_turn(0.3);
-		break;
-		case State::skirt:
-			skirt();
-		break;
-	}
 }
 
 
@@ -101,90 +86,39 @@ void SpecificWorker::compute()
 
 bool SpecificWorker::GotoPoint_atTarget()
 {
-	//implementCODE
-	auto x = abs(c.pick.x - bState.x);
-	auto z = abs(c.pick.z - bState.z);
+	auto x = abs(c.x - bState.x);
+	auto z = abs(c.z - bState.z);
 	d = sqrt((x*x) + (z*z));
 	return (d<=150);
 }
 
 void SpecificWorker::GotoPoint_go(string nodo, float x, float y, float alpha)
 {
-	//implementCODE
-	// hasta que no este orientado al pick sigue girando	
-	r = innerModel->transform("base", QVec::vec3(c.pick.x, 0, c.pick.z), "world");
-		
-	// hacer arcotangente para saber rotacion
-	rot = atan2(r.x(),r.z());
-
-	double distTarget = (1/(1+exp(-r.norm2())))-0.5; // sinusoide
-	double gauss = exp((-s*(rot*rot)));
-
-	forwardSpeed = 600*gauss*distTarget;
-
-	// Sort from min to max distance to objects or wall
-	auto v = ldata;
-    std::sort(v.begin(), v.end(), [](RoboCompLaser::TData a, RoboCompLaser::TData b){ return     a.dist < b.dist; });
-
-	if(v.front().dist < threshold){
-		actual_state = State::turn;
-		cout << "Saltamos a TURN" << endl;
-		//return;
-	}
-		
-	if(fabs(rot) > 1){
-		// Robot orientado
-		if(fabs(rot) < 0.05) {
-			differentialrobot_proxy->setSpeedBase(0,0);
-			return;
-		}
-		cout << "Orientamos a: " << rot << endl;
-		differentialrobot_proxy->setSpeedBase(0,rot);
-	} else{
-		if(checkInTarget()){
-			differentialrobot_proxy->setSpeedBase(0,0);
-			c.active.store(false);
-			actual_state = State::idle;
-		} else{
-			cout << "Andando" << endl;
-			if(forwardSpeed > 800)
-				differentialrobot_proxy->setSpeedBase(800, rot);
-			else
-				differentialrobot_proxy->setSpeedBase(forwardSpeed, rot);
-			}
-	}
+	c.setCoords(x, y, alpha);
+	differentialrobot_proxy->setSpeedBase(400, 0);
 }
 
 void SpecificWorker::GotoPoint_stop()
 {
-	//implementCODE
 	differentialrobot_proxy->setSpeedBase(0, 0);
 }
 
 void SpecificWorker::GotoPoint_turn(float speed)
 {
-	//implementCODE
-	auto v = ldata;
-	std::sort(v.begin(), v.end(), [](RoboCompLaser::TData a, RoboCompLaser::TData b){ return     a.dist < b.dist; });
-
-	if((fabs(v[0].angle) >= 1.45) && (fabs(v[0].angle) <= 1.60)){
-		turning = false;
-		cout << "Saltamos a SKIRT" << endl;
-		actual_state = State::skirt;
-	} else {
-		turning = true;
-		cout << "Girando a 0.3 en turn" << endl;
-		differentialrobot_proxy->setSpeedBase(1, speed);
+	if(speed > 1){
+		speed = 1;
+	} 
+	if(speed < -1){
+		speed = -1;
 	}
+	differentialrobot_proxy->setSpeedBase(0, speed);
 
 }
 
-void SpecificWorker::RCISMousePicker_setPick(Pick myPick)
+/*void SpecificWorker::RCISMousePicker_setPick(Pick myPick)
 {
 	//subscribesToCODE
-	auto r2 = innerModel->transform("base", QVec::vec3(c.pick.x, 0, c.pick.z), "world");
 	c.setCoords(myPick, bState, r2);
-	actual_state = State::idle;
-}
+}*/
 
 

@@ -43,32 +43,28 @@ public:
 	void GotoPoint_stop();
 	void GotoPoint_turn(float speed);
 	void RCISMousePicker_setPick(Pick myPick);
-		enum class State {idle, goToAndWalk, turn, skirt};
-	SpecificWorker::State actual_state;
+
 	RoboCompGenericBase::TBaseState bState;
 	RoboCompLaser::TLaserData ldata;
-	QVec r;
-
 	struct Coords
 	{
-		Pick pick;
 		QMutex mutex;
 		std::atomic<bool> active = false;
-		float a;
-		float b;
-		float n;
+		int x,z, alpha;
 
-		Pick getCoords(){
+		void getCoords(int &x_, int &z_, int &alpha_){
 			QMutexLocker ml(&mutex);
-			return pick;
+			x_ = x;
+			z_ = z;
+			alpha_ = alpha;
 		}
-		void setCoords(Pick p, const RoboCompGenericBase::TBaseState &bState, const QVec &r2){
+		void setCoords(int x_, int z_, int alpha_){
 			QMutexLocker ml(&mutex);
-			pick = p;
+			x = x_;
+			z = z_;
+			alpha = alpha_;
 			active.store(true);
-			a = r2.x() - bState.x;
-			b = -(r2.z() - bState.z);
-			n = -(a*bState.z) - (b*bState.x);
+
 		}
 		bool isActive()
 		{
@@ -77,11 +73,7 @@ public:
 		}
 	};
 	Coords c;
-	double rot;
-	double d;
-	double s;
-	double forwardSpeed;
-	bool turning = false;
+
 
 public slots:
 	void compute();
