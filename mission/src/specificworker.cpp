@@ -38,19 +38,14 @@ bool SpecificWorker::setParams(RoboCompCommonBehavior::ParameterList params)
 {
 //       THE FOLLOWING IS JUST AN EXAMPLE
 //	To use innerModelPath parameter you should uncomment specificmonitor.cpp readConfig method content
-//	try
-//	{
-//		RoboCompCommonBehavior::Parameter par = params.at("InnerModelPath");
-//		std::string innermodel_path = par.value;
-//		innerModel = new InnerModel(innermodel_path);
-//	}
-//	catch(const std::exception &e) { qFatal("Error reading config params"); }
-
-
-
+	try
+	{
+		RoboCompCommonBehavior::Parameter par = params.at("InnerModelPath");
+		std::string innermodel_path = par.value;
+		innerModel = std::make_shared<InnerModel>(par.value);
 	
-
-
+	}
+	catch(const std::exception &e) { qFatal("Error reading config params"); }
 	return true;
 }
 
@@ -59,30 +54,29 @@ void SpecificWorker::initialize(int period)
 	std::cout << "Initialize worker" << std::endl;
 	this->Period = period;
 	timer.start(Period);
-
 }
 
 void SpecificWorker::compute()
 {
-//computeCODE
-//QMutexLocker locker(mutex);
-//	try
-//	{
-//		camera_proxy->getYImage(0,img, cState, bState);
-//		memcpy(image_gray.data, &img[0], m_width*m_height*sizeof(uchar));
-//		searchTags(image_gray);
-//	}
-//	catch(const Ice::Exception &e)
-//	{
-//		std::cout << "Error reading from Camera" << e << std::endl;
-//	}
-	differentialrobot_proxy->getBaseState(bState);
-	innerModel->updateTransformValues("base", bState.x, 0, bState.z, 0, bState.alpha, 0);
-	ldata = laser_proxy->getLaserData();
+	try
+	{
+		differentialrobot_proxy->getBaseState(bState);
+		innerModel->updateTransformValues("base", bState.x, 0, bState.z, 0, bState.alpha, 0);
+	
+	}
+	catch(const Ice::Exception &e)
+	{
+		std::cout << "Error reading from Robot" << e << std::endl;
+	}
+ 	try
+	{
+		ldata = laser_proxy->getLaserData(); 
+	}
+	catch(const Ice::Exception &e)
+	{
+		std::cout << "Error reading from lASER" << e << std::endl;
+	}
 }
-
-
-
 
 bool SpecificWorker::GotoPoint_atTarget()
 {
@@ -112,7 +106,6 @@ void SpecificWorker::GotoPoint_turn(float speed)
 		speed = -1;
 	}
 	differentialrobot_proxy->setSpeedBase(0, speed);
-
 }
 
 void SpecificWorker::RCISMousePicker_setPick(Pick myPick)

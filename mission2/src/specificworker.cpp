@@ -45,12 +45,6 @@ bool SpecificWorker::setParams(RoboCompCommonBehavior::ParameterList params)
 //		innerModel = new InnerModel(innermodel_path);
 //	}
 //	catch(const std::exception &e) { qFatal("Error reading config params"); }
-
-
-
-	
-
-
 	return true;
 }
 
@@ -64,18 +58,6 @@ void SpecificWorker::initialize(int period)
 
 void SpecificWorker::compute()
 {
-	// computeCODE
-	// QMutexLocker locker(mutex);
-	// try
-	// {
-	// 		camera_proxy->getYImage(0,img, cState, bState);
-	// 		memcpy(image_gray.data, &img[0], m_width*m_height*sizeof(uchar));
-	// 		searchTags(image_gray);
-	// }
-	// catch(const Ice::Exception &e)
-	// {
-	// 		std::cout << "Error reading from Camera" << e << std::endl;
-	// }
 	switch(actual_state){
 		case State::idle:
 			idle();
@@ -96,7 +78,14 @@ void SpecificWorker::idle(){
 void SpecificWorker::turn(){
 	try
 	{
-		gotopoint_proxy->turn(0.5);
+		if(visitedTags.read().empty() == false)
+		{ 
+			gotopoint_proxy->stop();
+			actual_state = State::check_target;
+		}
+		else {
+			gotopoint_proxy->turn(0.3);
+		}
 	}
 	catch(const std::exception& e)
 	{
@@ -107,13 +96,17 @@ void SpecificWorker::turn(){
 }
 
 void SpecificWorker::check_target(){
-
+	
 }
 
 void SpecificWorker::AprilTags_newAprilTag(tagsList tags)
 {
-//subscribesToCODE
-
+	std::vector<Tp> tps;
+	for(const auto &v : tags)
+	{
+		tps.push_back(std::make_tuple(v.id, v.tx, v.tz, v.ry));
+	}
+	visitedTags.write(tps);
 }
 
 void SpecificWorker::AprilTags_newAprilTagAndPose(tagsList tags, RoboCompGenericBase::TBaseState bState, RoboCompJointMotor::MotorStateMap hState)

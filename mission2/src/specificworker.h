@@ -44,6 +44,27 @@ public:
 
 	enum class State {idle, turn, check_target};
 	SpecificWorker::State actual_state;
+	
+	using Tp = std::tuple<int, float, float, float>;
+	struct visited 
+	{
+		QMutex mutex;
+		std::vector<Tp> datos;
+
+		void write(const Tp &d)
+		{
+			QMutexLocker ml(&mutex);
+			datos=d;
+		}
+
+		std::vector<Tp> read()
+		{
+			QMutexLocker ml(&mutex);
+			return datos;
+		}
+	};
+	visited visitedTags;
+
 public slots:
 	void compute();
 	void initialize(int period);
