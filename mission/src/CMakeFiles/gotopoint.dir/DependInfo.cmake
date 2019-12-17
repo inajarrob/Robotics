@@ -8,7 +8,6 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/salabeta/robocomp/components/Robotics/mission/src/DifferentialRobot.cpp" "/home/salabeta/robocomp/components/Robotics/mission/src/CMakeFiles/gotopoint.dir/DifferentialRobot.cpp.o"
   "/home/salabeta/robocomp/components/Robotics/mission/src/GenericBase.cpp" "/home/salabeta/robocomp/components/Robotics/mission/src/CMakeFiles/gotopoint.dir/GenericBase.cpp.o"
   "/home/salabeta/robocomp/components/Robotics/mission/src/GotoPoint.cpp" "/home/salabeta/robocomp/components/Robotics/mission/src/CMakeFiles/gotopoint.dir/GotoPoint.cpp.o"
-  "/home/salabeta/robocomp/components/Robotics/mission/src/Laser.cpp" "/home/salabeta/robocomp/components/Robotics/mission/src/CMakeFiles/gotopoint.dir/Laser.cpp.o"
   "/home/salabeta/robocomp/components/Robotics/mission/src/RCISMousePicker.cpp" "/home/salabeta/robocomp/components/Robotics/mission/src/CMakeFiles/gotopoint.dir/RCISMousePicker.cpp.o"
   "/home/salabeta/robocomp/components/Robotics/mission/src/commonbehaviorI.cpp" "/home/salabeta/robocomp/components/Robotics/mission/src/CMakeFiles/gotopoint.dir/commonbehaviorI.cpp.o"
   "/home/salabeta/robocomp/components/Robotics/mission/src/genericmonitor.cpp" "/home/salabeta/robocomp/components/Robotics/mission/src/CMakeFiles/gotopoint.dir/genericmonitor.cpp.o"
@@ -69,7 +68,6 @@ set(CMAKE_MULTIPLE_OUTPUT_PAIRS
   "/home/salabeta/robocomp/components/Robotics/mission/src/DifferentialRobot.h" "/home/salabeta/robocomp/components/Robotics/mission/src/DifferentialRobot.cpp"
   "/home/salabeta/robocomp/components/Robotics/mission/src/GenericBase.h" "/home/salabeta/robocomp/components/Robotics/mission/src/GenericBase.cpp"
   "/home/salabeta/robocomp/components/Robotics/mission/src/GotoPoint.h" "/home/salabeta/robocomp/components/Robotics/mission/src/GotoPoint.cpp"
-  "/home/salabeta/robocomp/components/Robotics/mission/src/Laser.h" "/home/salabeta/robocomp/components/Robotics/mission/src/Laser.cpp"
   "/home/salabeta/robocomp/components/Robotics/mission/src/RCISMousePicker.h" "/home/salabeta/robocomp/components/Robotics/mission/src/RCISMousePicker.cpp"
   )
 

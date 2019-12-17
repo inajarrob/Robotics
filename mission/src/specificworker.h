@@ -45,7 +45,6 @@ public:
 	void RCISMousePicker_setPick(Pick myPick);
 
 	RoboCompGenericBase::TBaseState bState;
-	RoboCompLaser::TLaserData ldata;
 	struct Coords
 	{
 		QMutex mutex;

@@ -51,10 +51,10 @@ public:
 		QMutex mutex;
 		std::vector<Tp> datos;
 
-		void write(const Tp &d)
+		void write(vector<Tp> &d)
 		{
 			QMutexLocker ml(&mutex);
-			datos=d;
+			datos.swap(d);
 		}
 
 		std::vector<Tp> read()

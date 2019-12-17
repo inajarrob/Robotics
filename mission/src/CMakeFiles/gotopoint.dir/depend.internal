@@ -14,10 +14,6 @@ src/CMakeFiles/gotopoint.dir/GenericBase.cpp.o
 src/CMakeFiles/gotopoint.dir/GotoPoint.cpp.o
  /home/salabeta/robocomp/components/Robotics/mission/src/GotoPoint.cpp
  src/GotoPoint.h
-src/CMakeFiles/gotopoint.dir/Laser.cpp.o
- /home/salabeta/robocomp/components/Robotics/mission/src/Laser.cpp
- src/GenericBase.h
- src/Laser.h
 src/CMakeFiles/gotopoint.dir/RCISMousePicker.cpp.o
  /home/salabeta/robocomp/components/Robotics/mission/src/RCISMousePicker.cpp
  src/RCISMousePicker.h
@@ -483,7 +479,6 @@ src/CMakeFiles/gotopoint.dir/commonbehaviorI.cpp.o
  src/DifferentialRobot.h
  src/GenericBase.h
  src/GotoPoint.h
- src/Laser.h
  src/RCISMousePicker.h
  src/config.h
  src/gotopoint_autogen/include/ui_mainUI.h
@@ -949,7 +944,6 @@ src/CMakeFiles/gotopoint.dir/genericmonitor.cpp.o
  src/DifferentialRobot.h
  src/GenericBase.h
  src/GotoPoint.h
- src/Laser.h
  src/RCISMousePicker.h
  src/gotopoint_autogen/include/ui_mainUI.h
 src/CMakeFiles/gotopoint.dir/genericworker.cpp.o
@@ -1413,7 +1407,6 @@ src/CMakeFiles/gotopoint.dir/genericworker.cpp.o
  src/DifferentialRobot.h
  src/GenericBase.h
  src/GotoPoint.h
- src/Laser.h
  src/RCISMousePicker.h
  src/gotopoint_autogen/include/ui_mainUI.h
 src/CMakeFiles/gotopoint.dir/gotopointI.cpp.o
@@ -1877,7 +1870,6 @@ src/CMakeFiles/gotopoint.dir/gotopointI.cpp.o
  src/DifferentialRobot.h
  src/GenericBase.h
  src/GotoPoint.h
- src/Laser.h
  src/RCISMousePicker.h
  src/config.h
  src/gotopoint_autogen/include/ui_mainUI.h
@@ -2382,7 +2374,6 @@ src/CMakeFiles/gotopoint.dir/gotopoint_autogen/mocs_compilation.cpp.o
  src/DifferentialRobot.h
  src/GenericBase.h
  src/GotoPoint.h
- src/Laser.h
  src/RCISMousePicker.h
  src/gotopoint_autogen/include/ui_mainUI.h
 src/CMakeFiles/gotopoint.dir/home/salabeta/robocomp/classes/qlog/qlog.cpp.o
@@ -3328,7 +3319,6 @@ src/CMakeFiles/gotopoint.dir/main.cpp.o
  src/DifferentialRobot.h
  src/GenericBase.h
  src/GotoPoint.h
- src/Laser.h
  src/RCISMousePicker.h
  src/gotopointI.h
  src/gotopoint_autogen/include/ui_mainUI.h
@@ -3794,7 +3784,6 @@ src/CMakeFiles/gotopoint.dir/rcismousepickerI.cpp.o
  src/DifferentialRobot.h
  src/GenericBase.h
  src/GotoPoint.h
- src/Laser.h
  src/RCISMousePicker.h
  src/config.h
  src/gotopoint_autogen/include/ui_mainUI.h
@@ -4261,7 +4250,6 @@ src/CMakeFiles/gotopoint.dir/specificmonitor.cpp.o
  src/DifferentialRobot.h
  src/GenericBase.h
  src/GotoPoint.h
- src/Laser.h
  src/RCISMousePicker.h
  src/gotopoint_autogen/include/ui_mainUI.h
 src/CMakeFiles/gotopoint.dir/specificworker.cpp.o
@@ -4757,7 +4745,6 @@ src/CMakeFiles/gotopoint.dir/specificworker.cpp.o
  src/DifferentialRobot.h
  src/GenericBase.h
  src/GotoPoint.h
- src/Laser.h
  src/RCISMousePicker.h
  src/config.h
  src/genericworker.h

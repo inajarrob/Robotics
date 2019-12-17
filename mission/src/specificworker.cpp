@@ -61,20 +61,12 @@ void SpecificWorker::compute()
 	try
 	{
 		differentialrobot_proxy->getBaseState(bState);
-		innerModel->updateTransformValues("base", bState.x, 0, bState.z, 0, bState.alpha, 0);
+		innerModel->updateTransformValues("robot", bState.x, 0, bState.z, 0, bState.alpha, 0);
 	
 	}
 	catch(const Ice::Exception &e)
 	{
 		std::cout << "Error reading from Robot" << e << std::endl;
-	}
- 	try
-	{
-		ldata = laser_proxy->getLaserData(); 
-	}
-	catch(const Ice::Exception &e)
-	{
-		std::cout << "Error reading from lASER" << e << std::endl;
 	}
 }
 
@@ -88,7 +80,10 @@ bool SpecificWorker::GotoPoint_atTarget()
 
 void SpecificWorker::GotoPoint_go(string nodo, float x, float y, float alpha)
 {
-	c.setCoords(x, y, alpha);
+	cout << "kfgjdflgj" << endl;
+	auto r = innerModel->transform("world",QVec::vec3(x,0,y), "rgbd");
+	c.setCoords(r.x(), r.y(), alpha);
+	//printf("Coords x: %d, z: %d", x, y);
 	differentialrobot_proxy->setSpeedBase(400, 0);
 }
 

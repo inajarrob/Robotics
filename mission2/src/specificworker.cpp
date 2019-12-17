@@ -81,6 +81,8 @@ void SpecificWorker::turn(){
 		if(visitedTags.read().empty() == false)
 		{ 
 			gotopoint_proxy->stop();
+			auto v = visitedTags.read();
+			gotopoint_proxy->go("", std::get<1>(v[0]), std::get<3>(v[0]), std::get<2>(v[0]));
 			actual_state = State::check_target;
 		}
 		else {
@@ -96,7 +98,13 @@ void SpecificWorker::turn(){
 }
 
 void SpecificWorker::check_target(){
-	
+	if(gotopoint_proxy->atTarget()){
+		gotopoint_proxy->stop();
+		actual_state = State::idle;
+	} else{
+		auto v = visitedTags.read();
+		gotopoint_proxy->go("", std::get<1>(v[0]), std::get<3>(v[0]), std::get<2>(v[0]));
+	}
 }
 
 void SpecificWorker::AprilTags_newAprilTag(tagsList tags)
@@ -104,7 +112,11 @@ void SpecificWorker::AprilTags_newAprilTag(tagsList tags)
 	std::vector<Tp> tps;
 	for(const auto &v : tags)
 	{
-		tps.push_back(std::make_tuple(v.id, v.tx, v.tz, v.ry));
+		// de 0 a 10 cajas pared
+		// de 10 a 20 cajas suelo
+		if(v.id > 10){
+			tps.push_back(std::make_tuple(v.id, v.tx, v.tz, v.ry));
+		}
 	}
 	visitedTags.write(tps);
 }

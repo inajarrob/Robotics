@@ -137,7 +137,6 @@ int ::gotopoint::run(int argc, char* argv[])
 	int status=EXIT_SUCCESS;
 
 	DifferentialRobotPrxPtr differentialrobot_proxy;
-	LaserPrxPtr laser_proxy;
 
 	string proxy, tmp;
 	initialize();
@@ -158,22 +157,6 @@ int ::gotopoint::run(int argc, char* argv[])
 	}
 	rInfo("DifferentialRobotProxy initialized Ok!");
 
-
-	try
-	{
-		if (not GenericMonitor::configGetString(communicator(), prefix, "LaserProxy", proxy, ""))
-		{
-			cout << "[" << PROGRAM_NAME << "]: Can't read configuration for proxy LaserProxy\n";
-		}
-		laser_proxy = Ice::uncheckedCast<LaserPrx>( communicator()->stringToProxy( proxy ) );
-	}
-	catch(const Ice::Exception& ex)
-	{
-		cout << "[" << PROGRAM_NAME << "]: Exception creating proxy Laser: " << ex;
-		return EXIT_FAILURE;
-	}
-	rInfo("LaserProxy initialized Ok!");
-
 	IceStorm::TopicManagerPrxPtr topicManager;
 	try
 	{
@@ -185,7 +168,7 @@ int ::gotopoint::run(int argc, char* argv[])
 		return EXIT_FAILURE;
 	}
 
-	tprx = std::make_tuple(differentialrobot_proxy,laser_proxy);
+	tprx = std::make_tuple(differentialrobot_proxy);
 	SpecificWorker *worker = new SpecificWorker(tprx);
 	//Monitor thread
 	SpecificMonitor *monitor = new SpecificMonitor(worker,communicator());
