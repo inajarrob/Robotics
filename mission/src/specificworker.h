@@ -29,6 +29,14 @@
 
 #include <genericworker.h>
 #include <innermodel/innermodel.h>
+#include <stdlib.h>
+#include <QVector>
+#include <math.h>
+#include <Qt>
+#include<QLineF>
+const int threshold = 200; // 300 milimeters
+const float a = 0.5;
+const float b = 0.5;
 
 class SpecificWorker : public GenericWorker
 {
@@ -37,7 +45,8 @@ public:
 	SpecificWorker(TuplePrx tprx);
 	~SpecificWorker();
 	bool setParams(RoboCompCommonBehavior::ParameterList params);
-
+	enum class State {idle, goToAndWalk, turn, skirt};
+	SpecificWorker::State actual_state;
 	bool GotoPoint_atTarget();
 	void GotoPoint_go(string nodo, float x, float y, float alpha);
 	void GotoPoint_stop();
@@ -45,6 +54,7 @@ public:
 	void RCISMousePicker_setPick(Pick myPick);
 
 	RoboCompGenericBase::TBaseState bState;
+	QVec r;
 	struct Coords
 	{
 		QMutex mutex;
@@ -72,6 +82,13 @@ public:
 		}
 	};
 	Coords c;
+	double rot;
+	double d;
+	double s;
+	double forwardSpeed;
+	bool turning = false;
+	bool tVisible = false;
+
 
 
 public slots:
@@ -79,6 +96,13 @@ public slots:
 	void initialize(int period);
 private:
 	std::shared_ptr<InnerModel> innerModel;
+	bool checkInTarget();
+	void idle();
+	void goToAndWalk();
+	void turn();
+	void skirt();
+	bool targetVisible();
+	bool inLine();
 
 };
 

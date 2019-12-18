@@ -81,8 +81,8 @@ void SpecificWorker::turn(){
 		if(visitedTags.read().empty() == false)
 		{ 
 			gotopoint_proxy->stop();
-			auto v = visitedTags.read();
-			gotopoint_proxy->go("", std::get<1>(v[0]), std::get<3>(v[0]), std::get<2>(v[0]));
+			auto [id,x,z,alpha] = visitedTags.read()[0];
+			gotopoint_proxy->go("",x,z,alpha);
 			actual_state = State::check_target;
 		}
 		else {
@@ -107,6 +107,7 @@ void SpecificWorker::check_target(){
 	}
 }
 
+// la marca va en referencia al mundo, apriltag en el robot
 void SpecificWorker::AprilTags_newAprilTag(tagsList tags)
 {
 	std::vector<Tp> tps;

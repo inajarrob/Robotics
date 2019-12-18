@@ -351,6 +351,16 @@ genericworker.h
 -
 innermodel/innermodel.h
 -
+stdlib.h
+-
+QVector
+-
+math.h
+-
+Qt
+-
+QLineF
+-
 
 /opt/robocomp/include/innermodel/innermodel.h
 stdexcept
@@ -672,6 +682,10 @@ qcoreevent.h
 qhash.h
 /usr/include/x86_64-linux-gnu/qt5/QtCore/qhash.h
 
+/usr/include/x86_64-linux-gnu/qt5/QtCore/QLineF
+qline.h
+/usr/include/x86_64-linux-gnu/qt5/QtCore/qline.h
+
 /usr/include/x86_64-linux-gnu/qt5/QtCore/QList
 qlist.h
 /usr/include/x86_64-linux-gnu/qt5/QtCore/qlist.h
@@ -731,6 +745,14 @@ qstringlist.h
 /usr/include/x86_64-linux-gnu/qt5/QtCore/QVariant
 qvariant.h
 /usr/include/x86_64-linux-gnu/qt5/QtCore/qvariant.h
+
+/usr/include/x86_64-linux-gnu/qt5/QtCore/QVector
+qvector.h
+/usr/include/x86_64-linux-gnu/qt5/QtCore/qvector.h
+
+/usr/include/x86_64-linux-gnu/qt5/QtCore/Qt
+qnamespace.h
+/usr/include/x86_64-linux-gnu/qt5/QtCore/qnamespace.h
 
 /usr/include/x86_64-linux-gnu/qt5/QtCore/QtCore
 QtCore/QtCoreDepends

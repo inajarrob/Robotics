@@ -1918,6 +1918,7 @@ src/CMakeFiles/gotopoint.dir/gotopoint_autogen/mocs_compilation.cpp.o
  /opt/robocomp/include/qmat/qvec.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QEvent
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QHash
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QLineF
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QList
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QMargins
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QMetaType
@@ -1931,6 +1932,8 @@ src/CMakeFiles/gotopoint.dir/gotopoint_autogen/mocs_compilation.cpp.o
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QString
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QStringList
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QVariant
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QVector
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/Qt
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QtCore
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QtCoreDepends
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qabstractanimation.h
@@ -2863,6 +2866,7 @@ src/CMakeFiles/gotopoint.dir/main.cpp.o
  /opt/robocomp/include/qmat/qvec.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QEvent
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QHash
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QLineF
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QList
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QMargins
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QMetaType
@@ -2876,6 +2880,8 @@ src/CMakeFiles/gotopoint.dir/main.cpp.o
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QString
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QStringList
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QVariant
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QVector
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/Qt
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QtCore
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QtCoreDepends
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qabstractanimation.h
@@ -4289,6 +4295,7 @@ src/CMakeFiles/gotopoint.dir/specificworker.cpp.o
  /opt/robocomp/include/qmat/qvec.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QEvent
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QHash
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QLineF
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QList
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QMargins
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QMetaType
@@ -4302,6 +4309,8 @@ src/CMakeFiles/gotopoint.dir/specificworker.cpp.o
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QString
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QStringList
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QVariant
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QVector
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/Qt
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QtCore
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QtCoreDepends
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qabstractanimation.h
