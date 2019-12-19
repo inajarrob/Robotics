@@ -34,7 +34,7 @@
 #include <math.h>
 #include <Qt>
 #include<QLineF>
-const int threshold = 200; // 300 milimeters
+const int threshold = 200; // 200 milimeters
 const float a = 0.5;
 const float b = 0.5;
 
@@ -52,14 +52,19 @@ public:
 	void GotoPoint_stop();
 	void GotoPoint_turn(float speed);
 	void RCISMousePicker_setPick(Pick myPick);
-
 	RoboCompGenericBase::TBaseState bState;
+	RoboCompLaser::TLaserData ldata;
 	QVec r;
+
 	struct Coords
 	{
 		QMutex mutex;
 		std::atomic<bool> active = false;
 		int x,z, alpha;
+		float a;
+		float b;
+		float n;
+
 
 		void getCoords(int &x_, int &z_, int &alpha_){
 			QMutexLocker ml(&mutex);
@@ -67,12 +72,15 @@ public:
 			z_ = z;
 			alpha_ = alpha;
 		}
-		void setCoords(int x_, int z_, int alpha_){
+		void setCoords(int x_, int z_, int alpha_,  const RoboCompGenericBase::TBaseState &bState, const QVec &r2){
 			QMutexLocker ml(&mutex);
 			x = x_;
 			z = z_;
 			alpha = alpha_;
 			active.store(true);
+			a = r2.x() - bState.x;
+			b = -(r2.z() - bState.z);
+			n = -(a*bState.z) - (b*bState.x);
 
 		}
 		bool isActive()

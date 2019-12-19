@@ -33,7 +33,7 @@ bool GotoPointI::atTarget(const Ice::Current&)
 	return worker->GotoPoint_atTarget();
 }
 
-void GotoPointI::go(string nodo, const float  x, const float  y, const float  alpha, const Ice::Current&)
+void GotoPointI::go(string  nodo, const float  x, const float  y, const float  alpha, const Ice::Current&)
 {
 	worker->GotoPoint_go(nodo, x, y, alpha);
 }

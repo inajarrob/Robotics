@@ -1,3 +1,4 @@
+import "Laser.idsl";
 import "DifferentialRobot.idsl";
 import "RCISMousePicker.idsl";
 import "GotoPoint.idsl";
@@ -6,7 +7,7 @@ Component gotopoint
 {
     Communications
     {
-        requires DifferentialRobot;
+        requires Laser, DifferentialRobot;
 	subscribesTo RCISMousePicker;
 	implements GotoPoint;
     };

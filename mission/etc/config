@@ -11,7 +11,7 @@ RCISMousePickerTopic.Endpoints=tcp -p 20001
 
 # Proxies for required interfaces
 DifferentialRobotProxy = differentialrobot:tcp -h localhost -p 10004
-
+LaserProxy = laser:tcp -h localhost -p 10003
 
 
 # This property is used by the clients to connect to IceStorm.

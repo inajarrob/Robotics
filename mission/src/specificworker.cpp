@@ -43,7 +43,6 @@ bool SpecificWorker::setParams(RoboCompCommonBehavior::ParameterList params)
 		RoboCompCommonBehavior::Parameter par = params.at("InnerModelPath");
 		std::string innermodel_path = par.value;
 		innerModel = std::make_shared<InnerModel>(par.value);
-	
 	}
 	catch(const std::exception &e) { qFatal("Error reading config params"); }
 	return true;
@@ -54,35 +53,33 @@ void SpecificWorker::initialize(int period)
 	std::cout << "Initialize worker" << std::endl;
 	this->Period = period;
 	timer.start(Period);
+
 }
 
 void SpecificWorker::compute()
 {
-	try
-	{
-		differentialrobot_proxy->getBaseState(bState);
-		innerModel->updateTransformValues("robot", bState.x, 0, bState.z, 0, bState.alpha, 0);
-		switch(actual_state){
-			case State::idle:
-				idle();
-			break;
-			case State::goToAndWalk:
-				goToAndWalk();
-			break;
-			case State::turn:
-				turn();
-			break;
-			case State::skirt:
-				skirt();
-			break;
-		}
-	
-	}
-	catch(const Ice::Exception &e)
-	{
-		std::cout << "Error reading from Robot" << e << std::endl;
+	differentialrobot_proxy->getBaseState(bState);
+	innerModel->updateTransformValues("robot", bState.x, 0, bState.z, 0, bState.alpha, 0);
+	ldata = laser_proxy->getLaserData();
+
+	switch(actual_state){
+		case State::idle:
+			idle();
+		break;
+		case State::goToAndWalk:
+			goToAndWalk();
+		break;
+		case State::turn:
+			turn();
+		break;
+		case State::skirt:
+			skirt();
+		break;
 	}
 }
+
+
+
 
 bool SpecificWorker::GotoPoint_atTarget()
 {
@@ -94,12 +91,8 @@ bool SpecificWorker::GotoPoint_atTarget()
 
 void SpecificWorker::GotoPoint_go(string nodo, float x, float y, float alpha)
 {
-	qDebug() << "al llegar" << x << y;
-	auto r = innerModel->transform("world",QVec::vec3(x,0,y), "rgbd");
-	qDebug() << "al transformar" << r.x() << r.z();
-	exit(-1);
-	c.setCoords(r.x(), r.z(), alpha);
-	//differentialrobot_proxy->setSpeedBase(400, 0);
+	r = innerModel->transform("world",QVec::vec3(x,0,y), "rgbd");
+	c.setCoords(r.x(), r.z(), alpha, bState, r);
 	actual_state = State::goToAndWalk;
 }
 
@@ -121,8 +114,12 @@ void SpecificWorker::GotoPoint_turn(float speed)
 
 void SpecificWorker::RCISMousePicker_setPick(Pick myPick)
 {
-	//subscribesToCODE
+//subscribesToCODE
+	//auto r2 = innerModel->transform("base", QVec::vec3(c.x, 0, c.z), "world");
+	//c.setCoords(, bState, r2);
+	//actual_state = State::idle;
 }
+
 
 void SpecificWorker::idle()
 {
@@ -134,11 +131,29 @@ void SpecificWorker::idle()
 
 // Orientarse
 void SpecificWorker::goToAndWalk(){
-	r = innerModel->transform("rgbd", QVec::vec3(c.x, 0, c.z), "world");
-	rot = atan2(r.x(),r.z());
-	forwardSpeed = 400;
+	// hasta que no este orientado al pick sigue girando	
+	cout << "goToAndWalk" << endl;
+	r = innerModel->transform("rgbd",QVec::vec3(c.x,0,c.z), "world");
 		
-	if(fabs(rot) > 1){
+	// hacer arcotangente para saber rotacion
+	rot = atan2(r.x(),r.z());
+
+	double distTarget = (1/(1+exp(-r.norm2())))-0.5; // sinusoide
+	double gauss = exp((-s*(rot*rot)));
+
+	forwardSpeed = 600*gauss*distTarget;
+
+	// Sort from min to max distance to objects or wall
+	auto v = ldata;
+    std::sort(v.begin(), v.end(), [](RoboCompLaser::TData a, RoboCompLaser::TData b){ return     a.dist < b.dist; });
+
+	if(v.front().dist < threshold){
+		actual_state = State::turn;
+		cout << "Saltamos a TURN" << endl;
+		//return;
+	}
+		
+	/*if(fabs(rot) > 1.40){
 		// Robot orientado
 		if(fabs(rot) < 0.05) {
 			differentialrobot_proxy->setSpeedBase(0,0);
@@ -146,7 +161,7 @@ void SpecificWorker::goToAndWalk(){
 		}
 		cout << "Orientamos a: " << rot << endl;
 		differentialrobot_proxy->setSpeedBase(0,rot);
-	} else{
+	} else{*/
 		if(checkInTarget()){
 			differentialrobot_proxy->setSpeedBase(0,0);
 			c.active.store(false);
@@ -158,7 +173,7 @@ void SpecificWorker::goToAndWalk(){
 			else
 				differentialrobot_proxy->setSpeedBase(forwardSpeed, rot);
 			}
-	}
+	//}
 }
 
 bool SpecificWorker::checkInTarget(){
@@ -169,37 +184,62 @@ bool SpecificWorker::checkInTarget(){
 }
 
 void SpecificWorker::turn(){
-	differentialrobot_proxy->setSpeedBase(1, 0.3);	
-}
+	auto v = ldata;
+	std::sort(v.begin(), v.end(), [](RoboCompLaser::TData a, RoboCompLaser::TData b){ return     a.dist < b.dist; });
 
-// pasas pos robot y sustituyes en la ecuacion y devuelve si estas en la recta 
-bool SpecificWorker::inLine(){
-	/*float res = fabs(c.a*bState.x + c.b*bState.z + c.n);
-	float hipotenusa = sqrt(c.a*c.a+c.b*c.b+c.n*c.n);
-	return (res/hipotenusa < 400);*/
-	return true;
+	if((fabs(v[0].angle) >= 1.45) && (fabs(v[0].angle) <= 1.60)){
+		turning = false;
+		cout << "Saltamos a SKIRT" << endl;
+		actual_state = State::skirt;
+	} else {
+		turning = true;
+		cout << "Girando a 0.3 en turn" << endl;
+		differentialrobot_proxy->setSpeedBase(1, 0.3);
+	}
+	
 }
 
 void SpecificWorker::skirt(){
+	auto v = ldata;
+	std::sort(v.begin()+50, v.end(), [](RoboCompLaser::TData a, RoboCompLaser::TData b){ return     a.dist < b.dist; });
+	//cout << v[50].dist << endl;
+	if(v[50].dist < 430 && !turning){
+		differentialrobot_proxy->setSpeedBase(200, 0.2);
+		cout << "Andando paralelo..." << endl;
+	} else {
+		if(targetVisible() /*&& withoutObject(v)*/){
+			tVisible = true;
+			cout << "Target visible" << endl;
+			actual_state = State::goToAndWalk;
+			return;
+		}
+		if(inLine() /*&& withoutObject(v)*/){
+			cout << "En linea" << endl;
+			actual_state = State::goToAndWalk;
+			return;
+		}
+		cout << "Giro de 0.3" << endl;
+		differentialrobot_proxy->setSpeedBase(1, -0.3);
+	}
 	
 }
 
 
 bool SpecificWorker::targetVisible(){
-	/*bool visible = false;
+	bool visible = false;
 	QPolygonF polygon;
 	auto x = innerModel->getNode<InnerModelLaser>(QString("laser"));
 	
 	for(const auto &l: ldata)
 	{  
 		auto r = x->laserTo(QString("world"), l.dist, l.angle);
-		polygon << QPointF(c.x(), c.z());
+		polygon << QPointF(r.x(), r.z());
 	}
-	visible = polygon.containsPoint(QPointF(c.pick.x, c.pick.z), Qt::OddEvenFill);
+	visible = polygon.containsPoint(QPointF(c.x, c.z), Qt::OddEvenFill);
 	//cout << "  ES VISIBLE!!    " << visible << endl;
 	if(visible){
-		float dist = (QVec::vec3(bState.x,0,bState.z)-QVec::vec3(c.pick.x,0, c.pick.z)).norm2();
-		auto tr = innerModel->transform("base", QVec::vec3(c.pick.x, 0, c.pick.z), "world");
+		float dist = (QVec::vec3(bState.x,0,bState.z)-QVec::vec3(c.x,0, c.z)).norm2();
+		auto tr = innerModel->transform("base", QVec::vec3(c.x, 0, c.z), "world");
 		auto ml0 = innerModel->transform("world", QVec::vec3(-200, 0, 0), "base");
 		auto ml = innerModel->transform("world", QVec::vec3(tr.x()-200, 0, tr.z()), "base");
 		auto mr0 = innerModel->transform("world", QVec::vec3(200, 0, 0), "base");
@@ -207,7 +247,7 @@ bool SpecificWorker::targetVisible(){
 
 		QLineF left = QLineF(QPointF(ml0.x(), ml0.z()), QPointF(ml.x(), ml.z()));
 		QLineF right = QLineF(QPointF(mr0.x(), mr0.z()), QPointF(mr.x(), mr.z()));
-		QLineF middle = QLineF(QPointF(bState.x, bState.z), QPointF(c.pick.x,c.pick.z));
+		QLineF middle = QLineF(QPointF(bState.x, bState.z), QPointF(c.x,c.z));
 		float distR = dist/400; //numero de veces que vamos a recorrer la linea
 		float delta = 1.f/distR; // intervalos que vamos a recorrer
 		for(float i=delta; i<1;i+=delta)
@@ -226,10 +266,16 @@ bool SpecificWorker::targetVisible(){
 		
 	}
 	//cout << "      " << visible << endl;
-	return visible;*/
+	return visible;
 }
 
-
+// pasas pos robot y sustituyes en la ecuacion y devuelve si estas en la recta 
+bool SpecificWorker::inLine(){
+	//cout << "++++++++++++++++ " << fabs(c.a*bState.x + c.b*bState.z + c.n) << endl;
+	float res = fabs(c.a*bState.x + c.b*bState.z + c.n);
+	float hipotenusa = sqrt(c.a*c.a+c.b*c.b+c.n*c.n);
+	return (res/hipotenusa < 400);
+}
 
 
 

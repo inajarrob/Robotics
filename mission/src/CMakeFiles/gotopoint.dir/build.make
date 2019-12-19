@@ -85,8 +85,15 @@ src/DifferentialRobot.cpp: /home/salabeta/robocomp/interfaces/DifferentialRobot.
 src/DifferentialRobot.h: src/DifferentialRobot.cpp
 	@$(CMAKE_COMMAND) -E touch_nocreate src/DifferentialRobot.h
 
+src/Laser.cpp: /home/salabeta/robocomp/interfaces/Laser.ice
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/salabeta/robocomp/components/Robotics/mission/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating Laser.cpp and Laser.h from Laser.ice"
+	cd /home/salabeta/robocomp/components/Robotics/mission/src && slice2cpp --underscore -I/home/salabeta/robocomp//interfaces/ -I/home/salabeta/robocomp/interfaces -I/opt/robocomp/interfaces -I. /home/salabeta/robocomp/interfaces/Laser.ice --output-dir .
+
+src/Laser.h: src/Laser.cpp
+	@$(CMAKE_COMMAND) -E touch_nocreate src/Laser.h
+
 src/RCISMousePicker.cpp: /home/salabeta/robocomp/interfaces/RCISMousePicker.ice
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/salabeta/robocomp/components/Robotics/mission/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating RCISMousePicker.cpp and RCISMousePicker.h from RCISMousePicker.ice"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/salabeta/robocomp/components/Robotics/mission/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Generating RCISMousePicker.cpp and RCISMousePicker.h from RCISMousePicker.ice"
 	cd /home/salabeta/robocomp/components/Robotics/mission/src && slice2cpp --underscore -I/home/salabeta/robocomp//interfaces/ -I/home/salabeta/robocomp/interfaces -I/opt/robocomp/interfaces -I. /home/salabeta/robocomp/interfaces/RCISMousePicker.ice --output-dir .
 
 src/RCISMousePicker.h: src/RCISMousePicker.cpp
@@ -94,7 +101,7 @@ src/RCISMousePicker.h: src/RCISMousePicker.cpp
 
 src/CMakeFiles/gotopoint.dir/specificworker.cpp.o: src/CMakeFiles/gotopoint.dir/flags.make
 src/CMakeFiles/gotopoint.dir/specificworker.cpp.o: src/specificworker.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/mission/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/CMakeFiles/gotopoint.dir/specificworker.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/mission/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object src/CMakeFiles/gotopoint.dir/specificworker.cpp.o"
 	cd /home/salabeta/robocomp/components/Robotics/mission/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gotopoint.dir/specificworker.cpp.o -c /home/salabeta/robocomp/components/Robotics/mission/src/specificworker.cpp
 
 src/CMakeFiles/gotopoint.dir/specificworker.cpp.i: cmake_force
@@ -118,7 +125,7 @@ src/CMakeFiles/gotopoint.dir/specificworker.cpp.o.provides.build: src/CMakeFiles
 
 src/CMakeFiles/gotopoint.dir/specificmonitor.cpp.o: src/CMakeFiles/gotopoint.dir/flags.make
 src/CMakeFiles/gotopoint.dir/specificmonitor.cpp.o: src/specificmonitor.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/mission/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object src/CMakeFiles/gotopoint.dir/specificmonitor.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/mission/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object src/CMakeFiles/gotopoint.dir/specificmonitor.cpp.o"
 	cd /home/salabeta/robocomp/components/Robotics/mission/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gotopoint.dir/specificmonitor.cpp.o -c /home/salabeta/robocomp/components/Robotics/mission/src/specificmonitor.cpp
 
 src/CMakeFiles/gotopoint.dir/specificmonitor.cpp.i: cmake_force
@@ -142,7 +149,7 @@ src/CMakeFiles/gotopoint.dir/specificmonitor.cpp.o.provides.build: src/CMakeFile
 
 src/CMakeFiles/gotopoint.dir/home/salabeta/robocomp/classes/rapplication/rapplication.cpp.o: src/CMakeFiles/gotopoint.dir/flags.make
 src/CMakeFiles/gotopoint.dir/home/salabeta/robocomp/classes/rapplication/rapplication.cpp.o: /home/salabeta/robocomp/classes/rapplication/rapplication.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/mission/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object src/CMakeFiles/gotopoint.dir/home/salabeta/robocomp/classes/rapplication/rapplication.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/mission/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object src/CMakeFiles/gotopoint.dir/home/salabeta/robocomp/classes/rapplication/rapplication.cpp.o"
 	cd /home/salabeta/robocomp/components/Robotics/mission/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gotopoint.dir/home/salabeta/robocomp/classes/rapplication/rapplication.cpp.o -c /home/salabeta/robocomp/classes/rapplication/rapplication.cpp
 
 src/CMakeFiles/gotopoint.dir/home/salabeta/robocomp/classes/rapplication/rapplication.cpp.i: cmake_force
@@ -166,7 +173,7 @@ src/CMakeFiles/gotopoint.dir/home/salabeta/robocomp/classes/rapplication/rapplic
 
 src/CMakeFiles/gotopoint.dir/home/salabeta/robocomp/classes/sigwatch/sigwatch.cpp.o: src/CMakeFiles/gotopoint.dir/flags.make
 src/CMakeFiles/gotopoint.dir/home/salabeta/robocomp/classes/sigwatch/sigwatch.cpp.o: /home/salabeta/robocomp/classes/sigwatch/sigwatch.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/mission/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object src/CMakeFiles/gotopoint.dir/home/salabeta/robocomp/classes/sigwatch/sigwatch.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/mission/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object src/CMakeFiles/gotopoint.dir/home/salabeta/robocomp/classes/sigwatch/sigwatch.cpp.o"
 	cd /home/salabeta/robocomp/components/Robotics/mission/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gotopoint.dir/home/salabeta/robocomp/classes/sigwatch/sigwatch.cpp.o -c /home/salabeta/robocomp/classes/sigwatch/sigwatch.cpp
 
 src/CMakeFiles/gotopoint.dir/home/salabeta/robocomp/classes/sigwatch/sigwatch.cpp.i: cmake_force
@@ -190,7 +197,7 @@ src/CMakeFiles/gotopoint.dir/home/salabeta/robocomp/classes/sigwatch/sigwatch.cp
 
 src/CMakeFiles/gotopoint.dir/home/salabeta/robocomp/classes/qlog/qlog.cpp.o: src/CMakeFiles/gotopoint.dir/flags.make
 src/CMakeFiles/gotopoint.dir/home/salabeta/robocomp/classes/qlog/qlog.cpp.o: /home/salabeta/robocomp/classes/qlog/qlog.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/mission/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object src/CMakeFiles/gotopoint.dir/home/salabeta/robocomp/classes/qlog/qlog.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/mission/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object src/CMakeFiles/gotopoint.dir/home/salabeta/robocomp/classes/qlog/qlog.cpp.o"
 	cd /home/salabeta/robocomp/components/Robotics/mission/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gotopoint.dir/home/salabeta/robocomp/classes/qlog/qlog.cpp.o -c /home/salabeta/robocomp/classes/qlog/qlog.cpp
 
 src/CMakeFiles/gotopoint.dir/home/salabeta/robocomp/classes/qlog/qlog.cpp.i: cmake_force
@@ -214,7 +221,7 @@ src/CMakeFiles/gotopoint.dir/home/salabeta/robocomp/classes/qlog/qlog.cpp.o.prov
 
 src/CMakeFiles/gotopoint.dir/main.cpp.o: src/CMakeFiles/gotopoint.dir/flags.make
 src/CMakeFiles/gotopoint.dir/main.cpp.o: src/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/mission/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object src/CMakeFiles/gotopoint.dir/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/mission/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object src/CMakeFiles/gotopoint.dir/main.cpp.o"
 	cd /home/salabeta/robocomp/components/Robotics/mission/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gotopoint.dir/main.cpp.o -c /home/salabeta/robocomp/components/Robotics/mission/src/main.cpp
 
 src/CMakeFiles/gotopoint.dir/main.cpp.i: cmake_force
@@ -238,7 +245,7 @@ src/CMakeFiles/gotopoint.dir/main.cpp.o.provides.build: src/CMakeFiles/gotopoint
 
 src/CMakeFiles/gotopoint.dir/genericmonitor.cpp.o: src/CMakeFiles/gotopoint.dir/flags.make
 src/CMakeFiles/gotopoint.dir/genericmonitor.cpp.o: src/genericmonitor.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/mission/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object src/CMakeFiles/gotopoint.dir/genericmonitor.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/mission/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object src/CMakeFiles/gotopoint.dir/genericmonitor.cpp.o"
 	cd /home/salabeta/robocomp/components/Robotics/mission/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gotopoint.dir/genericmonitor.cpp.o -c /home/salabeta/robocomp/components/Robotics/mission/src/genericmonitor.cpp
 
 src/CMakeFiles/gotopoint.dir/genericmonitor.cpp.i: cmake_force
@@ -262,7 +269,7 @@ src/CMakeFiles/gotopoint.dir/genericmonitor.cpp.o.provides.build: src/CMakeFiles
 
 src/CMakeFiles/gotopoint.dir/commonbehaviorI.cpp.o: src/CMakeFiles/gotopoint.dir/flags.make
 src/CMakeFiles/gotopoint.dir/commonbehaviorI.cpp.o: src/commonbehaviorI.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/mission/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object src/CMakeFiles/gotopoint.dir/commonbehaviorI.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/mission/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object src/CMakeFiles/gotopoint.dir/commonbehaviorI.cpp.o"
 	cd /home/salabeta/robocomp/components/Robotics/mission/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gotopoint.dir/commonbehaviorI.cpp.o -c /home/salabeta/robocomp/components/Robotics/mission/src/commonbehaviorI.cpp
 
 src/CMakeFiles/gotopoint.dir/commonbehaviorI.cpp.i: cmake_force
@@ -286,7 +293,7 @@ src/CMakeFiles/gotopoint.dir/commonbehaviorI.cpp.o.provides.build: src/CMakeFile
 
 src/CMakeFiles/gotopoint.dir/genericworker.cpp.o: src/CMakeFiles/gotopoint.dir/flags.make
 src/CMakeFiles/gotopoint.dir/genericworker.cpp.o: src/genericworker.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/mission/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object src/CMakeFiles/gotopoint.dir/genericworker.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/mission/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object src/CMakeFiles/gotopoint.dir/genericworker.cpp.o"
 	cd /home/salabeta/robocomp/components/Robotics/mission/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gotopoint.dir/genericworker.cpp.o -c /home/salabeta/robocomp/components/Robotics/mission/src/genericworker.cpp
 
 src/CMakeFiles/gotopoint.dir/genericworker.cpp.i: cmake_force
@@ -310,7 +317,7 @@ src/CMakeFiles/gotopoint.dir/genericworker.cpp.o.provides.build: src/CMakeFiles/
 
 src/CMakeFiles/gotopoint.dir/gotopointI.cpp.o: src/CMakeFiles/gotopoint.dir/flags.make
 src/CMakeFiles/gotopoint.dir/gotopointI.cpp.o: src/gotopointI.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/mission/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object src/CMakeFiles/gotopoint.dir/gotopointI.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/mission/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object src/CMakeFiles/gotopoint.dir/gotopointI.cpp.o"
 	cd /home/salabeta/robocomp/components/Robotics/mission/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gotopoint.dir/gotopointI.cpp.o -c /home/salabeta/robocomp/components/Robotics/mission/src/gotopointI.cpp
 
 src/CMakeFiles/gotopoint.dir/gotopointI.cpp.i: cmake_force
@@ -334,7 +341,7 @@ src/CMakeFiles/gotopoint.dir/gotopointI.cpp.o.provides.build: src/CMakeFiles/got
 
 src/CMakeFiles/gotopoint.dir/rcismousepickerI.cpp.o: src/CMakeFiles/gotopoint.dir/flags.make
 src/CMakeFiles/gotopoint.dir/rcismousepickerI.cpp.o: src/rcismousepickerI.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/mission/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object src/CMakeFiles/gotopoint.dir/rcismousepickerI.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/mission/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object src/CMakeFiles/gotopoint.dir/rcismousepickerI.cpp.o"
 	cd /home/salabeta/robocomp/components/Robotics/mission/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gotopoint.dir/rcismousepickerI.cpp.o -c /home/salabeta/robocomp/components/Robotics/mission/src/rcismousepickerI.cpp
 
 src/CMakeFiles/gotopoint.dir/rcismousepickerI.cpp.i: cmake_force
@@ -358,7 +365,7 @@ src/CMakeFiles/gotopoint.dir/rcismousepickerI.cpp.o.provides.build: src/CMakeFil
 
 src/CMakeFiles/gotopoint.dir/CommonBehavior.cpp.o: src/CMakeFiles/gotopoint.dir/flags.make
 src/CMakeFiles/gotopoint.dir/CommonBehavior.cpp.o: src/CommonBehavior.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/mission/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object src/CMakeFiles/gotopoint.dir/CommonBehavior.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/mission/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object src/CMakeFiles/gotopoint.dir/CommonBehavior.cpp.o"
 	cd /home/salabeta/robocomp/components/Robotics/mission/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gotopoint.dir/CommonBehavior.cpp.o -c /home/salabeta/robocomp/components/Robotics/mission/src/CommonBehavior.cpp
 
 src/CMakeFiles/gotopoint.dir/CommonBehavior.cpp.i: cmake_force
@@ -382,7 +389,7 @@ src/CMakeFiles/gotopoint.dir/CommonBehavior.cpp.o.provides.build: src/CMakeFiles
 
 src/CMakeFiles/gotopoint.dir/GenericBase.cpp.o: src/CMakeFiles/gotopoint.dir/flags.make
 src/CMakeFiles/gotopoint.dir/GenericBase.cpp.o: src/GenericBase.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/mission/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object src/CMakeFiles/gotopoint.dir/GenericBase.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/mission/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object src/CMakeFiles/gotopoint.dir/GenericBase.cpp.o"
 	cd /home/salabeta/robocomp/components/Robotics/mission/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gotopoint.dir/GenericBase.cpp.o -c /home/salabeta/robocomp/components/Robotics/mission/src/GenericBase.cpp
 
 src/CMakeFiles/gotopoint.dir/GenericBase.cpp.i: cmake_force
@@ -406,7 +413,7 @@ src/CMakeFiles/gotopoint.dir/GenericBase.cpp.o.provides.build: src/CMakeFiles/go
 
 src/CMakeFiles/gotopoint.dir/GotoPoint.cpp.o: src/CMakeFiles/gotopoint.dir/flags.make
 src/CMakeFiles/gotopoint.dir/GotoPoint.cpp.o: src/GotoPoint.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/mission/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object src/CMakeFiles/gotopoint.dir/GotoPoint.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/mission/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object src/CMakeFiles/gotopoint.dir/GotoPoint.cpp.o"
 	cd /home/salabeta/robocomp/components/Robotics/mission/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gotopoint.dir/GotoPoint.cpp.o -c /home/salabeta/robocomp/components/Robotics/mission/src/GotoPoint.cpp
 
 src/CMakeFiles/gotopoint.dir/GotoPoint.cpp.i: cmake_force
@@ -430,7 +437,7 @@ src/CMakeFiles/gotopoint.dir/GotoPoint.cpp.o.provides.build: src/CMakeFiles/goto
 
 src/CMakeFiles/gotopoint.dir/DifferentialRobot.cpp.o: src/CMakeFiles/gotopoint.dir/flags.make
 src/CMakeFiles/gotopoint.dir/DifferentialRobot.cpp.o: src/DifferentialRobot.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/mission/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object src/CMakeFiles/gotopoint.dir/DifferentialRobot.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/mission/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object src/CMakeFiles/gotopoint.dir/DifferentialRobot.cpp.o"
 	cd /home/salabeta/robocomp/components/Robotics/mission/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gotopoint.dir/DifferentialRobot.cpp.o -c /home/salabeta/robocomp/components/Robotics/mission/src/DifferentialRobot.cpp
 
 src/CMakeFiles/gotopoint.dir/DifferentialRobot.cpp.i: cmake_force
@@ -452,9 +459,33 @@ src/CMakeFiles/gotopoint.dir/DifferentialRobot.cpp.o.provides: src/CMakeFiles/go
 src/CMakeFiles/gotopoint.dir/DifferentialRobot.cpp.o.provides.build: src/CMakeFiles/gotopoint.dir/DifferentialRobot.cpp.o
 
 
+src/CMakeFiles/gotopoint.dir/Laser.cpp.o: src/CMakeFiles/gotopoint.dir/flags.make
+src/CMakeFiles/gotopoint.dir/Laser.cpp.o: src/Laser.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/mission/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object src/CMakeFiles/gotopoint.dir/Laser.cpp.o"
+	cd /home/salabeta/robocomp/components/Robotics/mission/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gotopoint.dir/Laser.cpp.o -c /home/salabeta/robocomp/components/Robotics/mission/src/Laser.cpp
+
+src/CMakeFiles/gotopoint.dir/Laser.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gotopoint.dir/Laser.cpp.i"
+	cd /home/salabeta/robocomp/components/Robotics/mission/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/salabeta/robocomp/components/Robotics/mission/src/Laser.cpp > CMakeFiles/gotopoint.dir/Laser.cpp.i
+
+src/CMakeFiles/gotopoint.dir/Laser.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gotopoint.dir/Laser.cpp.s"
+	cd /home/salabeta/robocomp/components/Robotics/mission/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/salabeta/robocomp/components/Robotics/mission/src/Laser.cpp -o CMakeFiles/gotopoint.dir/Laser.cpp.s
+
+src/CMakeFiles/gotopoint.dir/Laser.cpp.o.requires:
+
+.PHONY : src/CMakeFiles/gotopoint.dir/Laser.cpp.o.requires
+
+src/CMakeFiles/gotopoint.dir/Laser.cpp.o.provides: src/CMakeFiles/gotopoint.dir/Laser.cpp.o.requires
+	$(MAKE) -f src/CMakeFiles/gotopoint.dir/build.make src/CMakeFiles/gotopoint.dir/Laser.cpp.o.provides.build
+.PHONY : src/CMakeFiles/gotopoint.dir/Laser.cpp.o.provides
+
+src/CMakeFiles/gotopoint.dir/Laser.cpp.o.provides.build: src/CMakeFiles/gotopoint.dir/Laser.cpp.o
+
+
 src/CMakeFiles/gotopoint.dir/RCISMousePicker.cpp.o: src/CMakeFiles/gotopoint.dir/flags.make
 src/CMakeFiles/gotopoint.dir/RCISMousePicker.cpp.o: src/RCISMousePicker.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/mission/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object src/CMakeFiles/gotopoint.dir/RCISMousePicker.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/mission/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object src/CMakeFiles/gotopoint.dir/RCISMousePicker.cpp.o"
 	cd /home/salabeta/robocomp/components/Robotics/mission/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gotopoint.dir/RCISMousePicker.cpp.o -c /home/salabeta/robocomp/components/Robotics/mission/src/RCISMousePicker.cpp
 
 src/CMakeFiles/gotopoint.dir/RCISMousePicker.cpp.i: cmake_force
@@ -478,7 +509,7 @@ src/CMakeFiles/gotopoint.dir/RCISMousePicker.cpp.o.provides.build: src/CMakeFile
 
 src/CMakeFiles/gotopoint.dir/gotopoint_autogen/mocs_compilation.cpp.o: src/CMakeFiles/gotopoint.dir/flags.make
 src/CMakeFiles/gotopoint.dir/gotopoint_autogen/mocs_compilation.cpp.o: src/gotopoint_autogen/mocs_compilation.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/mission/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object src/CMakeFiles/gotopoint.dir/gotopoint_autogen/mocs_compilation.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/salabeta/robocomp/components/Robotics/mission/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object src/CMakeFiles/gotopoint.dir/gotopoint_autogen/mocs_compilation.cpp.o"
 	cd /home/salabeta/robocomp/components/Robotics/mission/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gotopoint.dir/gotopoint_autogen/mocs_compilation.cpp.o -c /home/salabeta/robocomp/components/Robotics/mission/src/gotopoint_autogen/mocs_compilation.cpp
 
 src/CMakeFiles/gotopoint.dir/gotopoint_autogen/mocs_compilation.cpp.i: cmake_force
@@ -517,6 +548,7 @@ gotopoint_OBJECTS = \
 "CMakeFiles/gotopoint.dir/GenericBase.cpp.o" \
 "CMakeFiles/gotopoint.dir/GotoPoint.cpp.o" \
 "CMakeFiles/gotopoint.dir/DifferentialRobot.cpp.o" \
+"CMakeFiles/gotopoint.dir/Laser.cpp.o" \
 "CMakeFiles/gotopoint.dir/RCISMousePicker.cpp.o" \
 "CMakeFiles/gotopoint.dir/gotopoint_autogen/mocs_compilation.cpp.o"
 
@@ -538,6 +570,7 @@ bin/gotopoint: src/CMakeFiles/gotopoint.dir/CommonBehavior.cpp.o
 bin/gotopoint: src/CMakeFiles/gotopoint.dir/GenericBase.cpp.o
 bin/gotopoint: src/CMakeFiles/gotopoint.dir/GotoPoint.cpp.o
 bin/gotopoint: src/CMakeFiles/gotopoint.dir/DifferentialRobot.cpp.o
+bin/gotopoint: src/CMakeFiles/gotopoint.dir/Laser.cpp.o
 bin/gotopoint: src/CMakeFiles/gotopoint.dir/RCISMousePicker.cpp.o
 bin/gotopoint: src/CMakeFiles/gotopoint.dir/gotopoint_autogen/mocs_compilation.cpp.o
 bin/gotopoint: src/CMakeFiles/gotopoint.dir/build.make
@@ -554,7 +587,7 @@ bin/gotopoint: /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.9.5
 bin/gotopoint: /usr/lib/x86_64-linux-gnu/libQt5Network.so.5.9.5
 bin/gotopoint: /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.9.5
 bin/gotopoint: src/CMakeFiles/gotopoint.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/salabeta/robocomp/components/Robotics/mission/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Linking CXX executable ../bin/gotopoint"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/salabeta/robocomp/components/Robotics/mission/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Linking CXX executable ../bin/gotopoint"
 	cd /home/salabeta/robocomp/components/Robotics/mission/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/gotopoint.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -577,6 +610,7 @@ src/CMakeFiles/gotopoint.dir/requires: src/CMakeFiles/gotopoint.dir/CommonBehavi
 src/CMakeFiles/gotopoint.dir/requires: src/CMakeFiles/gotopoint.dir/GenericBase.cpp.o.requires
 src/CMakeFiles/gotopoint.dir/requires: src/CMakeFiles/gotopoint.dir/GotoPoint.cpp.o.requires
 src/CMakeFiles/gotopoint.dir/requires: src/CMakeFiles/gotopoint.dir/DifferentialRobot.cpp.o.requires
+src/CMakeFiles/gotopoint.dir/requires: src/CMakeFiles/gotopoint.dir/Laser.cpp.o.requires
 src/CMakeFiles/gotopoint.dir/requires: src/CMakeFiles/gotopoint.dir/RCISMousePicker.cpp.o.requires
 src/CMakeFiles/gotopoint.dir/requires: src/CMakeFiles/gotopoint.dir/gotopoint_autogen/mocs_compilation.cpp.o.requires
 
@@ -594,6 +628,8 @@ src/CMakeFiles/gotopoint.dir/depend: src/GotoPoint.cpp
 src/CMakeFiles/gotopoint.dir/depend: src/GotoPoint.h
 src/CMakeFiles/gotopoint.dir/depend: src/DifferentialRobot.cpp
 src/CMakeFiles/gotopoint.dir/depend: src/DifferentialRobot.h
+src/CMakeFiles/gotopoint.dir/depend: src/Laser.cpp
+src/CMakeFiles/gotopoint.dir/depend: src/Laser.h
 src/CMakeFiles/gotopoint.dir/depend: src/RCISMousePicker.cpp
 src/CMakeFiles/gotopoint.dir/depend: src/RCISMousePicker.h
 	cd /home/salabeta/robocomp/components/Robotics/mission && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/salabeta/robocomp/components/Robotics/mission /home/salabeta/robocomp/components/Robotics/mission/src /home/salabeta/robocomp/components/Robotics/mission /home/salabeta/robocomp/components/Robotics/mission/src /home/salabeta/robocomp/components/Robotics/mission/src/CMakeFiles/gotopoint.dir/DependInfo.cmake --color=$(COLOR)

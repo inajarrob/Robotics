@@ -30,6 +30,7 @@ QObject()
 {
 
 	differentialrobot_proxy = std::get<0>(tprx);
+	laser_proxy = std::get<1>(tprx);
 
 	mutex = new QMutex(QMutex::Recursive);
 

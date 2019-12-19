@@ -34,6 +34,7 @@
 #include <GenericBase.h>
 #include <GotoPoint.h>
 #include <DifferentialRobot.h>
+#include <Laser.h>
 #include <RCISMousePicker.h>
 
 #define CHECK_PERIOD 5000
@@ -43,9 +44,10 @@ using namespace std;
 using namespace RoboCompGenericBase;
 using namespace RoboCompGotoPoint;
 using namespace RoboCompDifferentialRobot;
+using namespace RoboCompLaser;
 using namespace RoboCompRCISMousePicker;
 
-using TuplePrx = std::tuple<RoboCompDifferentialRobot::DifferentialRobotPrxPtr>;
+using TuplePrx = std::tuple<RoboCompDifferentialRobot::DifferentialRobotPrxPtr,RoboCompLaser::LaserPrxPtr>;
 
 
 class GenericWorker :
@@ -67,6 +69,7 @@ public:
 
 
 	DifferentialRobotPrxPtr differentialrobot_proxy;
+	LaserPrxPtr laser_proxy;
 
 	virtual bool GotoPoint_atTarget() = 0;
 	virtual void GotoPoint_go(string nodo, float x, float y, float alpha) = 0;
