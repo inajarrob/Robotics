@@ -51,7 +51,7 @@ public:
 		QMutex mutex;
 		std::vector<Tp> datos;
 
-		void write(vector<Tp> &d)
+		void write(std::vector<Tp> &d)
 		{
 			QMutexLocker ml(&mutex);
 			datos.swap(d);
@@ -61,6 +61,10 @@ public:
 		{
 			QMutexLocker ml(&mutex);
 			return datos;
+		}
+		Td readSelected(const std::string id)
+		{
+			return std::find(std::begin(datos), std::end(datos), [id](const auto &t){ return t.cameraId == id;});
 		}
 	};
 	visited visitedTags;

@@ -72,14 +72,14 @@ public:
 			z_ = z;
 			alpha_ = alpha;
 		}
-		void setCoords(int x_, int z_, int alpha_,  const RoboCompGenericBase::TBaseState &bState, const QVec &r2){
+		void setCoords(int x_, int z_, int alpha_,  const RoboCompGenericBase::TBaseState &bState){
 			QMutexLocker ml(&mutex);
 			x = x_;
 			z = z_;
 			alpha = alpha_;
 			active.store(true);
-			a = r2.x() - bState.x;
-			b = -(r2.z() - bState.z);
+			a = x - bState.x;
+			b = -(z - bState.z);
 			n = -(a*bState.z) - (b*bState.x);
 
 		}

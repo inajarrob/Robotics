@@ -91,9 +91,10 @@ bool SpecificWorker::GotoPoint_atTarget()
 
 void SpecificWorker::GotoPoint_go(string nodo, float x, float y, float alpha)
 {
+	qDebug() << __FUNCTION__ << x << y ;
 	r = innerModel->transform("world",QVec::vec3(x,0,y), "rgbd");
-	c.setCoords(r.x(), r.z(), alpha, bState, r);
-	actual_state = State::goToAndWalk;
+	c.setCoords(r.x(), r.z(), alpha, bState);
+	actual_state = State::idle;
 }
 
 void SpecificWorker::GotoPoint_stop()
@@ -112,14 +113,17 @@ void SpecificWorker::GotoPoint_turn(float speed)
 	differentialrobot_proxy->setSpeedBase(0, speed);
 }
 
+//////////////////////////////////////////////////
+
 void SpecificWorker::RCISMousePicker_setPick(Pick myPick)
 {
 //subscribesToCODE
 	//auto r2 = innerModel->transform("base", QVec::vec3(c.x, 0, c.z), "world");
-	//c.setCoords(, bState, r2);
-	//actual_state = State::idle;
+	c.setCoords(myPick.x, myPick.z, 0, bState);
+	actual_state = State::idle;
 }
 
+////////////////////////////////////////////////////////
 
 void SpecificWorker::idle()
 {
@@ -133,7 +137,7 @@ void SpecificWorker::idle()
 void SpecificWorker::goToAndWalk(){
 	// hasta que no este orientado al pick sigue girando	
 	cout << "goToAndWalk" << endl;
-	r = innerModel->transform("rgbd",QVec::vec3(c.x,0,c.z), "world");
+	r = innerModel->transform("robot",QVec::vec3(c.x,0,c.z), "world");
 		
 	// hacer arcotangente para saber rotacion
 	rot = atan2(r.x(),r.z());
@@ -153,7 +157,7 @@ void SpecificWorker::goToAndWalk(){
 		//return;
 	}
 		
-	/*if(fabs(rot) > 1.40){
+	if(fabs(rot) > 1.40){
 		// Robot orientado
 		if(fabs(rot) < 0.05) {
 			differentialrobot_proxy->setSpeedBase(0,0);
@@ -161,7 +165,7 @@ void SpecificWorker::goToAndWalk(){
 		}
 		cout << "Orientamos a: " << rot << endl;
 		differentialrobot_proxy->setSpeedBase(0,rot);
-	} else{*/
+	} else{
 		if(checkInTarget()){
 			differentialrobot_proxy->setSpeedBase(0,0);
 			c.active.store(false);
@@ -173,7 +177,7 @@ void SpecificWorker::goToAndWalk(){
 			else
 				differentialrobot_proxy->setSpeedBase(forwardSpeed, rot);
 			}
-	//}
+	}
 }
 
 bool SpecificWorker::checkInTarget(){
@@ -239,11 +243,11 @@ bool SpecificWorker::targetVisible(){
 	//cout << "  ES VISIBLE!!    " << visible << endl;
 	if(visible){
 		float dist = (QVec::vec3(bState.x,0,bState.z)-QVec::vec3(c.x,0, c.z)).norm2();
-		auto tr = innerModel->transform("base", QVec::vec3(c.x, 0, c.z), "world");
-		auto ml0 = innerModel->transform("world", QVec::vec3(-200, 0, 0), "base");
-		auto ml = innerModel->transform("world", QVec::vec3(tr.x()-200, 0, tr.z()), "base");
-		auto mr0 = innerModel->transform("world", QVec::vec3(200, 0, 0), "base");
-		auto mr = innerModel->transform("world", QVec::vec3(tr.x()+200, 0, tr.z()), "base");
+		auto tr = innerModel->transform("robot", QVec::vec3(c.x, 0, c.z), "world");
+		auto ml0 = innerModel->transform("world", QVec::vec3(-200, 0, 0), "robot");
+		auto ml = innerModel->transform("world", QVec::vec3(tr.x()-200, 0, tr.z()), "robot");
+		auto mr0 = innerModel->transform("world", QVec::vec3(200, 0, 0), "robot");
+		auto mr = innerModel->transform("world", QVec::vec3(tr.x()+200, 0, tr.z()), "robot");
 
 		QLineF left = QLineF(QPointF(ml0.x(), ml0.z()), QPointF(ml.x(), ml.z()));
 		QLineF right = QLineF(QPointF(mr0.x(), mr0.z()), QPointF(mr.x(), mr.z()));

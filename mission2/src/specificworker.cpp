@@ -71,17 +71,22 @@ void SpecificWorker::compute()
 	}
 }
 
-void SpecificWorker::idle(){
+void SpecificWorker::idle()
+{
+	qDebug() << __FUNCTION__;
 	actual_state = State::turn;
 }
 
-void SpecificWorker::turn(){
+void SpecificWorker::turn()
+{
+	qDebug() << __FUNCTION__;
 	try
 	{
 		if(visitedTags.read().empty() == false)
 		{ 
 			gotopoint_proxy->stop();
 			auto [id,x,z,alpha] = visitedTags.read()[0];
+			qDebug() << "to gotopoint_proxy" << x << z;
 			gotopoint_proxy->go("",x,z,alpha);
 			actual_state = State::check_target;
 		}
@@ -97,15 +102,36 @@ void SpecificWorker::turn(){
 	
 }
 
-void SpecificWorker::check_target(){
-	if(gotopoint_proxy->atTarget()){
+void SpecificWorker::check_target()
+{
+	qDebug() << __FUNCTION__;
+	// si visitedTagHand recibido por cameraHand (id==rgbdHand)
+		// paro
+		// salto a centrrar mano
+
+	if(gotopoint_proxy->atTarget())
+	{
 		gotopoint_proxy->stop();
 		actual_state = State::idle;
-	} else{
-		auto v = visitedTags.read();
-		gotopoint_proxy->go("", std::get<1>(v[0]), std::get<3>(v[0]), std::get<2>(v[0]));
-	}
+	} 
 }
+
+/// Centrar mano
+si fabs(t.x) < 10 and fabs(x)<10
+	cambio a bajarMano
+
+asdf
+simplearm_proxy->
+si Y 
+salir  
+
+//bajar mano
+
+//opcional
+
+// subir mano
+
+
 
 // la marca va en referencia al mundo, apriltag en el robot
 void SpecificWorker::AprilTags_newAprilTag(tagsList tags)
@@ -115,11 +141,14 @@ void SpecificWorker::AprilTags_newAprilTag(tagsList tags)
 	{
 		// de 0 a 10 cajas pared
 		// de 10 a 20 cajas suelo
-		if(v.id > 10){
-			tps.push_back(std::make_tuple(v.id, v.tx, v.tz, v.ry));
-		}
+		//qDebug() << v.cameraId;
+		if(v.id > 10)
+				tps.push_back(std::make_tuple(v.id, v.tx, v.tz, v.ry));
 	}
-	visitedTags.write(tps);
+	if(v.cameraId == "rgbd")
+		visitedTags.write(tps);
+	else
+		visitedTagsHand.write(tps);
 }
 
 void SpecificWorker::AprilTags_newAprilTagAndPose(tagsList tags, RoboCompGenericBase::TBaseState bState, RoboCompJointMotor::MotorStateMap hState)
