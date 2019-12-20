@@ -30,6 +30,7 @@ QObject()
 {
 
 	gotopoint_proxy = std::get<0>(tprx);
+	simplearm_proxy = std::get<1>(tprx);
 
 	mutex = new QMutex(QMutex::Recursive);
 

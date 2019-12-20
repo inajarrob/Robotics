@@ -30,6 +30,9 @@
 #include <genericworker.h>
 #include <innermodel/innermodel.h>
 #include <stdlib.h>
+#include <Qt>
+#include <QVector>
+#include <list>
 
 class SpecificWorker : public GenericWorker
 {
@@ -42,7 +45,7 @@ public:
 	void AprilTags_newAprilTag(tagsList tags);
 	void AprilTags_newAprilTagAndPose(tagsList tags, RoboCompGenericBase::TBaseState bState, RoboCompJointMotor::MotorStateMap hState);
 
-	enum class State {idle, turn, check_target};
+	enum class State {idle, turn, check_target, focus, moveArm};
 	SpecificWorker::State actual_state;
 	
 	using Tp = std::tuple<int, float, float, float, std::string>;
@@ -62,21 +65,29 @@ public:
 			QMutexLocker ml(&mutex);
 			return datos;
 		}
-		/*Tp readSelected(const std::string &idCamera)
+		std::tuple<bool, Tp> readSelected(const int &id)
 		{
-			return std::find(std::begin(datos), std::end(datos), [idCamera](const auto &t){ return t.cameraId == idCamera;});
-		} */
+			QMutexLocker ml(&mutex);
+			auto r = std::find_if(std::begin(datos), std::end(datos), [id](const auto &tag){ return id == std::get<int>(tag);});
+			return std::make_tuple(r != std::end(datos), *r);
+		} 
 	};
 	visited visitedTags, handTags;
+	float increment = 0.1;
+	std::list<int> visitedIds;
 
 public slots:
 	void compute();
 	void initialize(int period);
+
 private:
 	std::shared_ptr<InnerModel> innerModel;
 	void idle();
 	void check_target();
 	void turn();
+	void focus();
+	void moveArm();
+	int current_id = 0;
 };
 
 #endif

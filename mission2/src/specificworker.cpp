@@ -68,6 +68,12 @@ void SpecificWorker::compute()
 		case State::check_target:
 			check_target();
 		break;
+		case State::focus:
+			focus();
+		break;
+		case State::moveArm:
+			moveArm();
+		break;
 	}
 }
 
@@ -75,6 +81,7 @@ void SpecificWorker::idle()
 {
 	qDebug() << __FUNCTION__;
 	actual_state = State::turn;
+
 }
 
 void SpecificWorker::turn()
@@ -85,9 +92,10 @@ void SpecificWorker::turn()
 		if(visitedTags.read().empty() == false)
 		{ 
 			gotopoint_proxy->stop();
-			auto [id,x,z,alpha, idCamera] = visitedTags.read()[0];
+			auto [id,x,z,ry,idCamera] = visitedTags.read()[0];
 			qDebug() << "to gotopoint_proxy" << x << z;
-			gotopoint_proxy->go("",x,z,alpha);
+			gotopoint_proxy->go("",x,z,ry);
+			current_id = id;
 			actual_state = State::check_target;
 		}
 		else {
@@ -99,7 +107,6 @@ void SpecificWorker::turn()
 		std::cerr << e.what() << '\n';
 	}
 	
-	
 }
 
 void SpecificWorker::check_target()
@@ -108,7 +115,12 @@ void SpecificWorker::check_target()
 	// si visitedTagHand recibido por cameraHand (id==rgbdHand)
 		// paro
 		// salto a centrrar mano
-
+	auto [exists, tp] = handTags.readSelected(current_id);
+	if(exists)
+	{
+		gotopoint_proxy->stop();
+		actual_state = State::focus;
+	}
 	if(gotopoint_proxy->atTarget())
 	{
 		gotopoint_proxy->stop();
@@ -117,21 +129,63 @@ void SpecificWorker::check_target()
 }
 
 /// Centrar mano
-//si fabs(t.x) < 10 and fabs(x)<10
-//	cambio a bajarMano
+void SpecificWorker::focus()
+{
+	//si fabs(t.x) < 10 and fabs(x)<10
+	//	cambio a bajarMano
 
-//asdf
-//simplearm_proxy->
-//si Y 
-//salir  
+	auto [exists, tp] = handTags.readSelected(current_id);
+	auto [id, x, z, ry, camera] = tp;
+	auto r = std::get<1>(tp);
+	auto r = std::get<int>(tp);
+	
 
-//bajar mano
+/* 	if(fabs(handTags.read()[0]<1>) < 10 and fabs(handTags.read()[0]<2>) < 10){
+		actual_state = State::moveArm;
+	}	
+	else
+	{
+		if(fabs(handTags.read()[0]<1>) >= 10){
+			if((handTags.read()[0]<1>) < 0){
+				//simplearm_proxy->moveTo(QVec::vec6(increment,0,0,0,0,0));
+			}
+			else{
+				//simplearm_proxy->moveTo(QVec::vec6(-increment,0,0,0,0,0));
+			}
+		}
+		if(fabs(handTags.read()[0]<2>) >= 10){
+			if((handTags.read()[0]<2>) < 0){
+				//simplearm_proxy->moveTo(QVec::vec6(0,increment,0,0,0,0));
+			}
+			else{
+				//simplearm_proxy->moveTo(QVec::vec6(0,-increment,0,0,0,0));
+			}
+		}
+	} */
+}
 
-//opcional
+void SpecificWorker::moveArm()
+{
+	/* if (fabs(handTags.read()[0]<3>) > 50)
+	{
+		void moveTo (Pose6D pose);
+		//simplearm_proxy->moveTo(Pose6D(0,0,-increment, 0,0,0));
+		//simplearm_proxy->moveTo(QVec::vec6(0,0,-increment,0,0,0));
+	}
+	else 
+	{
+		if(fabs(handTags.read()[0]<3>) <= 50){
+			sleep(2000);
+			actual_state = State::idle;
+			visitedIds.push_back(handTags.read()[0]<0>);
+		}
+	} */
+}
 
-// subir mano
 
 
+
+//////////////////////////////////////////////////////////
 
 // la marca va en referencia al mundo, apriltag en el robot
 void SpecificWorker::AprilTags_newAprilTag(tagsList tags)
@@ -143,7 +197,10 @@ void SpecificWorker::AprilTags_newAprilTag(tagsList tags)
 		// de 0 a 10 cajas pared
 		// de 10 a 20 cajas suelo
 		//qDebug() << v.cameraId;
-		if(v.id > 10){
+		if(v.id > 10 
+			and 
+			std::find(std::begin(visitedIds), std::end(visitedIds), v.id) == std::end(visitedIds))
+		{
 			tps.push_back(std::make_tuple(v.id, v.tx, v.tz, v.ry, v.cameraId));
 			aux = v.cameraId;
 		}
@@ -159,5 +216,6 @@ void SpecificWorker::AprilTags_newAprilTagAndPose(tagsList tags, RoboCompGeneric
 //subscribesToCODE
 
 }
+
 
 

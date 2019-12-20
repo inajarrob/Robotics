@@ -34,6 +34,7 @@
 #include <GenericBase.h>
 #include <JointMotor.h>
 #include <GotoPoint.h>
+#include <SimpleArm.h>
 #include <AprilTags.h>
 
 #define CHECK_PERIOD 5000
@@ -43,9 +44,10 @@ using namespace std;
 using namespace RoboCompGenericBase;
 using namespace RoboCompJointMotor;
 using namespace RoboCompGotoPoint;
+using namespace RoboCompSimpleArm;
 using namespace RoboCompAprilTags;
 
-using TuplePrx = std::tuple<RoboCompGotoPoint::GotoPointPrxPtr>;
+using TuplePrx = std::tuple<RoboCompGotoPoint::GotoPointPrxPtr,RoboCompSimpleArm::SimpleArmPrxPtr>;
 
 
 class GenericWorker :
@@ -67,6 +69,7 @@ public:
 
 
 	GotoPointPrxPtr gotopoint_proxy;
+	SimpleArmPrxPtr simplearm_proxy;
 
 	virtual void AprilTags_newAprilTag(tagsList tags) = 0;
 	virtual void AprilTags_newAprilTagAndPose(tagsList tags, RoboCompGenericBase::TBaseState bState, RoboCompJointMotor::MotorStateMap hState) = 0;
