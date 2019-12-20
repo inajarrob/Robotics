@@ -62,12 +62,12 @@ public:
 			QMutexLocker ml(&mutex);
 			return datos;
 		}
-		Td readSelected(const std::string id)
+		/* Td readSelected(const std::string id)
 		{
 			return std::find(std::begin(datos), std::end(datos), [id](const auto &t){ return t.cameraId == id;});
-		}
+		} */
 	};
-	visited visitedTags;
+	visited visitedTags, handTags;
 
 public slots:
 	void compute();
