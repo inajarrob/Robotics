@@ -45,7 +45,7 @@ public:
 	enum class State {idle, turn, check_target};
 	SpecificWorker::State actual_state;
 	
-	using Tp = std::tuple<int, float, float, float>;
+	using Tp = std::tuple<int, float, float, float, std::string>;
 	struct visited 
 	{
 		QMutex mutex;
@@ -62,9 +62,9 @@ public:
 			QMutexLocker ml(&mutex);
 			return datos;
 		}
-		/* Td readSelected(const std::string id)
+		/*Tp readSelected(const std::string &idCamera)
 		{
-			return std::find(std::begin(datos), std::end(datos), [id](const auto &t){ return t.cameraId == id;});
+			return std::find(std::begin(datos), std::end(datos), [idCamera](const auto &t){ return t.cameraId == idCamera;});
 		} */
 	};
 	visited visitedTags, handTags;

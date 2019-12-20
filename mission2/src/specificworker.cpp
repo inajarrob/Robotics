@@ -85,7 +85,7 @@ void SpecificWorker::turn()
 		if(visitedTags.read().empty() == false)
 		{ 
 			gotopoint_proxy->stop();
-			auto [id,x,z,alpha] = visitedTags.read()[0];
+			auto [id,x,z,alpha, idCamera] = visitedTags.read()[0];
 			qDebug() << "to gotopoint_proxy" << x << z;
 			gotopoint_proxy->go("",x,z,alpha);
 			actual_state = State::check_target;
@@ -117,13 +117,13 @@ void SpecificWorker::check_target()
 }
 
 /// Centrar mano
-si fabs(t.x) < 10 and fabs(x)<10
-	cambio a bajarMano
+//si fabs(t.x) < 10 and fabs(x)<10
+//	cambio a bajarMano
 
-asdf
-simplearm_proxy->
-si Y 
-salir  
+//asdf
+//simplearm_proxy->
+//si Y 
+//salir  
 
 //bajar mano
 
@@ -137,18 +137,21 @@ salir
 void SpecificWorker::AprilTags_newAprilTag(tagsList tags)
 {
 	std::vector<Tp> tps;
+	std::string aux = "";
 	for(const auto &v : tags)
 	{
 		// de 0 a 10 cajas pared
 		// de 10 a 20 cajas suelo
 		//qDebug() << v.cameraId;
-		if(v.id > 10)
-				tps.push_back(std::make_tuple(v.id, v.tx, v.tz, v.ry));
+		if(v.id > 10){
+			tps.push_back(std::make_tuple(v.id, v.tx, v.tz, v.ry, v.cameraId));
+			aux = v.cameraId;
+		}
 	}
-	if(v.cameraId == "rgbd")
+	if(aux == "rgbd")
 		visitedTags.write(tps);
 	else
-		visitedTagsHand.write(tps);
+		handTags.write(tps);
 }
 
 void SpecificWorker::AprilTags_newAprilTagAndPose(tagsList tags, RoboCompGenericBase::TBaseState bState, RoboCompJointMotor::MotorStateMap hState)
