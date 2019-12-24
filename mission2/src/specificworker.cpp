@@ -140,28 +140,28 @@ void SpecificWorker::focus()
 	auto r = std::get<int>(tp);
 	
 
-/* 	if(fabs(handTags.read()[0]<1>) < 10 and fabs(handTags.read()[0]<2>) < 10){
+ 	if(fabs(x) < 10 and fabs(z) < 10){
 		actual_state = State::moveArm;
 	}	
 	else
 	{
-		if(fabs(handTags.read()[0]<1>) >= 10){
-			if((handTags.read()[0]<1>) < 0){
-				//simplearm_proxy->moveTo(QVec::vec6(increment,0,0,0,0,0));
+		if(fabs(x) >= 10){
+			if(x < 0){
+				simplearm_proxy->moveTo(Pose6D(increment,0,0,0,0,0));
 			}
 			else{
-				//simplearm_proxy->moveTo(QVec::vec6(-increment,0,0,0,0,0));
+				simplearm_proxy->moveTo(Pose6D(-increment,0,0,0,0,0));
 			}
 		}
-		if(fabs(handTags.read()[0]<2>) >= 10){
-			if((handTags.read()[0]<2>) < 0){
-				//simplearm_proxy->moveTo(QVec::vec6(0,increment,0,0,0,0));
+		if(fabs(z) >= 10){
+			if(z < 0){
+				simplearm_proxy->moveTo(Pose6D(0,increment,0,0,0,0));
 			}
 			else{
-				//simplearm_proxy->moveTo(QVec::vec6(0,-increment,0,0,0,0));
+				simplearm_proxy->moveTo(Pose6D(0,-increment,0,0,0,0));
 			}
 		}
-	} */
+	} 
 }
 
 void SpecificWorker::moveArm()
@@ -180,6 +180,18 @@ void SpecificWorker::moveArm()
 			visitedIds.push_back(handTags.read()[0]<0>);
 		}
 	} */
+	if (fabs(std::get<3>(handTags.datos[0])) > 50)
+	{
+		simplearm_proxy->moveTo(Pose6D(0,0,-increment, 0,0,0));
+	}
+	else 
+	{
+		if(fabs(std::get<3>(handTags.datos[0])) <= 50){
+			sleep(2000);
+			actual_state = State::idle;
+			visitedIds.push_back(std::get<0>(handTags.datos[0]));
+		}
+	}
 }
 
 
