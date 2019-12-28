@@ -137,7 +137,7 @@ void SpecificWorker::focus()
 	auto [exists, tp] = handTags.readSelected(current_id);
 	auto [id, x, z, ry, camera] = tp;
 	auto r = std::get<1>(tp);
-	auto r = std::get<int>(tp);
+	//auto r = std::get<int>(tp);
 	
 
  	if(fabs(x) < 10 and fabs(z) < 10){
@@ -147,18 +147,22 @@ void SpecificWorker::focus()
 	{
 		if(fabs(x) >= 10){
 			if(x < 0){
-				simplearm_proxy->moveTo(Pose6D(increment,0,0,0,0,0));
+				Pose6D pose = {increment,0,0,0,0,0};
+				simplearm_proxy->moveTo(pose);
 			}
 			else{
-				simplearm_proxy->moveTo(Pose6D(-increment,0,0,0,0,0));
+				Pose6D pose = {-increment,0,0,0,0,0};
+				simplearm_proxy->moveTo(pose);
 			}
 		}
 		if(fabs(z) >= 10){
 			if(z < 0){
-				simplearm_proxy->moveTo(Pose6D(0,increment,0,0,0,0));
+				Pose6D pose = {0,increment,0,0,0,0};
+				simplearm_proxy->moveTo(pose);
 			}
 			else{
-				simplearm_proxy->moveTo(Pose6D(0,-increment,0,0,0,0));
+				Pose6D pose = {0,-increment,0,0,0,0};
+				simplearm_proxy->moveTo(pose);
 			}
 		}
 	} 
@@ -182,7 +186,10 @@ void SpecificWorker::moveArm()
 	} */
 	if (fabs(std::get<3>(handTags.datos[0])) > 50)
 	{
-		simplearm_proxy->moveTo(Pose6D(0,0,-increment,0,0,0));
+	
+		//auto tuple = std::make_tuple(0.0,0.0,-increment,0.0,0.0,0);
+		Pose6D pose = {0,0,-increment,0,0,0};
+		simplearm_proxy->moveTo(pose);
 	}
 	else 
 	{
