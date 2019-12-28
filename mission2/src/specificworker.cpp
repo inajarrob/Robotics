@@ -182,7 +182,7 @@ void SpecificWorker::moveArm()
 	} */
 	if (fabs(std::get<3>(handTags.datos[0])) > 50)
 	{
-		simplearm_proxy->moveTo(Pose6D(0,0,-increment, 0,0,0));
+		simplearm_proxy->moveTo(Pose6D(0,0,-increment,0,0,0));
 	}
 	else 
 	{

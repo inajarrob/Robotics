@@ -34,6 +34,9 @@
 #include <QVector>
 #include <list>
 
+	
+
+
 class SpecificWorker : public GenericWorker
 {
 Q_OBJECT
@@ -47,6 +50,8 @@ public:
 
 	enum class State {idle, turn, check_target, focus, moveArm};
 	SpecificWorker::State actual_state;
+
+	float zero = 0;
 	
 	using Tp = std::tuple<int, float, float, float, std::string>;
 	struct visited 
@@ -72,9 +77,128 @@ public:
 			return std::make_tuple(r != std::end(datos), *r);
 		} 
 	};
+
 	visited visitedTags, handTags;
 	float increment = 0.1;
 	std::list<int> visitedIds;
+
+	struct Pose6D
+{
+ ::Ice::Float x;
+ ::Ice::Float y;
+ ::Ice::Float z;
+ ::Ice::Float rx;
+ ::Ice::Float ry;
+ ::Ice::Float rz;
+
+ bool operator==(const Pose6D& __rhs) const
+ {
+ if(this == &__rhs)
+ {
+ return true;
+ }
+ if(x != __rhs.x)
+ {
+ return false;
+ }
+ if(y != __rhs.y)
+ {
+ return false;
+ }
+ if(z != __rhs.z)
+ {
+ return false;
+ }
+ if(rx != __rhs.rx)
+ {
+ return false;
+ }
+ if(ry != __rhs.ry)
+ {
+ return false;
+ }
+ if(rz != __rhs.rz)
+ {
+ return false;
+ }
+ return true;
+ }
+
+ bool operator<(const Pose6D& __rhs) const
+ {
+ if(this == &__rhs)
+ {
+ return false;
+ }
+ if(x < __rhs.x)
+ {
+ return true;
+ }
+ else if(__rhs.x < x)
+ {
+ return false;
+ }
+ if(y < __rhs.y)
+ {
+ return true;
+ }
+ else if(__rhs.y < y)
+ {
+ return false;
+ }
+ if(z < __rhs.z)
+ {
+ return true;
+ }
+ else if(__rhs.z < z)
+ {
+ return false;
+ }
+ if(rx < __rhs.rx)
+ {
+ return true;
+ }
+ else if(__rhs.rx < rx)
+ {
+ return false;
+ }
+ if(ry < __rhs.ry)
+ {
+ return true;
+ }
+ else if(__rhs.ry < ry)
+ {
+ return false;
+ }
+ if(rz < __rhs.rz)
+ {
+ return true;
+ }
+ else if(__rhs.rz < rz)
+ {
+ return false;
+ }
+ return false;
+ }
+
+ bool operator!=(const Pose6D& __rhs) const
+ {
+ return !operator==(__rhs);
+ }
+ bool operator<=(const Pose6D& __rhs) const
+ {
+ return operator<(__rhs) || operator==(__rhs);
+ }
+ bool operator>(const Pose6D& __rhs) const
+ {
+ return !operator<(__rhs) && !operator==(__rhs);
+ }
+ bool operator>=(const Pose6D& __rhs) const
+ {
+ return !operator<(__rhs);
+ }
+};
+
 
 public slots:
 	void compute();
