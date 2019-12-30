@@ -81,6 +81,7 @@ public:
 	visited visitedTags, handTags;
 	float increment = 0.1;
 	std::list<int> visitedIds;
+	float z = 0;
 
 
 public slots:

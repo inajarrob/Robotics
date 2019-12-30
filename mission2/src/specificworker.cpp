@@ -224,10 +224,15 @@ void SpecificWorker::AprilTags_newAprilTag(tagsList tags)
 			aux = v.cameraId;
 		}
 	}
-	if(aux == "rgbd")
+	if(aux == "rgbd"){
 		visitedTags.write(tps);
-	else
+	}
+		
+	else{
 		handTags.write(tps);
+		z = std::get<2>(handTags.datos[0]);
+	}
+		
 }
 
 void SpecificWorker::AprilTags_newAprilTagAndPose(tagsList tags, RoboCompGenericBase::TBaseState bState, RoboCompJointMotor::MotorStateMap hState)
