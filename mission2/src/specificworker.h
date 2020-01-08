@@ -74,7 +74,10 @@ public:
 		{
 			QMutexLocker ml(&mutex);
 			auto r = std::find_if(std::begin(datos), std::end(datos), [id](const auto &tag){ return id == std::get<int>(tag);});
-			return std::make_tuple(r != std::end(datos), *r);
+			if(r != std::end(datos))
+				return std::make_tuple(true, *r);
+			else
+				return std::make_tuple(false, Tp());
 		} 
 	};
 

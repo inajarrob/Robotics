@@ -99,7 +99,15 @@ void SpecificWorker::GotoPoint_go(string nodo, float x, float y, float alpha)
 
 void SpecificWorker::GotoPoint_stop()
 {
-	differentialrobot_proxy->setSpeedBase(0, 0);
+	try{
+		differentialrobot_proxy->setSpeedBase(0, 0);
+		c.active = false;
+		actual_state = State::idle;
+	}
+	catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
 }
 
 void SpecificWorker::GotoPoint_turn(float speed)

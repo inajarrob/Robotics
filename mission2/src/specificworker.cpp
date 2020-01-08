@@ -118,8 +118,15 @@ void SpecificWorker::check_target()
 	auto [exists, tp] = handTags.readSelected(current_id);
 	if(exists)
 	{
-		gotopoint_proxy->stop();
-		actual_state = State::focus;
+		try
+		{
+			gotopoint_proxy->stop();
+			actual_state = State::focus;
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}	
 	}
 	if(gotopoint_proxy->atTarget())
 	{
@@ -135,6 +142,7 @@ void SpecificWorker::focus()
 	//	cambio a bajarMano
 
 	auto [exists, tp] = handTags.readSelected(current_id);
+	qDebug() << "Bool: " << exists;
 	auto [id, x, z, ry, camera] = tp;
 	auto r = std::get<1>(tp);
 	//auto r = std::get<int>(tp);
@@ -145,6 +153,7 @@ void SpecificWorker::focus()
 	}	
 	else
 	{
+		qDebug() << "Enfocando";
 		if(fabs(x) >= 10){
 			if(x < 0){
 				Pose6D pose = {increment,0,0,0,0,0};
@@ -195,7 +204,7 @@ void SpecificWorker::moveArm()
 	{
 		if(fabs(std::get<3>(handTags.datos[0])) <= 50){
 			sleep(2000);
-			actual_state = State::idle;
+			//actual_state = State::idle;
 			visitedIds.push_back(std::get<0>(handTags.datos[0]));
 		}
 	}
@@ -220,20 +229,28 @@ void SpecificWorker::AprilTags_newAprilTag(tagsList tags)
 			and 
 			std::find(std::begin(visitedIds), std::end(visitedIds), v.id) == std::end(visitedIds))
 		{
+			//qDebug() << __FUNCTION__ << "dentro";
 			tps.push_back(std::make_tuple(v.id, v.tx, v.tz, v.ry, v.cameraId));
 			aux = v.cameraId;
+			if(aux == "rgbd")
+			{
+				qDebug() << __FUNCTION__ << "write";
+				visitedTags.write(tps);
+			}
+			
+			else
+			{
+				if(aux == "rgbdHand"){
+					qDebug() << __FUNCTION__ << "hand";
+					handTags.write(tps);
+					//gotopoint_proxy->stop();
+				}
+			//z = std::get<2>(handTags.datos[0]);
+			}
 		}
 	}
-	if(aux == "rgbd"){
-		visitedTags.write(tps);
-	}
-		
-	else{
-		handTags.write(tps);
-		z = std::get<2>(handTags.datos[0]);
-	}
-		
 }
+
 
 void SpecificWorker::AprilTags_newAprilTagAndPose(tagsList tags, RoboCompGenericBase::TBaseState bState, RoboCompJointMotor::MotorStateMap hState)
 {

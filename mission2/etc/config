@@ -12,7 +12,7 @@ SimpleArmProxy = simplearm:tcp -h localhost -p 19000
 # This property is used by the clients to connect to IceStorm.
 TopicManager.Proxy=IceStorm/TopicManager:default -p 9999
 
-InnerModelPath=/home/jose/robocomp/files/innermodel/betaWorldArm.xml
+InnerModelPath=/home/salabeta/robocomp/files/innermodel/betaWorldArm.xml
 
 Ice.Warn.Connections=0
 Ice.Trace.Network=0
