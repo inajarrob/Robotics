@@ -81,7 +81,7 @@ void SpecificWorker::idle()
 {
 	qDebug() << __FUNCTION__;
 	actual_state = State::turn;
-
+	//actual_state = State::focus;
 }
 
 void SpecificWorker::turn()
@@ -114,7 +114,7 @@ void SpecificWorker::check_target()
 	qDebug() << __FUNCTION__;
 	// si visitedTagHand recibido por cameraHand (id==rgbdHand)
 		// paro
-		// salto a centrrar mano
+		// salto a centrar mano
 	auto [exists, tp] = handTags.readSelected(current_id);
 	if(exists)
 	{
@@ -122,6 +122,7 @@ void SpecificWorker::check_target()
 		{
 			gotopoint_proxy->stop();
 			actual_state = State::focus;
+			
 		}
 		catch(const std::exception& e)
 		{
@@ -148,7 +149,7 @@ void SpecificWorker::focus()
 	//auto r = std::get<int>(tp);
 	
 
- 	if(fabs(x) < 10 and fabs(z) < 10){
+ 	if(fabs(x) < 10 and fabs(ry) < 10){
 		actual_state = State::moveArm;
 	}	
 	else
@@ -178,11 +179,11 @@ void SpecificWorker::focus()
 				}
 			}
 		}
-		if(fabs(z) >= 10){
-			if(z < 0){
+		if(fabs(ry) >= 10){
+			if(ry < 0){
 				try{
-					qDebug() << "Enfocando -z: " << z;
-					Pose6D pose = {0,-increment,0,0,0,0};
+					qDebug() << "Enfocando -ry: " << z;
+					Pose6D pose = {0,0,-increment,0,0,0};
 					simplearm_proxy->moveTo(pose);
 				}
 				catch(const std::exception& e)
@@ -192,8 +193,8 @@ void SpecificWorker::focus()
 			}
 			else{
 				try {
-					qDebug() << "Enfocando z: " << z;
-					Pose6D pose = {0,increment,0,0,0,0};
+					qDebug() << "Enfocando ry: " << z;
+					Pose6D pose = {0,0,increment,0,0,0};
 					simplearm_proxy->moveTo(pose);
 				}
 				catch(const std::exception& e)
@@ -207,33 +208,28 @@ void SpecificWorker::focus()
 
 void SpecificWorker::moveArm()
 {
-	/* if (fabs(handTags.read()[0]<3>) > 50)
+	auto [exists, tp] = handTags.readSelected(current_id);
+	//qDebug() << "Bool: " << exists;
+	auto [id, x, z, ry, camera] = tp;
+	qDebug() << "moveArm: " << z;
+	if (fabs(z) > 130)
 	{
-		void moveTo (Pose6D pose);
-		//simplearm_proxy->moveTo(Pose6D(0,0,-increment, 0,0,0));
-		//simplearm_proxy->moveTo(QVec::vec6(0,0,-increment,0,0,0));
-	}
-	else 
-	{
-		if(fabs(handTags.read()[0]<3>) <= 50){
-			sleep(2000);
-			actual_state = State::idle;
-			visitedIds.push_back(handTags.read()[0]<0>);
-		}
-	} */
-	if (fabs(std::get<3>(handTags.datos[0])) > 50)
-	{
-	
-		//auto tuple = std::make_tuple(0.0,0.0,-increment,0.0,0.0,0);
-		Pose6D pose = {0,0,-increment,0,0,0};
+		Pose6D pose = {0,increment,0,0,0,0};
+		qDebug() << "X: " << x << "RY: " << ry;
 		simplearm_proxy->moveTo(pose);
+		if(fabs(x) > 10 or fabs(ry) > 10){
+			actual_state = State::focus;
+		}
 	}
 	else 
 	{
-		if(fabs(std::get<3>(handTags.datos[0])) <= 50){
-			sleep(2000);
+		if(fabs(z) <= 130){
+			//sleep(2000);
 			//actual_state = State::idle;
+			qDebug() << "elseeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee X: " << x << "RY: " << ry;
+			gotopoint_proxy->stop();
 			visitedIds.push_back(std::get<0>(handTags.datos[0]));
+			qDebug() << "bajando: " << z;
 		}
 	}
 }
@@ -262,14 +258,14 @@ void SpecificWorker::AprilTags_newAprilTag(tagsList tags)
 			aux = v.cameraId;
 			if(aux == "rgbd")
 			{
-				qDebug() << __FUNCTION__ << "write";
+				//qDebug() << __FUNCTION__ << "write";
 				visitedTags.write(tps);
 			}
 			
 			else
 			{
 				if(aux == "rgbdHand"){
-					qDebug() << __FUNCTION__ << "hand";
+					//qDebug() << __FUNCTION__ << "hand";
 					handTags.write(tps);
 					//gotopoint_proxy->stop();
 				}
