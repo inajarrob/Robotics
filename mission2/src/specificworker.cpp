@@ -156,22 +156,50 @@ void SpecificWorker::focus()
 		qDebug() << "Enfocando";
 		if(fabs(x) >= 10){
 			if(x < 0){
-				Pose6D pose = {increment,0,0,0,0,0};
-				simplearm_proxy->moveTo(pose);
+				try {
+					qDebug() << "Enfocando -x: " << x;
+					Pose6D pose = {increment,0,0,0,0,0};
+					simplearm_proxy->moveTo(pose);
+				}
+				catch(const std::exception& e)
+				{
+					std::cerr << e.what() << '\n';
+				}
 			}
 			else{
-				Pose6D pose = {-increment,0,0,0,0,0};
-				simplearm_proxy->moveTo(pose);
+				try {
+					qDebug() << "Enfocando x: " << x;
+					Pose6D pose = {-increment,0,0,0,0,0};
+					simplearm_proxy->moveTo(pose);
+				}
+				catch(const std::exception& e)
+				{
+					std::cerr << e.what() << '\n';
+				}
 			}
 		}
 		if(fabs(z) >= 10){
 			if(z < 0){
-				Pose6D pose = {0,increment,0,0,0,0};
-				simplearm_proxy->moveTo(pose);
+				try{
+					qDebug() << "Enfocando -z: " << z;
+					Pose6D pose = {0,-increment,0,0,0,0};
+					simplearm_proxy->moveTo(pose);
+				}
+				catch(const std::exception& e)
+				{
+					std::cerr << e.what() << '\n';
+				}
 			}
 			else{
-				Pose6D pose = {0,-increment,0,0,0,0};
-				simplearm_proxy->moveTo(pose);
+				try {
+					qDebug() << "Enfocando z: " << z;
+					Pose6D pose = {0,increment,0,0,0,0};
+					simplearm_proxy->moveTo(pose);
+				}
+				catch(const std::exception& e)
+				{
+					std::cerr << e.what() << '\n';
+				}
 			}
 		}
 	} 

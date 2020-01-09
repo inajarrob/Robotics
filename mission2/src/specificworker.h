@@ -82,7 +82,7 @@ public:
 	};
 
 	visited visitedTags, handTags;
-	float increment = 0.1;
+	float increment = 0.3;
 	std::list<int> visitedIds;
 	float z = 0;
 
