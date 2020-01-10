@@ -48,7 +48,7 @@ public:
 	void AprilTags_newAprilTag(tagsList tags);
 	void AprilTags_newAprilTagAndPose(tagsList tags, RoboCompGenericBase::TBaseState bState, RoboCompJointMotor::MotorStateMap hState);
 
-	enum class State {idle, turn, check_target, focus, moveArm};
+	enum class State {idle, turn, check_target, focus, moveArm, raiseArm};
 	SpecificWorker::State actual_state;
 
 	float zero = 0;
@@ -84,7 +84,7 @@ public:
 	visited visitedTags, handTags;
 	float increment = 0.1;
 	std::list<int> visitedIds;
-	float z = 0;
+	int iter = 0;
 
 
 public slots:
@@ -98,6 +98,7 @@ private:
 	void turn();
 	void focus();
 	void moveArm();
+	void raiseArm();
 	int current_id = 0;
 };
 

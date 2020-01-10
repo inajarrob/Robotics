@@ -74,14 +74,21 @@ void SpecificWorker::compute()
 		case State::moveArm:
 			moveArm();
 		break;
+		case State::raiseArm:
+			raiseArm();
+		break;
 	}
 }
 
 void SpecificWorker::idle()
 {
 	qDebug() << __FUNCTION__;
-	actual_state = State::turn;
-	//actual_state = State::focus;
+	// si estan vacios buscamos una caja
+	if(visitedTags.datos.empty() and handTags.datos.empty()){
+		actual_state = State::turn;
+		iter += 1;
+		qDebug() << "Iter: " << iter;
+	}
 }
 
 void SpecificWorker::turn()
@@ -182,7 +189,7 @@ void SpecificWorker::focus()
 		if(fabs(ry) >= 10){
 			if(ry < 0){
 				try{
-					qDebug() << "Enfocando -ry: " << z;
+					qDebug() << "Enfocando -ry: " << ry;
 					Pose6D pose = {0,0,-increment,0,0,0};
 					simplearm_proxy->moveTo(pose);
 				}
@@ -193,7 +200,7 @@ void SpecificWorker::focus()
 			}
 			else{
 				try {
-					qDebug() << "Enfocando ry: " << z;
+					qDebug() << "Enfocando ry: " << ry;
 					Pose6D pose = {0,0,increment,0,0,0};
 					simplearm_proxy->moveTo(pose);
 				}
@@ -209,10 +216,10 @@ void SpecificWorker::focus()
 void SpecificWorker::moveArm()
 {
 	auto [exists, tp] = handTags.readSelected(current_id);
-	//qDebug() << "Bool: " << exists;
 	auto [id, x, z, ry, camera] = tp;
 	qDebug() << "moveArm: " << z;
-	if (fabs(z) > 130)
+
+	if (fabs(z) > 175)
 	{
 		Pose6D pose = {0,increment,0,0,0,0};
 		qDebug() << "X: " << x << "RY: " << ry;
@@ -223,18 +230,35 @@ void SpecificWorker::moveArm()
 	}
 	else 
 	{
-		if(fabs(z) <= 130){
+		if(fabs(z) <= 175){
+			qDebug() << "ALCANZADO X: " << x << "RY: " << ry;
+			simplearm_proxy->stop();
 			//sleep(2000);
-			//actual_state = State::idle;
-			qDebug() << "elseeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee X: " << x << "RY: " << ry;
-			gotopoint_proxy->stop();
-			visitedIds.push_back(std::get<0>(handTags.datos[0]));
-			qDebug() << "bajando: " << z;
+			qDebug() << " EH LETS GO";
+			actual_state = State::raiseArm;
 		}
 	}
 }
 
 
+void SpecificWorker::raiseArm(){
+	qDebug() << "tamos en raise bro";
+	visitedIds.push_back(std::get<0>(handTags.datos[0]));
+	auto [exists, tp] = handTags.readSelected(current_id);
+	auto [id, x, z, ry, camera] = tp;
+
+	if(z > 200){
+		actual_state = State::idle;
+		simplearm_proxy->stop();
+		handTags.datos.clear();
+		visitedTags.datos.clear();
+	} else{
+		qDebug() << "Z en raiseArm: " << z;
+		Pose6D pose = {0,-increment,0,0,0,0};
+		simplearm_proxy->moveTo(pose);
+	}
+	
+}
 
 
 //////////////////////////////////////////////////////////
