@@ -77,18 +77,17 @@ void SpecificWorker::compute()
 		case State::raiseArm:
 			raiseArm();
 		break;
+		case State::center:
+			center();
+		break;
 	}
 }
 
 void SpecificWorker::idle()
 {
 	qDebug() << __FUNCTION__;
-	// si estan vacios buscamos una caja
-	if(visitedTags.datos.empty() and handTags.datos.empty()){
-		actual_state = State::turn;
-		iter += 1;
-		qDebug() << "Iter: " << iter;
-	}
+	actual_state = State::turn;
+
 }
 
 void SpecificWorker::turn()
@@ -136,11 +135,6 @@ void SpecificWorker::check_target()
 			std::cerr << e.what() << '\n';
 		}	
 	}
-	if(gotopoint_proxy->atTarget())
-	{
-		gotopoint_proxy->stop();
-		actual_state = State::idle;
-	} 
 }
 
 /// Centrar mano
@@ -219,47 +213,56 @@ void SpecificWorker::moveArm()
 	auto [id, x, z, ry, camera] = tp;
 	qDebug() << "moveArm: " << z;
 
-	if (fabs(z) > 175)
+	if (contArm < 7)
 	{
 		Pose6D pose = {0,increment,0,0,0,0};
 		qDebug() << "X: " << x << "RY: " << ry;
 		simplearm_proxy->moveTo(pose);
-		if(fabs(x) > 10 or fabs(ry) > 10){
-			actual_state = State::focus;
-		}
+		contArm ++;
 	}
 	else 
 	{
-		if(fabs(z) <= 175){
-			qDebug() << "ALCANZADO X: " << x << "RY: " << ry;
-			simplearm_proxy->stop();
-			//sleep(2000);
-			qDebug() << " EH LETS GO";
-			actual_state = State::raiseArm;
-		}
+		simplearm_proxy->stop();
+		actual_state = State::raiseArm;
 	}
 }
 
 
 void SpecificWorker::raiseArm(){
-	qDebug() << "tamos en raise bro";
+	qDebug() << "En raise arm";
 	visitedIds.push_back(std::get<0>(handTags.datos[0]));
-	auto [exists, tp] = handTags.readSelected(current_id);
-	auto [id, x, z, ry, camera] = tp;
 
-	if(z > 200){
-		actual_state = State::idle;
+	if(contArm <= 0){
+		qDebug() << "Al centro";
 		simplearm_proxy->stop();
 		handTags.datos.clear();
 		visitedTags.datos.clear();
+		contArm = 0;
+		gotopoint_proxy->go("Center",-46.57,85.70,0);
+		actual_state = State::center;
 	} else{
-		qDebug() << "Z en raiseArm: " << z;
+		qDebug() << "Subiendo...";
 		Pose6D pose = {0,-increment,0,0,0,0};
 		simplearm_proxy->moveTo(pose);
+		contArm--;
 	}
 	
 }
 
+void SpecificWorker::center(){
+	qDebug() << "CENTER";
+	if(gotopoint_proxy->atTarget()){
+		qDebug() << "En el objetivo";
+		actual_state= State::idle;
+		handTags.datos.clear();
+		visitedTags.datos.clear();
+		gotopoint_proxy->stop();		
+	}
+	else{
+		qDebug() << "En camino";
+		//gotopoint_proxy->go("Center",-46.57,85.70,0);
+	}
+}
 
 //////////////////////////////////////////////////////////
 
@@ -273,7 +276,7 @@ void SpecificWorker::AprilTags_newAprilTag(tagsList tags)
 		// de 0 a 10 cajas pared
 		// de 10 a 20 cajas suelo
 		//qDebug() << v.cameraId;
-		if(v.id > 10 
+		if(v.id >= 10 
 			and 
 			std::find(std::begin(visitedIds), std::end(visitedIds), v.id) == std::end(visitedIds))
 		{

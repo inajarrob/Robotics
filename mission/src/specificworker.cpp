@@ -91,10 +91,15 @@ bool SpecificWorker::GotoPoint_atTarget()
 
 void SpecificWorker::GotoPoint_go(string nodo, float x, float y, float alpha)
 {
-	qDebug() << __FUNCTION__ << x << y ;
-	r = innerModel->transform("world",QVec::vec3(x,0,y), "rgbd");
-	c.setCoords(r.x(), r.z(), alpha, bState);
-	actual_state = State::idle;
+	if(nodo == ""){
+		//qDebug() << __FUNCTION__ << x << y ;
+		r = innerModel->transform("world",QVec::vec3(x,0,y), "rgbd");
+		c.setCoords(r.x(), r.z(), alpha, bState);
+		actual_state = State::idle;
+	} else {
+		c.setCoords(x, y, alpha, bState);
+		actual_state = State::idle;
+	}
 }
 
 void SpecificWorker::GotoPoint_stop()
